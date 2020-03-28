@@ -21,7 +21,7 @@ class App extends React.Component {
                 <div className="App">
                     {/*<header className="App-header">*/}
                     <h1>
-                        Webcam Feed
+                        SharpShooter
                     </h1>
                     <CameraFeed />
                     {/*</header>*/}

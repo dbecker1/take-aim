@@ -1,18 +1,18 @@
 
 class ShotDetector {
-    constructor(videoObj, outputCanvas = null, delayThreshold = 500, fps = 30) {
+    constructor(videoObj, delayThreshold = 500, fps = 30) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;
 
-        this.outputCanvas = outputCanvas;
+        //this.outputCanvas = outputCanvas;
         this.fps = fps;
         this.delayThreshold = delayThreshold;
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
 
-    start() {
+    start(onHit) {
         // Pre-initialize all OpenCV objects so that they can be reused. Otherwise it will crash after
         // running for a little bit
 
@@ -42,7 +42,13 @@ class ShotDetector {
         // Begin processing
 
         const delay = 1000/this.fps
-        setInterval(() => {this.processVideo()}, delay);
+        setInterval(() => {
+            let hit = this.processVideo();
+            if (hit != null) {
+                console.log("hit found")
+                onHit(hit);
+            }
+        }, delay);
         //this.processVideo();
     }
 
@@ -70,14 +76,16 @@ class ShotDetector {
             //     window.cv.imshow(this.canvasRef.current, this.minThreshold)
             // }
 
-            this.detectCircles(this.thresholdImage);
+            this.currentlyProcessing = false;
 
+            return this.detectCircles(this.thresholdImage);
         } catch (e) {
             console.log("ERROR")
             console.error(e)
+            this.currentlyProcessing = false;
         }
 
-        this.currentlyProcessing = false;
+
     }
 
     detectCircles(image) {
@@ -87,29 +95,31 @@ class ShotDetector {
         if (this.contours.size() === 0) {
             console.log("No shot")
             this.shotInLastFrame = false;
-            return;
+            return null;
         }
 
         if (this.shotInLastFrame) {
             console.log("Shot in last frame")
-            return;
+            return null;
         }
         this.shotInLastFrame = true;
         let cnt = this.contours.get(0);
-        console.log(cnt)
+        //console.log(cnt)
 
         let circle = window.cv.minEnclosingCircle(cnt);
-        let contoursColor = new window.cv.Scalar(255, 255, 255);
-        let circleColor = new window.cv.Scalar(255, 0, 0);
+        //let contoursColor = new window.cv.Scalar(255, 255, 255);
+        //let circleColor = new window.cv.Scalar(255, 0, 0);
 
         this.lastShot = new Date();
 
         //window.cv.drawContours(dst, this.contours, 0, contoursColor, 1, 8, this.hierarchy, 100);
-        window.cv.circle(this.outputImage, circle.center, 5, circleColor);
+        //window.cv.circle(this.outputImage, circle.center, 5, circleColor);
 
-        if (this.outputCanvas !== null) {
-            window.cv.imshow(this.outputCanvas, this.outputImage);
-        }
+        // if (this.outputCanvas !== null) {
+        //     window.cv.imshow(this.outputCanvas, this.outputImage);
+        // }
+
+        return circle.center;
     }
 }
 

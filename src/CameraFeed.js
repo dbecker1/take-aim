@@ -5,7 +5,6 @@ class CameraFeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showCanvas: false
         }
 
         this.videoRef = React.createRef();
@@ -26,19 +25,27 @@ class CameraFeed extends React.Component {
     }
 
     startProcessing() {
-        this.shotDetector = new ShotDetector(this.videoRef.current, this.canvasRef.current);
+        this.shotDetector = new ShotDetector(this.videoRef.current, this.canvasRef.current, 200);
 
-        this.setState({
-            showCanvas: true
-        }, () => {
-            this.shotDetector.start()
-        })
+        const canvas = this.canvasRef.current;
+        const video = this.videoRef.current;
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        this.shotDetector.start((hit => {
+            console.log(hit)
+            ctx.beginPath();
+            ctx.arc(hit.x, hit.y, 5, 0, 2*Math.PI, false)
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+        }))
     }
 
     render() {
         return (
             <div {...this.props}>
-                {/*<video ref={this.videoRef} onPlay={() => {setTimeout(() => {this.startProcessing()}, 100)}} />*/}
                 <video ref={this.videoRef}  />
                 <canvas ref={this.canvasRef} ></canvas>
                 <br />
