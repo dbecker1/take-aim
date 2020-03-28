@@ -5,6 +5,7 @@ class CameraFeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            running: false
         }
 
         this.videoRef = React.createRef();
@@ -17,7 +18,6 @@ class CameraFeed extends React.Component {
         .then((stream)  => {
             video.srcObject = stream;
             video.play();
-            //this.startProcessing()
         })
         .catch((err) => {
             console.log("An error occurred! " + err);
@@ -25,7 +25,10 @@ class CameraFeed extends React.Component {
     }
 
     startProcessing() {
-        this.shotDetector = new ShotDetector(this.videoRef.current, this.canvasRef.current, 200);
+        if (!this.shotDetector) {
+            this.shotDetector = new ShotDetector(this.videoRef.current, this.canvasRef.current, 200);
+        }
+
 
         const canvas = this.canvasRef.current;
         const video = this.videoRef.current;
@@ -43,13 +46,24 @@ class CameraFeed extends React.Component {
         }))
     }
 
+    toggle() {
+        if (this.state.running) {
+            this.shotDetector.stop();
+        } else {
+            this.startProcessing()
+        }
+        this.setState({
+            running: !this.state.running
+        })
+    }
+
     render() {
         return (
             <div {...this.props}>
                 <video ref={this.videoRef}  />
                 <canvas ref={this.canvasRef} ></canvas>
                 <br />
-                <button onClick={() => {this.startProcessing()}} >Start</button>
+                <button onClick={() => {this.toggle()}} >{this.state.running ? "Stop" : "Start"}</button>
             </div>
         );
     }

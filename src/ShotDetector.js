@@ -8,6 +8,9 @@ class ShotDetector {
         //this.outputCanvas = outputCanvas;
         this.fps = fps;
         this.delayThreshold = delayThreshold;
+        this.lastShot = null;
+        this.shotInLastFrame = false;
+        this.currentlyProcessing = false;
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
@@ -28,21 +31,12 @@ class ShotDetector {
         this.hsvImage = new window.cv.Mat();
         this.thresholdImage = new window.cv.Mat();
 
-        this.currentlyProcessing = false;
-
-        this.lastShot = null;
-        this.shotInLastFrame = false;
-
-        // Setup for detectCircles
-
-        this.outputImage = window.cv.Mat.zeros(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3);
         this.contours = new window.cv.MatVector();
         this.hierarchy = new window.cv.Mat();
 
         // Begin processing
-
         const delay = 1000/this.fps
-        setInterval(() => {
+        this.interval = setInterval(() => {
             let hit = this.processVideo();
             if (hit != null) {
                 console.log("hit found")
@@ -50,6 +44,18 @@ class ShotDetector {
             }
         }, delay);
         //this.processVideo();
+    }
+
+    stop() {
+        clearInterval(this.interval)
+
+        this.readFrame.delete();
+        this.minThreshold.delete();
+        this.maxThreshold.delete();
+        this.hsvImage.delete();
+        this.thresholdImage.delete();
+        this.contours.delete();
+        this.hierarchy.delete();
     }
 
     processVideo() {
@@ -67,59 +73,36 @@ class ShotDetector {
         try {
             this.videoCapture.read(this.readFrame)
 
-
             window.cv.cvtColor(this.readFrame, this.hsvImage, window.cv.COLOR_BGR2HSV);
             window.cv.inRange(this.hsvImage, this.minThreshold, this.maxThreshold, this.thresholdImage)
+            window.cv.findContours(this.thresholdImage, this.contours, this.hierarchy, window.cv.RETR_CCOMP, window.cv.CHAIN_APPROX_SIMPLE);
 
+            if (this.contours.size() === 0) {
+                //console.log("No shot")
+                this.shotInLastFrame = false;
+                this.currentlyProcessing = false;
+                return null;
+            }
 
-            // if (this.outputCanvas !== null) {
-            //     window.cv.imshow(this.canvasRef.current, this.minThreshold)
-            // }
+            if (this.shotInLastFrame) {
+                //console.log("Shot in last frame")
+                this.currentlyProcessing = false;
+                return null;
+            }
+            this.shotInLastFrame = true;
+            let cnt = this.contours.get(0);
+
+            let circle = window.cv.minEnclosingCircle(cnt);
+            this.lastShot = new Date();
 
             this.currentlyProcessing = false;
-
-            return this.detectCircles(this.thresholdImage);
+            return circle.center;
         } catch (e) {
             console.log("ERROR")
             console.error(e)
             this.currentlyProcessing = false;
-        }
-
-
-    }
-
-    detectCircles(image) {
-
-        window.cv.findContours(image, this.contours, this.hierarchy, window.cv.RETR_CCOMP, window.cv.CHAIN_APPROX_SIMPLE);
-
-        if (this.contours.size() === 0) {
-            console.log("No shot")
-            this.shotInLastFrame = false;
             return null;
         }
-
-        if (this.shotInLastFrame) {
-            console.log("Shot in last frame")
-            return null;
-        }
-        this.shotInLastFrame = true;
-        let cnt = this.contours.get(0);
-        //console.log(cnt)
-
-        let circle = window.cv.minEnclosingCircle(cnt);
-        //let contoursColor = new window.cv.Scalar(255, 255, 255);
-        //let circleColor = new window.cv.Scalar(255, 0, 0);
-
-        this.lastShot = new Date();
-
-        //window.cv.drawContours(dst, this.contours, 0, contoursColor, 1, 8, this.hierarchy, 100);
-        //window.cv.circle(this.outputImage, circle.center, 5, circleColor);
-
-        // if (this.outputCanvas !== null) {
-        //     window.cv.imshow(this.outputCanvas, this.outputImage);
-        // }
-
-        return circle.center;
     }
 }
 
