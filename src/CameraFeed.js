@@ -26,7 +26,7 @@ class CameraFeed extends React.Component {
     }
 
     startProcessing() {
-        this.shotDetector = new ShotDetector(this.videoRef.current, 30, this.canvasRef.current);
+        this.shotDetector = new ShotDetector(this.videoRef.current, this.canvasRef.current);
 
         this.setState({
             showCanvas: true

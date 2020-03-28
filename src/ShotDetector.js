@@ -1,12 +1,13 @@
 
 class ShotDetector {
-    constructor(videoObj, fps = 30, outputCanvas = null) {
+    constructor(videoObj, outputCanvas = null, delayThreshold = 500, fps = 30) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;
 
-        this.outputCanvas = outputCanvas
-        this.fps = fps
+        this.outputCanvas = outputCanvas;
+        this.fps = fps;
+        this.delayThreshold = delayThreshold;
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
@@ -29,6 +30,9 @@ class ShotDetector {
 
         this.currentlyProcessing = false;
 
+        this.lastShot = null;
+        this.shotInLastFrame = false;
+
         // Setup for detectCircles
 
         this.outputImage = window.cv.Mat.zeros(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3);
@@ -46,6 +50,11 @@ class ShotDetector {
         // Check if its already running - should only happen if FPS is to high and/or browser is too slow
         if (this.currentlyProcessing) {
             console.log("Already processing");
+            return;
+        }
+        let now = new Date()
+        if (this.lastShot !== null && now - this.lastShot < this.delayThreshold) {
+            console.log("Within delay threshold")
             return;
         }
         this.currentlyProcessing = true;
@@ -77,14 +86,23 @@ class ShotDetector {
 
         if (this.contours.size() === 0) {
             console.log("No shot")
+            this.shotInLastFrame = false;
             return;
         }
+
+        if (this.shotInLastFrame) {
+            console.log("Shot in last frame")
+            return;
+        }
+        this.shotInLastFrame = true;
         let cnt = this.contours.get(0);
         console.log(cnt)
 
         let circle = window.cv.minEnclosingCircle(cnt);
         let contoursColor = new window.cv.Scalar(255, 255, 255);
         let circleColor = new window.cv.Scalar(255, 0, 0);
+
+        this.lastShot = new Date();
 
         //window.cv.drawContours(dst, this.contours, 0, contoursColor, 1, 8, this.hierarchy, 100);
         window.cv.circle(this.outputImage, circle.center, 5, circleColor);
