@@ -73,8 +73,6 @@ class ShotDetector {
 
     detectCircles(image) {
 
-        let dst = window.cv.Mat.zeros(image.rows, image.cols, window.cv.CV_8UC3);
-
         window.cv.findContours(image, this.contours, this.hierarchy, window.cv.RETR_CCOMP, window.cv.CHAIN_APPROX_SIMPLE);
 
         if (this.contours.size() === 0) {
@@ -89,10 +87,10 @@ class ShotDetector {
         let circleColor = new window.cv.Scalar(255, 0, 0);
 
         //window.cv.drawContours(dst, this.contours, 0, contoursColor, 1, 8, this.hierarchy, 100);
-        window.cv.circle(dst, circle.center, 5, circleColor);
+        window.cv.circle(this.outputImage, circle.center, 5, circleColor);
 
         if (this.outputCanvas !== null) {
-            window.cv.imshow(this.outputCanvas, dst);
+            window.cv.imshow(this.outputCanvas, this.outputImage);
         }
     }
 }
