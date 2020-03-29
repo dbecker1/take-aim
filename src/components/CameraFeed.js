@@ -1,5 +1,5 @@
 import React from 'react';
-import ShotDetector from "./ShotDetector"
+import ShotDetector from "../util/ShotDetector"
 
 class CameraFeed extends React.Component {
     constructor(props) {
@@ -63,7 +63,7 @@ class CameraFeed extends React.Component {
                 <video ref={this.videoRef}  />
                 <canvas ref={this.canvasRef} ></canvas>
                 <br />
-                <button onClick={() => {this.toggle()}} >{this.state.running ? "Stop" : "Start"}</button>
+
             </div>
         );
     }

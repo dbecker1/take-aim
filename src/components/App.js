@@ -1,13 +1,23 @@
 import React from 'react';
-import './App.css';
+import '../styles/App.css';
 import CameraFeed from "./CameraFeed";
+import ProjectorScreen from "./ProjectorScreen";
+import TargetScreenManager from "../util/TargetScreenManager";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cvLoaded: false
+            cvLoaded: false,
         }
+
+        this.targetScreenManager = new TargetScreenManager();
+        this.cameraFeedRef = React.createRef();
+    }
+
+    start() {
+        this.cameraFeedRef.current.startProcessing();
+        this.targetScreenManager.drawTarget("basic_silhouette")
     }
 
 
@@ -19,12 +29,13 @@ class App extends React.Component {
         if (this.state.cvLoaded) {
             return (
                 <div className="App">
-                    {/*<header className="App-header">*/}
                     <h1>
                         SharpShooter
                     </h1>
-                    <CameraFeed />
-                    {/*</header>*/}
+                    <CameraFeed ref={this.cameraFeedRef}/>
+                    <button onClick={() => {this.start()}} >Start</button>
+
+                    <ProjectorScreen targetScreenManager={this.targetScreenManager}/>
                 </div>
             );
         } else {
