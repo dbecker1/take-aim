@@ -1,15 +1,31 @@
 import React from 'react';
 import '../styles/App.css';
-import CameraFeed from "./CameraFeed";
-import ProjectorScreen from "./ProjectorScreen";
 import TargetScreenManager from "../util/TargetScreenManager";
-import LaserCalibration from "./LaserCalibration";
+
+import Loading from "./pages/Loading";
+import Welcome from "./pages/Welcome";
+
+import {
+    Route,
+    Switch,
+    BrowserRouter,
+    Redirect
+} from 'react-router-dom';
+import {
+    CSSTransition,
+    TransitionGroup
+} from 'react-transition-group';
+import ProjectorScreen from "./ProjectorScreen";
+
+const supportsHistory = 'pushState' in window.history;
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             cvLoaded: false,
+            launchWindow: false,
+            resizeCompleted: false
         }
 
         this.targetScreenManager = new TargetScreenManager();
@@ -24,28 +40,63 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        window.onOpenCV = () => this.setState({ cvLoaded: true });
+        window.onOpenCV = () => {console.log("OpenCV Loaded");this.setState({ cvLoaded: true })};
     }
 
     render() {
-        if (this.state.cvLoaded) {
-            return (
-                <div className="App">
-                    <h1>
-                        SharpShooter
-                    </h1>
-                    {/*<CameraFeed ref={this.cameraFeedRef}/>*/}
-                    {/*<button onClick={() => {this.start()}} >Start</button>*/}
-                    <LaserCalibration />
-
-                    <ProjectorScreen targetScreenManager={this.targetScreenManager}/>
+        return (
+            <BrowserRouter forceRefresh={!supportsHistory}>
+                <div>
+                    <main>
+                        <Route
+                            render={({ location }) => {
+                                const { pathname } = location;
+                                return (
+                                    <TransitionGroup>
+                                        <CSSTransition
+                                            key={pathname}
+                                            classNames="page"
+                                            timeout={{
+                                                enter: 1000,
+                                                exit: 1000,
+                                            }}
+                                        >
+                                            <Route
+                                                location={location}
+                                                render={() => (
+                                                    <Switch>
+                                                        <Route
+                                                            path="/"
+                                                            render={(props) =>
+                                                                <Welcome {...props}
+                                                                    launchProjector={() => {
+                                                                        console.log("Launch Projector!");
+                                                                        this.setState({launchWindow: true})
+                                                                    }}
+                                                                     resizeCompleted={this.state.resizeCompleted}
+                                                                    />
+                                                            }
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path="/loading"
+                                                            component={Loading}
+                                                        />
+                                                    </Switch>
+                                                )}
+                                            />
+                                        </CSSTransition>
+                                    </TransitionGroup>
+                                );
+                            }}
+                        />
+                    </main>
                 </div>
-            );
-        } else {
-            return (
-                <h1>Loading</h1>
+                {this.state.launchWindow &&
+                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.setState({resizeCompleted: true})}}/>
+                }
+            </BrowserRouter>
             )
-        }
 
     }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import NewWindow from "react-new-window";
 import {Button, Container, Row, Col} from "react-bootstrap";
+import {backgroundColor, color} from "../config";
 
 const WINDOW_NAME = "com_sharpshooter_projectorwindow"
 class ProjectorScreenInner extends React.Component {
@@ -28,6 +29,9 @@ class ProjectorScreenInner extends React.Component {
             status: "shooting"
         }, () => {
             this.props.targetScreenManager.attachCanvas(this.targetCanvasRef.current)
+            if (!!this.props.onResizeFinish) {
+                this.props.onResizeFinish();
+            }
         })
     }
 
@@ -38,36 +42,35 @@ class ProjectorScreenInner extends React.Component {
     render() {
         if (this.state.status === "resizing") {
             return (
-                <Container>
                     <Row>
                         <Col sm={12} className={"text-center"}>
                             <h1>Put this screen on your projector!</h1>
                             <h3>Resize the window to take the full screen and then click the button below</h3>
+                            <p>Height: {this.state.height}<br />Width: {this.state.width}</p>
                             <Button onClick={() => {this.doneResizing()}}>I'm done resizing!</Button>
                         </Col>
                     </Row>
-
-                    <p>{this.state.height} {this.state.width}</p>
-                </Container>
             );
         } else if (this.state.status === "shooting") {
             let canvasHeight = this.state.height * .8;
             let canvasWidth = this.state.width * .8;
             return (
                 <>
-                    <Container>
-                        <Row>
-                            <Col sm={12} className={"text-center"}>
-                                <h1>SharpShooter Target Screen</h1>
-                            </Col>
-                        </Row>
-                    </Container>
-                    <div style={{textAlign: "center"}}>
-                        <canvas height={canvasHeight}
-                                width={canvasWidth}
-                                style={{border: "1px solid black"}}
-                                ref={this.targetCanvasRef}/>
-                    </div>
+                    <Row>
+                        <Col sm={12} className={"text-center"}>
+                            <h1>SharpShooter Target Screen</h1>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={12} className={"text-center"}>
+                            <div style={{textAlign: "center"}}>
+                                <canvas height={canvasHeight}
+                                        width={canvasWidth}
+                                        style={{border: "1px solid black"}}
+                                        ref={this.targetCanvasRef}/>
+                            </div>
+                        </Col>
+                    </Row>
                 </>
             )
 
@@ -116,7 +119,11 @@ class ProjectorScreen extends React.Component {
     render() {
         return (
             <NewWindow ref={this.windowRef} name={WINDOW_NAME}>
-                <ProjectorScreenInner height={this.state.height} width={this.state.width} targetScreenManager={this.props.targetScreenManager}/>
+                <div style={{backgroundColor: backgroundColor, color: color, height: "100vh", width: "100vw"}}>
+                    <Container >
+                        <ProjectorScreenInner height={this.state.height} width={this.state.width} targetScreenManager={this.props.targetScreenManager} onResizeFinish={this.props.onResizeFinish}/>
+                    </Container>
+                </div>
             </NewWindow>
         );
     }
