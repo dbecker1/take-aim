@@ -3,6 +3,7 @@ import '../styles/App.css';
 import CameraFeed from "./CameraFeed";
 import ProjectorScreen from "./ProjectorScreen";
 import TargetScreenManager from "../util/TargetScreenManager";
+import LaserCalibration from "./LaserCalibration";
 
 class App extends React.Component {
     constructor(props) {
@@ -16,8 +17,9 @@ class App extends React.Component {
     }
 
     start() {
-        this.cameraFeedRef.current.startProcessing();
         this.targetScreenManager.drawTarget("basic_silhouette")
+
+        setTimeout(() => {this.cameraFeedRef.current.startProcessing()}, 500);
     }
 
 
@@ -32,8 +34,9 @@ class App extends React.Component {
                     <h1>
                         SharpShooter
                     </h1>
-                    <CameraFeed ref={this.cameraFeedRef}/>
-                    <button onClick={() => {this.start()}} >Start</button>
+                    {/*<CameraFeed ref={this.cameraFeedRef}/>*/}
+                    {/*<button onClick={() => {this.start()}} >Start</button>*/}
+                    <LaserCalibration />
 
                     <ProjectorScreen targetScreenManager={this.targetScreenManager}/>
                 </div>
