@@ -119,10 +119,8 @@ class ProjectorScreen extends React.Component {
     render() {
         return (
             <NewWindow ref={this.windowRef} name={WINDOW_NAME}>
-                <div style={{backgroundColor: backgroundColor, color: color, height: "100vh", width: "100vw"}}>
-                    <Container >
-                        <ProjectorScreenInner height={this.state.height} width={this.state.width} targetScreenManager={this.props.targetScreenManager} onResizeFinish={this.props.onResizeFinish}/>
-                    </Container>
+                <div style={{ height: "100vh", width: "100vw"}}>
+                    <ProjectorScreenInner height={this.state.height} width={this.state.width} targetScreenManager={this.props.targetScreenManager} onResizeFinish={this.props.onResizeFinish}/>
                 </div>
             </NewWindow>
         );

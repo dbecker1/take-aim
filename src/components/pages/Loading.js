@@ -2,7 +2,7 @@ import React from 'react';
 import Page from '../Page';
 import {Row, Col} from "react-bootstrap";
 
-class Welcome extends React.Component {
+class Loading extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -10,11 +10,6 @@ class Welcome extends React.Component {
     render() {
         return (
             <Page>
-                <Row>
-                    <Col sm={12} className={"text-center"}>
-                        <h1>Sharpshooter</h1>
-                    </Col>
-                </Row>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Loading...</p>
@@ -26,4 +21,4 @@ class Welcome extends React.Component {
 
 }
 
-export default Welcome;
+export default Loading;

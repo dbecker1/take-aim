@@ -4,6 +4,9 @@ import TargetScreenManager from "../util/TargetScreenManager";
 
 import Loading from "./pages/Loading";
 import Welcome from "./pages/Welcome";
+import CalibrateLaser from "./pages/CalibrateLaser";
+import TargetSelection from "./pages/TargetSelection";
+import Shoot from "./pages/Shoot";
 
 import {
     Route,
@@ -29,15 +32,7 @@ class App extends React.Component {
         }
 
         this.targetScreenManager = new TargetScreenManager();
-        this.cameraFeedRef = React.createRef();
     }
-
-    start() {
-        this.targetScreenManager.drawTarget("basic_silhouette")
-
-        setTimeout(() => {this.cameraFeedRef.current.startProcessing()}, 500);
-    }
-
 
     componentDidMount() {
         window.onOpenCV = () => {console.log("OpenCV Loaded");this.setState({ cvLoaded: true })};
@@ -66,6 +61,30 @@ class App extends React.Component {
                                                 render={() => (
                                                     <Switch>
                                                         <Route
+                                                            exact
+                                                            path="/loading"
+                                                            component={Loading}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path="/calibrateLaser"
+                                                            component={CalibrateLaser}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path="/shoot"
+                                                            component={Shoot}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path="/targetSelection"
+                                                            render={(props) =>
+                                                                <TargetSelection {...props}
+                                                                    targetScreenManager={this.targetScreenManager}
+                                                                    />
+                                                            }
+                                                        />
+                                                        <Route
                                                             path="/"
                                                             render={(props) =>
                                                                 <Welcome {...props}
@@ -76,11 +95,6 @@ class App extends React.Component {
                                                                      resizeCompleted={this.state.resizeCompleted}
                                                                     />
                                                             }
-                                                        />
-                                                        <Route
-                                                            exact
-                                                            path="/loading"
-                                                            component={Loading}
                                                         />
                                                     </Switch>
                                                 )}

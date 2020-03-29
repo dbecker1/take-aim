@@ -1,6 +1,6 @@
 
 class ShotDetector {
-    constructor(videoObj, delayThreshold = 500, fps = 30) {
+    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, delayThreshold = 500, fps = 30) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;
@@ -12,6 +12,13 @@ class ShotDetector {
         this.shotInLastFrame = false;
         this.currentlyProcessing = false;
 
+        this.h = h
+        this.s = s
+        this.v = v
+        this.hRadius = hRadius
+        this.sRadius = sRadius
+        this.vRadius = vRadius
+
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
 
@@ -22,8 +29,15 @@ class ShotDetector {
         // Setup for processVideo
         this.readFrame = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC4);
 
-        const minThresholdValue = new window.cv.Scalar(20, 100, 200);
-        const maxThresholdValue = new window.cv.Scalar(160, 255, 256);
+        //const minThresholdValue = new window.cv.Scalar(20, 100, 200);
+        //const maxThresholdValue = new window.cv.Scalar(160, 255, 256);
+
+        const minThresholdValue = new window.cv.Scalar(Math.max(this.h - this.hRadius, 0),
+                                                       Math.max(this.s - this.sRadius, 0),
+                                                       Math.max(this.v - this.vRadius, 0));
+        const maxThresholdValue = new window.cv.Scalar(Math.min(this.h + this.hRadius, 179),
+                                                       Math.min(this.s + this.sRadius, 255),
+                                                       Math.min(this.v + this.vRadius, 255));
 
         this.minThreshold = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3, minThresholdValue);
         this.maxThreshold = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3, maxThresholdValue);
@@ -94,6 +108,17 @@ class ShotDetector {
             let cnt = this.contours.get(0);
 
             let circle = window.cv.minEnclosingCircle(cnt);
+            if (circle.radius < 1 || circle.radius > 20) {
+                if (circle.radius < 2) {
+                    console.log("Radius too small!")
+                }
+                else {
+                    console.log("Radius too big!")
+                }
+                this.shotInLastFrame = false;
+                this.currentlyProcessing = false;
+                return null;
+            }
             this.lastShot = new Date();
 
             this.currentlyProcessing = false;
