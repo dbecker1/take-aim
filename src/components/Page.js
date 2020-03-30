@@ -28,7 +28,7 @@ function Page({
             <Container>
                 <Row>
                     <Col sm={12} className={"text-center"}>
-                        <h1>Sharpshooter</h1>
+                        <h1>Take Aim</h1>
                     </Col>
                 </Row>
                 {children}

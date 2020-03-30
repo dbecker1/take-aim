@@ -39,12 +39,12 @@ class Welcome extends React.Component {
                 <Page>
                     <Row>
                         <Col sm={12} className={"text-center"}>
-                            <p>Welcome to Sharpshooter!</p>
+                            <p>Welcome to Take Aim!</p>
 
                             {this.state.status === "welcome" ?
                                 <>
                                     <p>
-                                        Sharpshooter is an open source laser dry fire simulation system. In order to use Sharpshooter, you will need:
+                                        Take Aim is an open source laser dry fire simulation system. In order to use Take Aim, you will need:
                                         <br />
                                         - Projector
                                         <br />
