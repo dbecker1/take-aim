@@ -33,13 +33,13 @@ class TargetSelection extends React.Component {
                     {all_targets.map((value, index) => {
                         return (
                             <Row key={index}>
-                                <Col sm={5} className={"text-center"} style={{paddingTop: "70px"}}>
+                                <Col sm={4} className={"text-center"} style={{paddingTop: "70px"}}>
                                     <p><span style={{fontWeight: "bold"}}>Name: </span>{value.displayName}</p>
                                 </Col>
-                                <Col sm={3}>
+                                <Col sm={4} style={{paddingTop: "10px", paddingBottom: "10px"}} className={"text-center"}>
                                     <img src={"/assets/targets/" + value.fileName} style={{height: "200px"}}/>
                                 </Col>
-                                <Col sm={4} style={{paddingTop: "70px"}}>
+                                <Col sm={4} style={{paddingTop: "70px"}} className={"text-center"}>
                                     <Button onClick={() => {this.selectTarget(value.name)}}>Select this target!</Button>
                                 </Col>
                             </Row>
