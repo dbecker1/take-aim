@@ -9,17 +9,17 @@ function Page({
                   children,
                   color,
                   background,
-                  location: {
-                      state,
-                  },
+                  // location: {
+                  //     state,
+                  // },
               }) {
-    const cx = classNames({
-        page: true,
-        'page--prev': state && state.prev,
-    });
+    // const cx = classNames({
+    //     page: true,
+    //     'page--prev': state && state.prev,
+    // });
     return (
         <section
-            className={cx}
+            className={"page"}
             style={{
                 color,
                 background,
@@ -48,4 +48,5 @@ Page.defaultProps = {
     background: backgroundColor,
 };
 
-export default withRouter(Page);
+//export default withRouter(Page);
+export default Page

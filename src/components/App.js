@@ -28,7 +28,8 @@ class App extends React.Component {
         this.state = {
             cvLoaded: false,
             launchWindow: false,
-            resizeCompleted: false
+            resizeCompleted: false,
+            currentPage: "welcome"
         }
 
         this.targetScreenManager = new TargetScreenManager();
@@ -38,79 +39,126 @@ class App extends React.Component {
         window.onOpenCV = () => {console.log("OpenCV Loaded");this.setState({ cvLoaded: true })};
     }
 
+    changePage(name) {
+        this.setState({
+            currentPage: name
+        })
+    }
+
+    getComponent(name) {
+        if (this.state.currentPage === "welcome") {
+            return (
+                <Welcome launchProjector={() => {
+                    console.log("Launch Projector!");
+                    this.setState({launchWindow: true})
+                }}
+                    // resizeCompleted={this.state.resizeCompleted}
+                         changePage={(name) => {this.changePage(name)}}
+                />
+            )
+        } else if (this.state.currentPage === "calibrateLaser") {
+            return (
+                <CalibrateLaser changePage={(name) => {this.changePage(name)}}/>
+            )
+        } else if (this.state.currentPage === "targetSelection") {
+            return (
+                <TargetSelection targetScreenManager={this.targetScreenManager}
+                                 changePage={(name) => {this.changePage(name)}}
+                />
+            )
+        } else if (this.state.currentPage === "shoot") {
+            return (
+                <Shoot changePage={(name) => {this.changePage(name)}} />
+            )
+        } else {
+            return (
+                <Loading changePage={(name) => {this.changePage(name)}} />
+            )
+        }
+    }
+
     render() {
         return (
-            <BrowserRouter forceRefresh={!supportsHistory}>
-                <div>
-                    <main>
-                        <Route
-                            render={({ location }) => {
-                                const { pathname } = location;
-                                return (
-                                    <TransitionGroup>
-                                        <CSSTransition
-                                            key={pathname}
-                                            classNames="page"
-                                            timeout={{
-                                                enter: 1000,
-                                                exit: 1000,
-                                            }}
-                                        >
-                                            <Route
-                                                location={location}
-                                                render={() => (
-                                                    <Switch>
-                                                        <Route
-                                                            exact
-                                                            path="/loading"
-                                                            component={Loading}
-                                                        />
-                                                        <Route
-                                                            exact
-                                                            path="/calibrateLaser"
-                                                            component={CalibrateLaser}
-                                                        />
-                                                        <Route
-                                                            exact
-                                                            path="/shoot"
-                                                            component={Shoot}
-                                                        />
-                                                        <Route
-                                                            exact
-                                                            path="/targetSelection"
-                                                            render={(props) =>
-                                                                <TargetSelection {...props}
-                                                                    targetScreenManager={this.targetScreenManager}
-                                                                    />
-                                                            }
-                                                        />
-                                                        <Route
-                                                            path="/"
-                                                            render={(props) =>
-                                                                <Welcome {...props}
-                                                                    launchProjector={() => {
-                                                                        console.log("Launch Projector!");
-                                                                        this.setState({launchWindow: true})
-                                                                    }}
-                                                                     resizeCompleted={this.state.resizeCompleted}
-                                                                    />
-                                                            }
-                                                        />
-                                                    </Switch>
-                                                )}
-                                            />
-                                        </CSSTransition>
-                                    </TransitionGroup>
-                                );
-                            }}
-                        />
-                    </main>
-                </div>
+            <>
+                {this.getComponent(this.state.currentPage)}
                 {this.state.launchWindow &&
-                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.setState({resizeCompleted: true})}}/>
+                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.changePage("calibrateLaser")}}/>
                 }
-            </BrowserRouter>
-            )
+            </>
+        )
+
+        // return (
+        //     <BrowserRouter forceRefresh={!supportsHistory}>
+        //         <div>
+        //             <main>
+        //                 <Route
+        //                     render={({ location }) => {
+        //                         const { pathname } = location;
+        //                         return (
+        //                             <TransitionGroup>
+        //                                 <CSSTransition
+        //                                     key={pathname}
+        //                                     classNames="page"
+        //                                     timeout={{
+        //                                         enter: 1000,
+        //                                         exit: 1000,
+        //                                     }}
+        //                                 >
+        //                                     <Route
+        //                                         location={location}
+        //                                         render={() => (
+        //                                             <Switch>
+        //                                                 <Route
+        //                                                     exact
+        //                                                     path="/loading"
+        //                                                     component={Loading}
+        //                                                 />
+        //                                                 <Route
+        //                                                     exact
+        //                                                     path="/calibrateLaser"
+        //                                                     component={CalibrateLaser}
+        //                                                 />
+        //                                                 <Route
+        //                                                     exact
+        //                                                     path="/shoot"
+        //                                                     component={Shoot}
+        //                                                 />
+        //                                                 <Route
+        //                                                     exact
+        //                                                     path="/targetSelection"
+        //                                                     render={(props) =>
+        //                                                         <TargetSelection {...props}
+        //                                                             targetScreenManager={this.targetScreenManager}
+        //                                                             />
+        //                                                     }
+        //                                                 />
+        //                                                 <Route
+        //                                                     path="/"
+        //                                                     render={(props) =>
+        //                                                         <Welcome {...props}
+        //                                                             launchProjector={() => {
+        //                                                                 console.log("Launch Projector!");
+        //                                                                 this.setState({launchWindow: true})
+        //                                                             }}
+        //                                                              resizeCompleted={this.state.resizeCompleted}
+        //                                                             />
+        //                                                     }
+        //                                                 />
+        //                                             </Switch>
+        //                                         )}
+        //                                     />
+        //                                 </CSSTransition>
+        //                             </TransitionGroup>
+        //                         );
+        //                     }}
+        //                 />
+        //             </main>
+        //         </div>
+        //         {this.state.launchWindow &&
+        //             <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.setState({resizeCompleted: true})}}/>
+        //         }
+        //     </BrowserRouter>
+        //     )
 
     }
 

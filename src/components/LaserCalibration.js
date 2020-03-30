@@ -90,7 +90,7 @@ class LaserCalibration extends React.Component {
 
     render() {
         return (
-            <div {...this.props}>
+            <div>
                 <Row>
                     <Col sm={6}>
                         <video ref={this.videoRef} style={{marginRight: "5px", marginLeft: "-100px"}}/>
