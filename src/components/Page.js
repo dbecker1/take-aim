@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color} from "../config";
 
@@ -9,14 +7,7 @@ function Page({
                   children,
                   color,
                   background,
-                  // location: {
-                  //     state,
-                  // },
               }) {
-    // const cx = classNames({
-    //     page: true,
-    //     'page--prev': state && state.prev,
-    // });
     return (
         <section
             className={"page"}
@@ -48,5 +39,4 @@ Page.defaultProps = {
     background: backgroundColor,
 };
 
-//export default withRouter(Page);
 export default Page

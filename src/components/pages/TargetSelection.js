@@ -2,7 +2,6 @@ import React from 'react';
 import Page from '../Page';
 import {Row, Col, Button} from "react-bootstrap";
 import {all_targets} from "../../util/targets";
-import {Redirect} from "react-router-dom";
 
 class TargetSelection extends React.Component {
     constructor(props) {

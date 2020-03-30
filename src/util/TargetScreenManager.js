@@ -21,8 +21,8 @@ class TargetScreenManager {
 
     showCalibrationScreen() {
         let image = new Image();
-        image.onLoad = () => {
-            this.ctx.drawImage(image, 0, 0, this.canvas.height, this.canvas.width);
+        image.onload = () => {
+            this.ctx.drawImage(image, 0, 0, this.maxWidth, this.maxHeight);
         }
         image.src = "/assets/checkerboard.svg";
     }

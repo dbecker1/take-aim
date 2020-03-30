@@ -1,6 +1,6 @@
 
 
-class Calibrator {
+class LaserCalibrator {
     constructor(video,  outputCanvas, fps = 30) {
         this.video = video
         this.video.width = this.video.videoWidth;
@@ -88,4 +88,4 @@ class Calibrator {
     }
 }
 
-export default Calibrator
+export default LaserCalibrator
