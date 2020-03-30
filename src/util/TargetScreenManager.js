@@ -19,6 +19,14 @@ class TargetScreenManager {
         console.log("Target canvas detached")
     }
 
+    showCalibrationScreen() {
+        let image = new Image();
+        image.onLoad = () => {
+            this.ctx.drawImage(image, 0, 0, this.canvas.height, this.canvas.width);
+        }
+        image.src = "/assets/checkerboard.svg";
+    }
+
     drawTarget(name) {
         let target = all_targets.filter(a => {return a.name === name})
         if (target.size === 0) {
