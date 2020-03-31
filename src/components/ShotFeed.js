@@ -1,6 +1,6 @@
 import React from 'react';
 import ShotDetector from "../util/ShotDetector"
-import {Button} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
 
 class ShotFeed extends React.Component {
@@ -10,20 +10,12 @@ class ShotFeed extends React.Component {
             running: false
         }
 
-        this.videoRef = React.createRef();
         this.canvasRef = React.createRef();
     }
 
-    componentDidMount() {
-        const video = this.videoRef.current;
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-        .then((stream)  => {
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch((err) => {
-            console.log("An error occurred! " + err);
-        });
+    updateNoise(e) {
+        let checked = e.target.checked;
+        this.shotDetector.filterNoise = checked;
     }
 
     startProcessing() {
@@ -44,13 +36,13 @@ class ShotFeed extends React.Component {
                 if (webcamConfig === null) {
                     console.error("Missing webcam config");
                 }
-                this.shotDetector = new ShotDetector(this.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
+                this.shotDetector = new ShotDetector(this.props.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
                     laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
                     outputDimensions, 200);
             }
 
-            const scaleRows = .5
-            const scaleColumns = .5
+            const scaleRows = .75
+            const scaleColumns = .75
             const canvas = this.canvasRef.current;
             canvas.width = outputDimensions.columns * scaleColumns;
             canvas.height = outputDimensions.rows * scaleRows;
@@ -69,14 +61,14 @@ class ShotFeed extends React.Component {
 
     render() {
         return (
-            <div {...this.props}>
+            <div>
                 <div style={{display: this.state.running ? "none" : "inline"}} >
-                    <video ref={this.videoRef} />
-                    <br />
                     <Button onClick={() => {this.startProcessing()}}>Start shooting!</Button>
                 </div>
                 <div style={{display: this.state.running ? "inline" : "none"}} className={"text-center"}>
                     <canvas ref={this.canvasRef}  ></canvas>
+                    <br />
+                    <Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>
                 </div>
 
 

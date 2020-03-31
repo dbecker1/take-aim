@@ -18,6 +18,7 @@ class ShotDetector {
         this.hRadius = hRadius
         this.sRadius = sRadius
         this.vRadius = vRadius
+        this.filterNoise = false;
 
         this.targetCorners = targetCorners
 
@@ -39,6 +40,7 @@ class ShotDetector {
 
         // Setup for processVideo
         this.readFrame = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC4);
+        this.warpedFrame = new window.cv.Mat(this.outputDimensions.rows, this.outputDimensions.columns, window.cv.CV_8UC4);
 
         //const minThresholdValue = new window.cv.Scalar(20, 100, 200);
         //const maxThresholdValue = new window.cv.Scalar(160, 255, 256);
@@ -50,8 +52,8 @@ class ShotDetector {
                                                        Math.min(this.s + this.sRadius, 255),
                                                        Math.min(this.v + this.vRadius, 255));
 
-        this.minThreshold = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3, minThresholdValue);
-        this.maxThreshold = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC3, maxThresholdValue);
+        this.minThreshold = new window.cv.Mat(this.outputDimensions.rows, this.outputDimensions.columns, window.cv.CV_8UC3, minThresholdValue);
+        this.maxThreshold = new window.cv.Mat(this.outputDimensions.rows, this.outputDimensions.columns, window.cv.CV_8UC3, maxThresholdValue);
 
         this.hsvImage = new window.cv.Mat();
         this.thresholdImage = new window.cv.Mat();
@@ -88,7 +90,7 @@ class ShotDetector {
             0, 0,
             this.outputDimensions.columns, 0,
             this.outputDimensions.columns, this.outputDimensions.rows,
-            0, this.outputDimensions.columns
+            0, this.outputDimensions.rows
         ]
 
         let targetCorners = window.cv.matFromArray(4, 2, window.cv.CV_32SC1, targetCornersArray);
@@ -116,6 +118,7 @@ class ShotDetector {
         clearInterval(this.interval)
 
         this.readFrame.delete();
+        this.warpedFrame.delete();
         this.minThreshold.delete();
         this.maxThreshold.delete();
         this.hsvImage.delete();
@@ -141,9 +144,9 @@ class ShotDetector {
         try {
             this.videoCapture.read(this.readFrame)
 
-            window.cv.warpPerspective(this.readFrame, this.readFrame, this.hMatrix, new window.cv.Size(this.outputDimensions.columns, this.outputDimensions.rows))
+            window.cv.warpPerspective(this.readFrame, this.warpedFrame, this.hMatrix, new window.cv.Size(this.outputDimensions.columns, this.outputDimensions.rows))
 
-            window.cv.cvtColor(this.readFrame, this.hsvImage, window.cv.COLOR_BGR2HSV);
+            window.cv.cvtColor(this.warpedFrame, this.hsvImage, window.cv.COLOR_BGR2HSV);
             window.cv.inRange(this.hsvImage, this.minThreshold, this.maxThreshold, this.thresholdImage)
             window.cv.findContours(this.thresholdImage, this.contours, this.hierarchy, window.cv.RETR_CCOMP, window.cv.CHAIN_APPROX_SIMPLE);
 
@@ -163,17 +166,21 @@ class ShotDetector {
             let cnt = this.contours.get(0);
 
             let circle = window.cv.minEnclosingCircle(cnt);
-            if (circle.radius < 1 || circle.radius > 20) {
-                if (circle.radius < 2) {
-                    console.log("Radius too small!")
+
+            if (this.filterNoise){
+                if (circle.radius < 1 || circle.radius > 20) {
+                    if (circle.radius < 2) {
+                        console.log("Radius too small!")
+                    }
+                    else {
+                        console.log("Radius too big!")
+                    }
+                    this.shotInLastFrame = false;
+                    this.currentlyProcessing = false;
+                    return null;
                 }
-                else {
-                    console.log("Radius too big!")
-                }
-                this.shotInLastFrame = false;
-                this.currentlyProcessing = false;
-                return null;
             }
+
             this.lastShot = new Date();
 
             this.currentlyProcessing = false;

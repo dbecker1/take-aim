@@ -18,19 +18,37 @@ class App extends React.Component {
         this.state = {
             cvLoaded: false,
             launchWindow: false,
-            currentPage: "welcome"
+            currentPage: "welcome",
+            showVideo: false
         }
 
         this.targetScreenManager = new TargetScreenManager();
+        this.videoRef = React.createRef();
     }
 
     componentDidMount() {
         window.onOpenCV = () => {console.log("OpenCV Loaded");this.setState({ cvLoaded: true })};
+
+        const video = this.videoRef.current;
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+            .then((stream)  => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch((err) => {
+                console.log("An error occurred! " + err);
+            });
     }
 
     changePage(name) {
         this.setState({
             currentPage: name
+        })
+    }
+
+    toggleVideo() {
+        this.setState({
+            showVideo: !this.state.showVideo
         })
     }
 
@@ -46,12 +64,14 @@ class App extends React.Component {
             )
         } else if (name === "calibrateLaser") {
             return (
-                <CalibrateLaser changePage={(name) => {this.changePage(name)}}/>
+                <CalibrateLaser changePage={(name) => {this.changePage(name)}}
+                                videoRef={this.videoRef}/>
             )
         } else if (name === "calibrateProjector") {
             return (
                 <CalibrateWebcam targetScreenManager={this.targetScreenManager}
-                                 changePage={(name) => this.changePage(name)} />
+                                 changePage={(name) => this.changePage(name)}
+                                 videoRef={this.videoRef}/>
             )
         } else if (name === "targetSelection") {
             return (
@@ -62,7 +82,8 @@ class App extends React.Component {
         } else if (name === "shoot") {
             return (
                 <Shoot targetScreenManager={this.targetScreenManager}
-                       changePage={(name) => {this.changePage(name)}} />
+                       changePage={(name) => {this.changePage(name)}}
+                       videoRef={this.videoRef}/>
             )
         } else {
             return (
@@ -78,6 +99,21 @@ class App extends React.Component {
                 {this.state.launchWindow &&
                     <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.changePage("calibrateLaser")}}/>
                 }
+                <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid black", minWidth: "400px"}}>
+                    <div style={{color: "white", backgroundColor: "black", width: "100%"}} className={"clearfix"}>
+                        <div className={"float-left"}>
+                            Webcam  Feed
+                        </div>
+                        <div className={"float-right"}>
+                            <span style={{textDecoration: "underline", cursor:"pointer"}} onClick={() => {this.toggleVideo()}}>
+                                {this.state.showVideo ? "Hide" : "Show"}
+                            </span>
+                        </div>
+                    </div>
+                    <div style={{display: this.state.showVideo ? "block" : "none"}}>
+                        <video ref={this.videoRef} />
+                    </div>
+                </div>
             </>
         )
     }

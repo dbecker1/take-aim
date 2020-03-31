@@ -12,7 +12,6 @@ class CalibrateWebcam extends React.Component {
             corner: 1
         }
 
-        this.videoRef = React.createRef();
         this.canvasRef = React.createRef();
 
         const config = cookie.load("webcamConfig")
@@ -25,26 +24,12 @@ class CalibrateWebcam extends React.Component {
     }
 
     componentDidMount() {
-        const video = this.videoRef.current;
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-            .then((stream)  => {
-                video.srcObject = stream;
-                video.onplay = () => {
-                    setTimeout(() => {
-                        this.startCalibrating()
-                    }, 1000)
-                }
-                video.play();
-
-            })
-            .catch((err) => {
-                console.log("An error occurred! " + err);
-            });
+        this.startCalibrating()
     }
 
     startCalibrating() {
         console.log("Calibrating!!")
-        this.calibrator = new WebcamCalibrator(this.videoRef.current, this.canvasRef.current, this.props.targetScreenManager, this.corners)
+        this.calibrator = new WebcamCalibrator(this.props.videoRef.current, this.canvasRef.current, this.props.targetScreenManager, this.corners)
 
         this.setState({
             loading: false
@@ -84,7 +69,6 @@ class CalibrateWebcam extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={12} className={"text-center"}>
-                        <video ref={this.videoRef} style={{display: "none"}}/>
                         <canvas ref={this.canvasRef} ></canvas>
                     </Col>
                 </Row>

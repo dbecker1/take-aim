@@ -58,7 +58,7 @@ class ProjectorScreenInner extends React.Component {
                 <>
                     <Row>
                         <Col sm={12} className={"text-center"}>
-                            <h1>SharpShooter Target Screen</h1>
+                            <h1>Take Aim Target Screen</h1>
                         </Col>
                     </Row>
                     <Row>

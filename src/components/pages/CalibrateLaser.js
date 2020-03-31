@@ -18,7 +18,6 @@ class CalibrateLaser extends React.Component {
             // startButton: true
         };
 
-        this.videoRef = React.createRef();
         this.canvasRef = React.createRef();
 
         const config = cookie.load("laserConfig")
@@ -27,30 +26,12 @@ class CalibrateLaser extends React.Component {
         }
     }
 
-    componentDidMount() {
-        const video = this.videoRef.current;
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-            .then((stream)  => {
-                video.srcObject = stream;
-                video.onplay = () => {
-                    setTimeout(() => {
-                        this.startCalibrating()
-                    }, 1000)
-                }
-                video.play();
-
-            })
-            .catch((err) => {
-                console.log("An error occurred! " + err);
-            });
-    }
-
     startCalibrating() {
         this.setState({
             startButton: false
         }, () => {
             const canvas = this.canvasRef.current;
-            const video = this.videoRef.current;
+            const video = this.props.videoRef.current;
 
             this.calibrator = new LaserCalibrator(video, canvas)
             this.calibrator.init();
@@ -60,6 +41,10 @@ class CalibrateLaser extends React.Component {
 
             this.updateCalibrator();
         })
+    }
+
+    componentDidMount() {
+        this.startCalibrating()
     }
 
     doneCalibrating() {
@@ -103,15 +88,8 @@ class CalibrateLaser extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={6}>
-                        <video ref={this.videoRef} style={{marginRight: "5px", marginLeft: "-100px"}}/>
-                    </Col>
-                    <Col sm={6} style={{textAlign: "center"}}>
-                        {/*{this.state.startButton?*/}
-                        {/*    <Button onClick={() => {this.startCalibrating()}} >Click this button one your video is playing on the left!</Button>*/}
-                        {/*    :*/}
-                            <canvas ref={this.canvasRef} ></canvas>
-                        {/*}*/}
+                    <Col sm={12} style={{textAlign: "center"}}>
+                        <canvas ref={this.canvasRef} ></canvas>
                     </Col>
                 </Row>
                 <br />
