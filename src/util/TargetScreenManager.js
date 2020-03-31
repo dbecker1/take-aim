@@ -19,12 +19,46 @@ class TargetScreenManager {
         console.log("Target canvas detached")
     }
 
-    showCalibrationScreen() {
-        let image = new Image();
-        image.onload = () => {
-            this.ctx.drawImage(image, 0, 0, this.maxWidth, this.maxHeight);
+    // showCalibrationScreen() {
+    //     let image = new Image();
+    //     image.onload = () => {
+    //         this.ctx.drawImage(image, 0, 0, this.maxWidth, this.maxHeight);
+    //     }
+    //     image.src = "/assets/checkerboard.svg";
+    // }
+
+    showCalibrationScreen(cornerNumber) {
+        let textCoordinates = {x: null, y: null};
+
+        const textWidth = 125;
+
+        switch(cornerNumber) {
+            case 1:
+                textCoordinates = {x: 20, y: 30}
+                break;
+            case 2:
+                textCoordinates = {x: this.maxWidth - 30 - textWidth, y: 30}
+                break;
+            case 3:
+                textCoordinates = {x: this.maxWidth - 30 - textWidth, y: this.maxHeight - 30}
+                break;
+            case 4:
+                textCoordinates = {x: 20, y: this.maxHeight - 30}
+                break;
         }
-        image.src = "/assets/checkerboard.svg";
+
+        this.wipeScreen();
+
+        this.ctx.font = "20px Times"
+        this.ctx.fillStyle = "black"
+        this.ctx.fillText("Click this corner!", textCoordinates.x, textCoordinates.y);
+    }
+
+    wipeScreen() {
+        this.ctx.beginPath();
+        this.ctx.rect(0, 0, this.maxWidth, this.maxHeight);
+        this.ctx.fillStyle = "white";
+        this.ctx.fill();
     }
 
     drawTarget(name) {
