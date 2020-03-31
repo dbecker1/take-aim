@@ -1,6 +1,6 @@
 
 class ShotDetector {
-    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, targetCorners = [], outputCanvas = null, showHits = true, delayThreshold = 500, fps = 30) {
+    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, targetCorners = [], outputDimensions = null, delayThreshold = 500, fps = 30) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;
@@ -19,9 +19,16 @@ class ShotDetector {
         this.sRadius = sRadius
         this.vRadius = vRadius
 
-        this.targetCorners = targetCorners;
-        this.outputCanvas = outputCanvas;
-        this.showHits = showHits;
+        this.targetCorners = targetCorners
+
+        if (outputDimensions == null) {
+            this.outputDimensions = {
+                rows: this.video.height,
+                columns: this.video.width
+            }
+        } else {
+            this.outputDimensions = outputDimensions
+        }
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
@@ -51,9 +58,7 @@ class ShotDetector {
 
         this.contours = new window.cv.MatVector();
         this.hierarchy = new window.cv.Mat();
-        this.H = new window.cv.Mat();
-
-        this.temp = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC4);
+        this.hMatrix = new window.cv.Mat();
 
         this.calculateHomography();
 
@@ -81,9 +86,9 @@ class ShotDetector {
 
         let videoCornersArray = [
             0, 0,
-            this.video.videoWidth, 0,
-            this.video.videoWidth, this.video.videoHeight,
-            0, this.video.videoHeight
+            this.outputDimensions.columns, 0,
+            this.outputDimensions.columns, this.outputDimensions.rows,
+            0, this.outputDimensions.columns
         ]
 
         let targetCorners = window.cv.matFromArray(4, 2, window.cv.CV_32SC1, targetCornersArray);
@@ -91,18 +96,21 @@ class ShotDetector {
         let videoCorners = window.cv.matFromArray(4, 2,  window.cv.CV_32SC1, videoCornersArray);
 
         try {
-            this.H = window.cv.findHomography(targetCorners, videoCorners);
-            //this.H = window.cv.getPerspectiveTransform(targetCorners, videoCorners)
-            console.log(this.H);
-
-            window.cv.warpPerspective(this.readFrame, this.temp, this.H, new window.cv.Size(this.video.videoWidth, this.video.videoHeight))
-
-            window.cv.imshow(this.outputCanvas, this.temp)
+            this.hMatrix = window.cv.findHomography(targetCorners, videoCorners);
         } catch (e) {
             console.log("ERROR FINDING HOMOGRAPHY");
             console.error(e)
         }
     }
+
+    static shiftPerspective(canvas, hMatrix) {
+        let frame =  window.cv.imread(canvas);
+        window.cv.imshow()
+        window.cv.warpPerspective(frame, frame, hMatrix, new window.cv.Size(canvas.width, canvas.height))
+        window.cv.imshow(canvas, frame);
+        frame.delete();
+    }
+
 
     stop() {
         clearInterval(this.interval)
@@ -115,6 +123,7 @@ class ShotDetector {
         this.contours.delete();
         this.hierarchy.delete();
         this.videoCapture.release();
+        this.hMatrix.delete();
     }
 
     processVideo() {
@@ -131,6 +140,8 @@ class ShotDetector {
         this.currentlyProcessing = true;
         try {
             this.videoCapture.read(this.readFrame)
+
+            window.cv.warpPerspective(this.readFrame, this.readFrame, this.hMatrix, new window.cv.Size(this.outputDimensions.columns, this.outputDimensions.rows))
 
             window.cv.cvtColor(this.readFrame, this.hsvImage, window.cv.COLOR_BGR2HSV);
             window.cv.inRange(this.hsvImage, this.minThreshold, this.maxThreshold, this.thresholdImage)

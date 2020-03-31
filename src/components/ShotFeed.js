@@ -30,6 +30,10 @@ class ShotFeed extends React.Component {
         this.setState({
             running: true
         }, () => {
+            const outputDimensions = {
+                rows: this.props.targetScreenManager.canvas.height,
+                columns: this.props.targetScreenManager.canvas.width
+            }
             if (!this.shotDetector) {
                 const laserConfig = cookie.load("laserConfig")
                 if (laserConfig === null){
@@ -42,37 +46,26 @@ class ShotFeed extends React.Component {
                 }
                 this.shotDetector = new ShotDetector(this.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
                     laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
-                    this.canvasRef.current, true, 200);
+                    outputDimensions, 200);
             }
 
-
+            const scaleRows = .5
+            const scaleColumns = .5
             const canvas = this.canvasRef.current;
-            const video = this.videoRef.current;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = outputDimensions.columns * scaleColumns;
+            canvas.height = outputDimensions.rows * scaleRows;
             var ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(this.props.targetScreenManager.canvas, 0, 0, canvas.width, canvas.height);
             this.shotDetector.start((hit => {
                 console.log(hit)
                 ctx.beginPath();
-                ctx.arc(hit.x, hit.y, 5, 0, 2*Math.PI, false)
+                ctx.arc(hit.x * scaleColumns, hit.y * scaleRows, 5, 0, 2*Math.PI, false)
                 ctx.lineWidth = 5;
                 ctx.strokeStyle = 'red';
                 ctx.stroke();
             }))
         })
     }
-    //
-    // toggle() {
-    //     if (this.state.running) {
-    //         this.shotDetector.stop();
-    //     } else {
-    //         this.startProcessing()
-    //     }
-    //     this.setState({
-    //         running: !this.state.running
-    //     })
-    // }
 
     render() {
         return (
@@ -82,7 +75,7 @@ class ShotFeed extends React.Component {
                     <br />
                     <Button onClick={() => {this.startProcessing()}}>Start shooting!</Button>
                 </div>
-                <div style={{display: this.state.running ? "inline" : "none"}}>
+                <div style={{display: this.state.running ? "inline" : "none"}} className={"text-center"}>
                     <canvas ref={this.canvasRef}  ></canvas>
                 </div>
 

@@ -61,7 +61,8 @@ class App extends React.Component {
             )
         } else if (name === "shoot") {
             return (
-                <Shoot changePage={(name) => {this.changePage(name)}} />
+                <Shoot targetScreenManager={this.targetScreenManager}
+                       changePage={(name) => {this.changePage(name)}} />
             )
         } else {
             return (

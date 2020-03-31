@@ -19,7 +19,7 @@ class Shoot extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={12} className={"text-center"}>
-                        <ShotFeed />
+                        <ShotFeed targetScreenManager={this.props.targetScreenManager}/>
                     </Col>
                 </Row>
             </Page>
