@@ -31,13 +31,18 @@ class ShotFeed extends React.Component {
             running: true
         }, () => {
             if (!this.shotDetector) {
-                const config = cookie.load("laserConfig")
-                if (config === null){
+                const laserConfig = cookie.load("laserConfig")
+                if (laserConfig === null){
                     console.error("Missing laser config")
                     return;
                 }
-                this.shotDetector = new ShotDetector(this.videoRef.current, config.h, config.s, config.v,
-                    config.hRadius, config.sRadius, config.vRadius, 200);
+                const webcamConfig = cookie.load("webcamConfig")
+                if (webcamConfig === null) {
+                    console.error("Missing webcam config");
+                }
+                this.shotDetector = new ShotDetector(this.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
+                    laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
+                    this.canvasRef.current, true, 200);
             }
 
 

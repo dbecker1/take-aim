@@ -1,6 +1,6 @@
 
 class ShotDetector {
-    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, delayThreshold = 500, fps = 30) {
+    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, targetCorners = [], outputCanvas = null, showHits = true, delayThreshold = 500, fps = 30) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;
@@ -18,6 +18,10 @@ class ShotDetector {
         this.hRadius = hRadius
         this.sRadius = sRadius
         this.vRadius = vRadius
+
+        this.targetCorners = targetCorners;
+        this.outputCanvas = outputCanvas;
+        this.showHits = showHits;
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
     }
@@ -47,6 +51,11 @@ class ShotDetector {
 
         this.contours = new window.cv.MatVector();
         this.hierarchy = new window.cv.Mat();
+        this.H = new window.cv.Mat();
+
+        this.temp = new window.cv.Mat(this.video.videoHeight, this.video.videoWidth, window.cv.CV_8UC4);
+
+        this.calculateHomography();
 
         // Begin processing
         const delay = 1000/this.fps
@@ -58,6 +67,41 @@ class ShotDetector {
             }
         }, delay);
         //this.processVideo();
+    }
+
+    calculateHomography() {
+        this.videoCapture.read(this.readFrame);
+        let targetCornersArray = []
+
+        for (let index in this.targetCorners) {
+            const corner = this.targetCorners[index]
+            targetCornersArray.push(corner.x);
+            targetCornersArray.push(corner.y);
+        }
+
+        let videoCornersArray = [
+            0, 0,
+            this.video.videoWidth, 0,
+            this.video.videoWidth, this.video.videoHeight,
+            0, this.video.videoHeight
+        ]
+
+        let targetCorners = window.cv.matFromArray(4, 2, window.cv.CV_32SC1, targetCornersArray);
+
+        let videoCorners = window.cv.matFromArray(4, 2,  window.cv.CV_32SC1, videoCornersArray);
+
+        try {
+            this.H = window.cv.findHomography(targetCorners, videoCorners);
+            //this.H = window.cv.getPerspectiveTransform(targetCorners, videoCorners)
+            console.log(this.H);
+
+            window.cv.warpPerspective(this.readFrame, this.temp, this.H, new window.cv.Size(this.video.videoWidth, this.video.videoHeight))
+
+            window.cv.imshow(this.outputCanvas, this.temp)
+        } catch (e) {
+            console.log("ERROR FINDING HOMOGRAPHY");
+            console.error(e)
+        }
     }
 
     stop() {

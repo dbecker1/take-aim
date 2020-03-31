@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util/WebcamCalibrator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShotFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShotFeed.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/TargetScreenManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/TargetScreenManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ShotDetector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ShotDetector.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/LaserCalibrator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="77" column="12" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="50" />
+            <state relative-caret-position="1155">
+              <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -32,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateLaser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1082">
+            <state relative-caret-position="1035">
               <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="42" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -41,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
+            <state relative-caret-position="1200">
               <caret line="80" selection-start-line="80" selection-end-line="80" />
             </state>
           </provider>
@@ -53,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="1245">
+              <caret line="87" column="51" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="51" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -65,17 +66,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/TargetScreenManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
+            <state relative-caret-position="735">
               <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="997">
-              <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+            <state relative-caret-position="564">
+              <caret line="90" column="75" selection-start-line="90" selection-start-column="75" selection-end-line="90" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -83,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/Shoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="270">
               <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -95,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ShotFeed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="55" column="29" lean-forward="true" selection-start-line="51" selection-start-column="16" selection-end-line="55" selection-end-column="29" />
+            <state relative-caret-position="150">
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="22" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -115,6 +116,7 @@
       <find>withrouter</find>
       <find>resizecompleted</find>
       <find>complete</find>
+      <find>this.canvasref</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,9 +138,7 @@
         <option value="$PROJECT_DIR$/src/styles/App.css" />
         <option value="$PROJECT_DIR$/src/components/pages/Loading.js" />
         <option value="$PROJECT_DIR$/src/components/pages/Shoot.js" />
-        <option value="$PROJECT_DIR$/src/components/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/components/ProjectorScreen.js" />
-        <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
         <option value="$PROJECT_DIR$/src/util/targets.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/index.html" />
@@ -150,12 +150,14 @@
         <option value="$PROJECT_DIR$/src/components/pages/TargetSelection.js" />
         <option value="$PROJECT_DIR$/src/components/pages/CalibrateLaser.js" />
         <option value="$PROJECT_DIR$/src/util/TargetScreenManager.js" />
-        <option value="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" />
         <option value="$PROJECT_DIR$/src/util/WebcamCalibrator.js" />
+        <option value="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" />
+        <option value="$PROJECT_DIR$/src/components/ShotFeed.js" />
+        <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -258,12 +260,13 @@
       <workItem from="1585333481429" duration="15273000" />
       <workItem from="1585446700230" duration="19874000" />
       <workItem from="1585536286887" duration="204000" />
-      <workItem from="1585598930454" duration="9756000" />
+      <workItem from="1585598930454" duration="12946000" />
+      <workItem from="1585679364068" duration="424000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45107000" />
+    <option name="totallyTimeSpent" value="48721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -405,16 +408,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/LaserCalibration.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="140" column="22" lean-forward="true" selection-start-line="93" selection-start-column="16" selection-end-line="140" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/LaserCalibration.js" />
     <entry file="file://$PROJECT_DIR$/src/components/pages/TargetSelection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -425,16 +419,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
+    <entry file="file://$PROJECT_DIR$/src/util/LaserCalibrator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="997">
-          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+        <state relative-caret-position="1155">
+          <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateLaser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="87" column="51" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/TargetScreenManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/Shoot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="270">
           <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -444,52 +472,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ShotFeed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="55" column="29" lean-forward="true" selection-start-line="51" selection-start-column="16" selection-end-line="55" selection-end-column="29" />
+        <state relative-caret-position="150">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="22" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/TargetScreenManager.js">
+    <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/LaserCalibrator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="77" column="12" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateLaser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1082">
-          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="80" selection-start-line="80" selection-end-line="80" />
+        <state relative-caret-position="564">
+          <caret line="90" column="75" selection-start-line="90" selection-start-column="75" selection-end-line="90" selection-end-column="75" />
         </state>
       </provider>
     </entry>
