@@ -63,7 +63,7 @@ class ShotFeed extends React.Component {
         return (
             <div>
                 <div style={{display: this.state.running ? "none" : "inline"}} >
-                    <Button onClick={() => {this.startProcessing()}}>Start shooting!</Button>
+                    <Button variant="customPrimary" onClick={() => {this.startProcessing()}}>Start shooting!</Button>
                 </div>
                 <div style={{display: this.state.running ? "inline" : "none"}} className={"text-center"}>
                     <canvas ref={this.canvasRef}  ></canvas>

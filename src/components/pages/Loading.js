@@ -9,13 +9,13 @@ class Loading extends React.Component {
 
     render() {
         return (
-            <Card>
+            <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Loading...</p>
                     </Col>
                 </Row>
-            </Card>
+            </>
         );
     }
 

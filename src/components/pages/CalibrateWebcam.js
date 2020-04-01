@@ -57,7 +57,7 @@ class CalibrateWebcam extends React.Component {
 
     render() {
         return (
-            <Card>
+            <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Webcam Calibration</h3>
@@ -84,7 +84,7 @@ class CalibrateWebcam extends React.Component {
                             </Button>
                             :
                             <div>
-                                <Button onClick={() => {
+                                <Button variant="customPrimary" onClick={() => {
                                     this.finishCalibrating()
                                 }}>
                                     Looks Good To Me!
@@ -101,7 +101,7 @@ class CalibrateWebcam extends React.Component {
                     </Col>
                     }
                 </Row>
-            </Card>
+            </>
         );
     }
 

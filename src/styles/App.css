@@ -74,7 +74,7 @@
 
 
 .card {
-  background-color: #394c75;
+  background-color: #3d445f;
   border-radius: 5px;
   padding: 30px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -85,4 +85,9 @@
   width: 100vw;
   padding: 0px 0px 20px 0px;
   text-align: center;
+}
+
+.btn-customPrimary {
+  background-color: #477589;
+  color: white
 }

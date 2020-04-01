@@ -74,7 +74,7 @@ class CalibrateLaser extends React.Component {
 
     render() {
         return (
-            <Card>
+            <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Laser Calibration</h3>
@@ -93,42 +93,46 @@ class CalibrateLaser extends React.Component {
                     </Col>
                 </Row>
                 <br />
-                <Row>
+                <Row style={{paddingBottom: "20px"}}>
                     <Col sm={6}>
-                        <Form.Group>
-                            <Form.Label>Hue (H) - {this.state.h}</Form.Label>
-                            <Form.Control type="range" min={0} max={179} value={this.state.h} onChange={(value) => {this.updateValue({h: parseInt(value.target.value)})}}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Saturation (S) - {this.state.s}</Form.Label>
-                            <Form.Control type="range" min={0} max={255} value={this.state.s} onChange={(value) => {this.updateValue({s: parseInt(value.target.value)})}}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Value (V) - {this.state.v}</Form.Label>
-                            <Form.Control type="range" min={0} max={255} value={this.state.v} onChange={(value) => {this.updateValue({v: parseInt(value.target.value)})}}/>
-                        </Form.Group>
+                        <Card>
+                            <Form.Group>
+                                <Form.Label>Hue (H) - {this.state.h}</Form.Label>
+                                <Form.Control type="range" min={0} max={179} value={this.state.h} onChange={(value) => {this.updateValue({h: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Saturation (S) - {this.state.s}</Form.Label>
+                                <Form.Control type="range" min={0} max={255} value={this.state.s} onChange={(value) => {this.updateValue({s: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Value (V) - {this.state.v}</Form.Label>
+                                <Form.Control type="range" min={0} max={255} value={this.state.v} onChange={(value) => {this.updateValue({v: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                        </Card>
                     </Col>
                     <Col sm={6}>
-                        <Form.Group>
-                            <Form.Label>Hue Radius - {this.state.hRadius}</Form.Label>
-                            <Form.Control type="range" min={0} max={89} value={this.state.hRadius} onChange={(value) => {this.updateValue({hRadius: parseInt(value.target.value)})}}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Saturation Radius - {this.state.sRadius}</Form.Label>
-                            <Form.Control type="range" min={0} max={127} value={this.state.sRadius} onChange={(value) => {this.updateValue({sRadius: parseInt(value.target.value)})}}/>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Value Radius - {this.state.vRadius}</Form.Label>
-                            <Form.Control type="range" min={0} max={127} value={this.state.vRadius} onChange={(value) => {this.updateValue({vRadius: parseInt(value.target.value)})}}/>
-                        </Form.Group>
+                        <Card>
+                            <Form.Group>
+                                <Form.Label>Hue Radius - {this.state.hRadius}</Form.Label>
+                                <Form.Control type="range" min={0} max={89} value={this.state.hRadius} onChange={(value) => {this.updateValue({hRadius: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Saturation Radius - {this.state.sRadius}</Form.Label>
+                                <Form.Control type="range" min={0} max={127} value={this.state.sRadius} onChange={(value) => {this.updateValue({sRadius: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Value Radius - {this.state.vRadius}</Form.Label>
+                                <Form.Control type="range" min={0} max={127} value={this.state.vRadius} onChange={(value) => {this.updateValue({vRadius: parseInt(value.target.value)})}}/>
+                            </Form.Group>
+                        </Card>
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={12} className={"text-center"}>
-                        <Button onClick={() => {this.doneCalibrating()}}>I'm done calibrating!</Button>
+                        <Button variant="customPrimary" onClick={() => {this.doneCalibrating()}}>I'm done calibrating!</Button>
                     </Col>
                 </Row>
-            </Card>
+            </>
         );
     }
 

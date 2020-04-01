@@ -34,7 +34,7 @@ class Welcome extends React.Component {
 
     render() {
         return (
-            <Card>
+            <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Welcome to Take Aim!</p>
@@ -52,7 +52,7 @@ class Welcome extends React.Component {
                                     <br />
                                     - Google Chrome
                                 </p>
-                                <Button onClick={() => {this.launchProjector()}}>Launch Projector Screen</Button>
+                                <Button variant="customPrimary" onClick={() => {this.launchProjector()}}>Launch Projector Screen</Button>
                             </>
                         :
                             <p>Move the popup window to your projector screen and resize it to continue</p>
@@ -60,7 +60,7 @@ class Welcome extends React.Component {
 
                     </Col>
                 </Row>
-            </Card>
+            </>
         );
     }
 

@@ -16,7 +16,7 @@ class TargetSelection extends React.Component {
 
     render() {
         return (
-            <Card>
+            <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Target Selection</h3>
@@ -38,7 +38,7 @@ class TargetSelection extends React.Component {
                         </Row>
                     )
                 })}
-            </Card>
+            </>
         );
     }
 
