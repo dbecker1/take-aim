@@ -1,6 +1,6 @@
 import React from 'react';
-import Page from '../Page';
 import {Row, Col} from "react-bootstrap";
+import Card from "../Card";
 
 class Loading extends React.Component {
     constructor(props) {
@@ -9,13 +9,13 @@ class Loading extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Loading...</p>
                     </Col>
                 </Row>
-            </Page>
+            </Card>
         );
     }
 

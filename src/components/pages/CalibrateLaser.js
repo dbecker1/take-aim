@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from '../Page';
+import Card from '../Card';
 import {Row, Col, Button, Form} from "react-bootstrap";
 import cookie from "react-cookies";
 import LaserCalibrator from "../../util/LaserCalibrator";
@@ -74,7 +74,7 @@ class CalibrateLaser extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Laser Calibration</h3>
@@ -128,7 +128,7 @@ class CalibrateLaser extends React.Component {
                         <Button onClick={() => {this.doneCalibrating()}}>I'm done calibrating!</Button>
                     </Col>
                 </Row>
-            </Page>
+            </Card>
         );
     }
 

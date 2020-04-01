@@ -1,6 +1,6 @@
 import React from 'react';
-import Page from '../Page';
 import {Row, Col, Button} from "react-bootstrap";
+import Card from "../Card";
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Welcome extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Welcome to Take Aim!</p>
@@ -60,7 +60,7 @@ class Welcome extends React.Component {
 
                     </Col>
                 </Row>
-            </Page>
+            </Card>
         );
     }
 

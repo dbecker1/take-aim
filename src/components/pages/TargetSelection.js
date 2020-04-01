@@ -1,7 +1,7 @@
 import React from 'react';
-import Page from '../Page';
 import {Row, Col, Button} from "react-bootstrap";
 import {all_targets} from "../../util/targets";
+import Card from "../Card";
 
 class TargetSelection extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class TargetSelection extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Target Selection</h3>
@@ -38,7 +38,7 @@ class TargetSelection extends React.Component {
                         </Row>
                     )
                 })}
-            </Page>
+            </Card>
         );
     }
 

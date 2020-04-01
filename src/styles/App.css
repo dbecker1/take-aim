@@ -39,7 +39,7 @@
 
 .page {
   height: 100vh;
-  padding: calc(2% + 1.5em) 5% 5%;
+  padding: 2% 0% 5% 0%;
   overflow-y: auto;
   position: fixed;
   top: 0;
@@ -70,4 +70,19 @@
 
 .page--prev.page-exit {
   transform: translate(100%, 0);
+}
+
+
+.card {
+  background-color: #394c75;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.header {
+  width: 100vw;
+  padding: 0px 0px 20px 0px;
+  text-align: center;
 }

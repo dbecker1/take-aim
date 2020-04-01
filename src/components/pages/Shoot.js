@@ -1,7 +1,7 @@
 import React from 'react';
-import Page from '../Page';
 import {Row, Col} from "react-bootstrap";
 import ShotFeed from "../ShotFeed";
+import Card from "../Card";
 
 class Shoot extends React.Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class Shoot extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Shoot!</h3>
@@ -22,7 +22,7 @@ class Shoot extends React.Component {
                         <ShotFeed targetScreenManager={this.props.targetScreenManager} videoRef={this.props.videoRef}/>
                     </Col>
                 </Row>
-            </Page>
+            </Card>
         );
     }
 

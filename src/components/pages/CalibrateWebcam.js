@@ -1,8 +1,8 @@
 import React from 'react';
-import Page from '../Page';
 import {Row, Col, Button} from "react-bootstrap";
 import WebcamCalibrator from "../../util/WebcamCalibrator";
 import cookie from "react-cookies";
+import Card from "../Card";
 
 class CalibrateWebcam extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ class CalibrateWebcam extends React.Component {
 
     render() {
         return (
-            <Page>
+            <Card>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Webcam Calibration</h3>
@@ -101,7 +101,7 @@ class CalibrateWebcam extends React.Component {
                     </Col>
                     }
                 </Row>
-            </Page>
+            </Card>
         );
     }
 

@@ -11,6 +11,9 @@ import Shoot from "./pages/Shoot";
 
 import ProjectorScreen from "./ProjectorScreen";
 
+import {Container, Row, Col} from "react-bootstrap";
+import {backgroundColor, color} from "../config";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -95,7 +98,16 @@ class App extends React.Component {
     render() {
         return (
             <>
-                {this.getComponent(this.state.currentPage)}
+                <section className={"page"} style={{backgroundColor: backgroundColor, color: color}}>
+                    <div className={"header"}>
+                        <div style={{borderBottom: "1px solid white"}}>
+                            <h1>Take Aim</h1>
+                        </div>
+                    </div>
+                    <Container>
+                        {this.getComponent(this.state.currentPage)}
+                    </Container>
+                </section>
                 {this.state.launchWindow &&
                     <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.changePage("calibrateLaser")}}/>
                 }
