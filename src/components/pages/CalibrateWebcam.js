@@ -44,6 +44,7 @@ class CalibrateWebcam extends React.Component {
 
     finishCalibrating() {
         cookie.save("webcamConfig", {corners: this.calibrator.getCorners()})
+        this.props.targetScreenManager.wipeScreen();
         this.props.changePage("welcome")
     }
 

@@ -15,11 +15,11 @@ class WebcamCalibrator {
 
         if (!!existingCorners) {
             this.corners = existingCorners;
+            this.currentCorner = 5;
         } else {
             this.corners = [{}, {}, {}, {}];
+            this.currentCorner = 0;
         }
-
-        this.currentCorner = 5;
     }
 
     start() {

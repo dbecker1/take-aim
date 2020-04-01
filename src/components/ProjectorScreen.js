@@ -47,7 +47,7 @@ class ProjectorScreenInner extends React.Component {
                             <h1>Put this screen on your projector!</h1>
                             <h3>Resize the window to take the full screen and then click the button below</h3>
                             <p>Height: {this.state.height}<br />Width: {this.state.width}</p>
-                            <Button onClick={() => {this.doneResizing()}}>I'm done resizing!</Button>
+                            <Button variant="customPrimary" onClick={() => {this.doneResizing()}}>I'm done resizing!</Button>
                         </Col>
                     </Row>
             );
@@ -119,7 +119,7 @@ class ProjectorScreen extends React.Component {
     render() {
         return (
             <NewWindow ref={this.windowRef} name={WINDOW_NAME}>
-                <div style={{ height: "100vh", width: "100vw"}}>
+                <div style={{ height: "100vh", width: "100vw", backgroundColor: backgroundColor, color: color}}>
                     <ProjectorScreenInner height={this.state.height} width={this.state.width} targetScreenManager={this.props.targetScreenManager} onResizeFinish={this.props.onResizeFinish}/>
                 </div>
             </NewWindow>
