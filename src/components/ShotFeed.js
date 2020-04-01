@@ -11,6 +11,7 @@ class ShotFeed extends React.Component {
         }
 
         this.canvasRef = React.createRef();
+        this.canvasParentRef = React.createRef();
     }
 
     updateNoise(e) {
@@ -41,8 +42,15 @@ class ShotFeed extends React.Component {
                     outputDimensions, 200);
             }
 
-            const scaleRows = .75
-            const scaleColumns = .75
+            const parentWidth = this.canvasParentRef.current.offsetWidth * .9;
+            const windowHeight = window.innerHeight * .6;
+            let scaleColumns = parentWidth / outputDimensions.columns
+            let scaleRows = windowHeight / outputDimensions.rows
+            if (scaleRows < scaleColumns) {
+                scaleColumns = scaleRows
+            } else {
+                scaleRows = scaleColumns
+            }
             const canvas = this.canvasRef.current;
             canvas.width = outputDimensions.columns * scaleColumns;
             canvas.height = outputDimensions.rows * scaleRows;
@@ -61,7 +69,7 @@ class ShotFeed extends React.Component {
 
     render() {
         return (
-            <div>
+            <div ref={this.canvasParentRef}>
                 <div style={{display: this.state.running ? "none" : "inline"}} >
                     <Button variant="customPrimary" onClick={() => {this.startProcessing()}}>Start shooting!</Button>
                 </div>
