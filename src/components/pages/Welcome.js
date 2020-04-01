@@ -1,12 +1,18 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import Card from "../Card";
+import cookie from "react-cookies";
 
 class Welcome extends React.Component {
     constructor(props) {
         super(props);
+        const webcamConfig = cookie.load("webcamConfig")
+        const laserConfig = cookie.load("laserConfig")
         this.state = {
-            status: "welcome"
+            status: "welcome",
+            projectorStatus: "none",
+            laserStatus: !!laserConfig ? "ready" : "none",
+            webcamStatus: !!webcamConfig ? "ready" : "none"
         }
 
         if (!!props.resized) {
@@ -16,7 +22,7 @@ class Welcome extends React.Component {
 
     launchProjector() {
         this.setState({
-            status: "launched"
+            projectorStatus: "resizing"
         }, () => {
             if (!!this.props.launchProjector) {
                 this.props.launchProjector();
@@ -25,21 +31,20 @@ class Welcome extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (!!props.resizeCompleted) {
-            state["status"] = "resized"
+        if (!!props.projectorReady) {
+            state["projectorStatus"] = "ready"
             return state
         }
         return null;
     }
 
     render() {
+        const ready = this.state.projectorStatus === "ready" && this.state.laserStatus === "ready" && this.state.webcamStatus === "ready";
         return (
             <>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <p>Welcome to Take Aim!</p>
-
-                        {this.state.status === "welcome" ?
                             <>
                                 <p>
                                     Take Aim is an open source laser dry fire simulation system. In order to use Take Aim, you will need:
@@ -52,12 +57,56 @@ class Welcome extends React.Component {
                                     <br />
                                     - Google Chrome
                                 </p>
-                                <Button variant="customPrimary" onClick={() => {this.launchProjector()}}>Launch Projector Screen</Button>
-                            </>
-                        :
-                            <p>Move the popup window to your projector screen and resize it to continue</p>
-                        }
 
+                            </>
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "10px"}}>
+                    <Col sm={4}>
+                        <Card >
+                            <div className={"text-center"}>
+                                <h5 style={{textDecoration: "underline"}}>Projector Status</h5>
+                                {this.state.projectorStatus === "none" ?
+                                    <p>Pending Launch</p>
+                                    : this.state.projectorStatus === "resizing" ?
+                                        <p>Pending Resize</p>
+                                        :
+                                        <p>Ready</p>}
+                                <Button variant="customPrimary" onClick={() => {this.launchProjector()}} disabled={this.state.projectorStatus !== "none"}>Launch Projector Screen</Button>
+                            </div>
+                        </Card>
+                    </Col>
+                    <Col sm={4}>
+                        <Card >
+                            <div className={"text-center"}>
+                                <h5 style={{textDecoration: "underline"}}>Webcam Calibration Status</h5>
+                                {this.state.webcamStatus === "none" ?
+                                    <p>Pending Calibration</p>
+                                    :
+                                    <p>Ready</p>
+                                }
+                                <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateWebcam")}} disabled={this.state.projectorStatus !== "ready"}>Calibrate Webcam</Button>
+                                {this.state.projectorStatus !== "ready" && <><br /><span style={{fontSize: "80%"}}>Launch Projector Before Calibration</span></>}
+                            </div>
+                        </Card>
+                    </Col>
+                    <Col sm={4}>
+                        <Card >
+                            <div className={"text-center"}>
+                                <h5 style={{textDecoration: "underline"}}>Laser Calibration Status</h5>
+                                {this.state.laserStatus === "none" ?
+                                    <p>Pending Calibration</p>
+                                :
+                                    <p>Ready</p>
+                                }
+                                <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateLaser")}} >Calibrate Laser</Button>
+                            </div>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "20px"}}>
+                    <Col sm={12} className={"text-center"}>
+                        <Button variant="customPrimary" onClick={() => {this.props.changePage("targetSelection")}} disabled={!ready} size="lg">Lets get shooting!</Button>
                     </Col>
                 </Row>
             </>

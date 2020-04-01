@@ -57,7 +57,7 @@ class CalibrateLaser extends React.Component {
             vRadius: this.state.vRadius
         }
         cookie.save("laserConfig", config)
-        this.props.changePage("calibrateProjector")
+        this.props.changePage("welcome")
     }
 
     updateCalibrator() {

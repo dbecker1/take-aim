@@ -44,7 +44,7 @@ class CalibrateWebcam extends React.Component {
 
     finishCalibrating() {
         cookie.save("webcamConfig", {corners: this.calibrator.getCorners()})
-        this.props.changePage("targetSelection")
+        this.props.changePage("welcome")
     }
 
     reset() {
@@ -76,7 +76,7 @@ class CalibrateWebcam extends React.Component {
                     {!this.state.loading &&
                     <Col sm={12} className={"text-center"}>
                         {this.state.corner <= 4 ?
-                            <Button onClick={() => {
+                            <Button variant="customPrimary" onClick={() => {
                                 this.calibrator.nextCorner();
                                 this.setState({corner: this.state.corner + 1})
                             }}>
@@ -84,7 +84,7 @@ class CalibrateWebcam extends React.Component {
                             </Button>
                             :
                             <div>
-                                <Button variant="customPrimary" onClick={() => {
+                                <Button variant="customPrimary" variant="customPrimary" onClick={() => {
                                     this.finishCalibrating()
                                 }}>
                                     Looks Good To Me!

@@ -12,7 +12,7 @@ import Shoot from "./pages/Shoot";
 import ProjectorScreen from "./ProjectorScreen";
 
 import {Container, Row, Col} from "react-bootstrap";
-import {backgroundColor, color} from "../config";
+import {backgroundColor, color, color4} from "../config";
 
 
 class App extends React.Component {
@@ -22,7 +22,8 @@ class App extends React.Component {
             cvLoaded: false,
             launchWindow: false,
             currentPage: "welcome",
-            showVideo: false
+            showVideo: false,
+            projectorReady: false
         }
 
         this.targetScreenManager = new TargetScreenManager();
@@ -63,6 +64,7 @@ class App extends React.Component {
                              this.setState({launchWindow: true})
                          }}
                          changePage={(name) => {this.changePage(name)}}
+                         projectorReady={this.state.projectorReady}
                 />
             )
         } else if (name === "calibrateLaser") {
@@ -70,7 +72,7 @@ class App extends React.Component {
                 <CalibrateLaser changePage={(name) => {this.changePage(name)}}
                                 videoRef={this.videoRef}/>
             )
-        } else if (name === "calibrateProjector") {
+        } else if (name === "calibrateWebcam") {
             return (
                 <CalibrateWebcam targetScreenManager={this.targetScreenManager}
                                  changePage={(name) => this.changePage(name)}
@@ -109,10 +111,10 @@ class App extends React.Component {
                     </Container>
                 </section>
                 {this.state.launchWindow &&
-                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.changePage("calibrateLaser")}}/>
+                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.setState({projectorReady: true})}}/>
                 }
-                <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid black", minWidth: "400px"}}>
-                    <div style={{color: "white", backgroundColor: "black", width: "100%"}} className={"clearfix"}>
+                <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid " + backgroundColor, minWidth: "400px"}}>
+                    <div style={{color: "white", backgroundColor: color4, width: "100%"}} className={"clearfix"}>
                         <div className={"float-left"}>
                             Webcam  Feed
                         </div>

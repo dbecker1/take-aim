@@ -1,5 +1,5 @@
 import React from "react"
 
 export default function Card(props) {
-    return <div className={"card"}>{props.children}</div>
+    return <div {...props} className={"card"}>{props.children}</div>
 }
