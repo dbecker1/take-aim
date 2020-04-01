@@ -66,7 +66,7 @@ class TargetScreenManager {
         let targetImage = new Image()
 
         targetImage.onload = () => {
-            const scaleFactor = (this.maxHeight * .6) / targetImage.height
+            const scaleFactor = (this.maxHeight * .8) / targetImage.height
             targetImage.height = this.maxHeight * .8
             targetImage.width = targetImage.width * scaleFactor
             let x = (this.maxWidth / 2) - (targetImage.width / 2);

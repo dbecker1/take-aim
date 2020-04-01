@@ -33,7 +33,7 @@ class TargetSelection extends React.Component {
                                 <img src={"/assets/targets/" + value.fileName} style={{height: "200px"}}/>
                             </Col>
                             <Col sm={4} style={{paddingTop: "70px"}} className={"text-center"}>
-                                <Button onClick={() => {this.selectTarget(value.name)}}>Select this target!</Button>
+                                <Button variant="customPrimary" onClick={() => {this.selectTarget(value.name)}}>Select this target!</Button>
                             </Col>
                         </Row>
                     )
