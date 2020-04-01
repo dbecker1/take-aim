@@ -31,7 +31,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 * **Daniel Becker** - [dbecker1](https://github.com/dbecker1)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dbecker1/take-aim/contributors) who participated in this project.
 
 ## License
 
