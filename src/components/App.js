@@ -13,6 +13,7 @@ import ProjectorScreen from "./ProjectorScreen";
 
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
+import SelectMode from "./pages/SelectMode";
 
 
 class App extends React.Component {
@@ -83,6 +84,10 @@ class App extends React.Component {
                 <TargetSelection targetScreenManager={this.targetScreenManager}
                                  changePage={(name) => {this.changePage(name)}}
                 />
+            )
+        } else if (name === "selectMode") {
+            return (
+                <SelectMode changePage={(name) => {this.changePage(name)}} />
             )
         } else if (name === "shoot") {
             return (

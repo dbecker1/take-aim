@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
-import {all_targets} from "../../util/targets";
+import {all_targets} from "../modes/targets";
 import Card from "../Card";
 
 class TargetSelection extends React.Component {

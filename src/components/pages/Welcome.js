@@ -106,7 +106,7 @@ class Welcome extends React.Component {
                 </Row>
                 <Row style={{marginTop: "20px"}}>
                     <Col sm={12} className={"text-center"}>
-                        <Button variant="customPrimary" onClick={() => {this.props.changePage("targetSelection")}} disabled={!ready} size="lg">Lets get shooting!</Button>
+                        <Button variant="customPrimary" onClick={() => {this.props.changePage("selectMode")}} disabled={!ready} size="lg">Lets get shooting!</Button>
                     </Col>
                 </Row>
             </>

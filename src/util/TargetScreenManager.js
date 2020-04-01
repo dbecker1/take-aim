@@ -1,4 +1,4 @@
-import {all_targets} from "./targets";
+import {all_targets} from "../components/modes/targets";
 
 class TargetScreenManager {
     constructor() {
