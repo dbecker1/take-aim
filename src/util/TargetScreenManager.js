@@ -55,7 +55,7 @@ class TargetScreenManager {
         this.ctx.fill();
     }
 
-    drawTarget(name) {
+    drawTarget(name, onComplete = null) {
         let target = all_targets.filter(a => {return a.name === name})
         if (target.size === 0) {
             console.error("Invalid target name");
@@ -72,6 +72,10 @@ class TargetScreenManager {
             let x = (this.maxWidth / 2) - (targetImage.width / 2);
             let y = (this.maxHeight / 2) - (targetImage.height / 2);
             this.ctx.drawImage(targetImage, x, y, targetImage.width, targetImage.height)
+
+            if (!!onComplete) {
+                onComplete();
+            }
         }
         targetImage.src = "/assets/targets/" + target["fileName"];
     }

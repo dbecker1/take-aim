@@ -70,10 +70,7 @@ class ShotFeed extends React.Component {
     render() {
         return (
             <div ref={this.canvasParentRef}>
-                <div style={{display: this.state.running ? "none" : "inline"}} >
-                    <Button variant="customPrimary" onClick={() => {this.startProcessing()}}>Start shooting!</Button>
-                </div>
-                <div style={{display: this.state.running ? "inline" : "none"}} className={"text-center"}>
+                <div className={"text-center"}>
                     <canvas ref={this.canvasRef}  ></canvas>
                     <br />
                     <Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>

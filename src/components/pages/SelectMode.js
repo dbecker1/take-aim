@@ -11,7 +11,7 @@ class SelectMode extends React.Component {
     }
 
     selectMode(mode) {
-        console.log(mode)
+        this.props.setShootingMode(mode);
     }
 
     divideModes(modes) {

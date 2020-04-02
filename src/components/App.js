@@ -7,7 +7,7 @@ import Welcome from "./pages/Welcome";
 import CalibrateLaser from "./pages/CalibrateLaser";
 import CalibrateWebcam from "./pages/CalibrateWebcam";
 import TargetSelection from "./pages/TargetSelection";
-import Shoot from "./pages/Shoot";
+import RunShootingMode from "./pages/RunShootingMode";
 
 import ProjectorScreen from "./ProjectorScreen";
 
@@ -24,7 +24,8 @@ class App extends React.Component {
             launchWindow: false,
             currentPage: "welcome",
             showVideo: false,
-            projectorReady: false
+            projectorReady: false,
+            shootingMode: null
         }
 
         this.targetScreenManager = new TargetScreenManager();
@@ -48,6 +49,14 @@ class App extends React.Component {
     changePage(name) {
         this.setState({
             currentPage: name
+        })
+    }
+
+    setShootingMode(mode) {
+        this.setState({
+            shootingMode: mode
+        }, () => {
+            this.changePage("runShootingMode")
         })
     }
 
@@ -87,13 +96,14 @@ class App extends React.Component {
             )
         } else if (name === "selectMode") {
             return (
-                <SelectMode changePage={(name) => {this.changePage(name)}} />
+                <SelectMode setShootingMode={(mode) => {this.setShootingMode(mode)}}/>
             )
-        } else if (name === "shoot") {
+        } else if (name === "runShootingMode") {
             return (
-                <Shoot targetScreenManager={this.targetScreenManager}
-                       changePage={(name) => {this.changePage(name)}}
-                       videoRef={this.videoRef}/>
+                <RunShootingMode targetScreenManager={this.targetScreenManager}
+                                 changePage={(name) => {this.changePage(name)}}
+                                 videoRef={this.videoRef}
+                                 shootingMode={this.state.shootingMode}/>
             )
         } else {
             return (
