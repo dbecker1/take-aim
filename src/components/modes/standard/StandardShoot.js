@@ -10,6 +10,7 @@ class StandardShoot extends React.Component {
     }
 
     componentDidMount() {
+        this.props.targetScreenManager.wipeScreen()
         this.props.targetScreenManager.drawTarget(this.props.settings.selectedTarget, () => {
             this.shotRef.current.startProcessing();
         })
