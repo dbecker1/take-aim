@@ -40,7 +40,7 @@ class SelectMode extends React.Component {
             return;
         }
         return (
-            <Card>
+            <Card style={{height: "100%"}}>
                 <div className={"text-center"}>
                     <h4 style={{textDecoration: "underline"}}>{mode.name}</h4>
                     <p>{mode.description}</p>
@@ -66,51 +66,6 @@ class SelectMode extends React.Component {
                         </Row>
                     )
                 })}
-                {/*<Row>*/}
-                {/*    <Col sm={12} className={"text-center"}>*/}
-                {/*        <p>Select a shooting mode!</p>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
-                {/*<Row style={{marginTop: "30px"}}>*/}
-                {/*    <Col sm={6} md={{span: 4, offset: 2}}>*/}
-                {/*        <Card >*/}
-                {/*            <div className={"text-center"}>*/}
-                {/*                <h4 style={{textDecoration: "underline"}}>Standard Target Shooting</h4>*/}
-                {/*                <p>Stationary targets at a fixed distance</p>*/}
-                {/*                <Button variant="customPrimary">Select this mode!</Button>*/}
-                {/*            </div>*/}
-                {/*        </Card>*/}
-                {/*    </Col>*/}
-                {/*    <Col sm={6} md={4}>*/}
-                {/*        <Card >*/}
-                {/*            <div className={"text-center"}>*/}
-                {/*                <h4 style={{textDecoration: "underline"}}>Coming Soon!</h4>*/}
-                {/*                <p>Probably something really cool</p>*/}
-                {/*                <Button variant="customPrimary" disabled>Select this mode!</Button>*/}
-                {/*            </div>*/}
-                {/*        </Card>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
-                {/*<Row style={{marginTop: "30px"}}>*/}
-                {/*    <Col sm={6} md={{span: 4, offset: 2}}>*/}
-                {/*        <Card >*/}
-                {/*            <div className={"text-center"}>*/}
-                {/*                <h4 style={{textDecoration: "underline"}}>Coming Soon!</h4>*/}
-                {/*                <p>Probably something really cool</p>*/}
-                {/*                <Button variant="customPrimary" disabled>Select this mode!</Button>*/}
-                {/*            </div>*/}
-                {/*        </Card>*/}
-                {/*    </Col>*/}
-                {/*    <Col sm={6} md={4}>*/}
-                {/*        <Card >*/}
-                {/*            <div className={"text-center"}>*/}
-                {/*                <h4 style={{textDecoration: "underline"}}>Coming Soon!</h4>*/}
-                {/*                <p>Probably something really cool</p>*/}
-                {/*                <Button variant="customPrimary" disabled>Select this mode!</Button>*/}
-                {/*            </div>*/}
-                {/*        </Card>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
             </>
         );
     }

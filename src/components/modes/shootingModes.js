@@ -4,7 +4,7 @@ import StandardShoot from "./standard/StandardShoot";
 
 const standard = {
     name: "Standard Target Shooting",
-    description: "Stationary targets at a fixed distance",
+    description: "Stationary targets with the option to provide a fixed distance",
     configureComponent: StandardConfigure,
     shootComponent: StandardShoot
 }

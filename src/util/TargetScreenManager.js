@@ -1,4 +1,5 @@
 import {all_targets} from "../components/modes/targets";
+import TargetUtils from "./TargetUtils"
 
 class TargetScreenManager {
     constructor() {
@@ -55,29 +56,36 @@ class TargetScreenManager {
         this.ctx.fill();
     }
 
-    drawTarget(name, onComplete = null) {
-        let target = all_targets.filter(a => {return a.name === name})
-        if (target.size === 0) {
-            console.error("Invalid target name");
-            return;
-        }
-        target = target[0];
+    drawTarget(name) {
+        return new Promise((resolve, reject) => {
+            let target = TargetUtils.getTargetByName(name)
 
-        let targetImage = new Image()
-
-        targetImage.onload = () => {
-            const scaleFactor = (this.maxHeight * .8) / targetImage.height
-            targetImage.height = this.maxHeight * .8
-            targetImage.width = targetImage.width * scaleFactor
-            let x = (this.maxWidth / 2) - (targetImage.width / 2);
-            let y = (this.maxHeight / 2) - (targetImage.height / 2);
-            this.ctx.drawImage(targetImage, x, y, targetImage.width, targetImage.height)
-
-            if (!!onComplete) {
-                onComplete();
+            if (target == null) {
+                reject("Invalid target name");
+                return;
             }
+
+            TargetUtils.loadTarget(name).then(targetImage => {
+                const targetHeight = this.maxHeight * .8;
+                const targetWidth = TargetUtils.getTargetWidthForHeight(targetImage, targetHeight);
+                let x = (this.maxWidth / 2) - (targetWidth / 2);
+                let y = (this.maxHeight / 2) - (targetHeight / 2);
+                this.ctx.drawImage(targetImage, x, y, targetWidth, targetHeight)
+                resolve();
+            })
+        })
+
+    }
+
+    draw(src, x, y, width, height) {
+        this.ctx.drawImage(src, x, y, width, height)
+    }
+
+    getDimensions() {
+        return {
+            canvasWidth: this.canvas.width,
+            canvasHeight: this.canvas.height
         }
-        targetImage.src = "/assets/targets/" + target["fileName"];
     }
 }
 
