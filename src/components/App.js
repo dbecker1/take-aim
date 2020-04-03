@@ -14,7 +14,11 @@ import ProjectorScreen from "./ProjectorScreen";
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
 import SelectMode from "./pages/SelectMode";
+import ReactGA from 'react-ga';
 
+
+
+ReactGA.initialize('UA-162789074-1', { debug: false });
 
 class App extends React.Component {
     constructor(props) {
@@ -28,6 +32,7 @@ class App extends React.Component {
             shootingMode: null
         }
 
+        ReactGA.pageview("welcome");
         this.targetScreenManager = new TargetScreenManager();
         this.videoRef = React.createRef();
     }
@@ -39,6 +44,12 @@ class App extends React.Component {
         navigator.mediaDevices.getUserMedia({ video: true, audio: false })
             .then((stream)  => {
                 video.srcObject = stream;
+                video.onplay = () => {
+                    ReactGA.set({
+                        videoWidth: video.videoWidth,
+                        videoHeight: video.videoHeight
+                    })
+                }
                 video.play();
             })
             .catch((err) => {
@@ -47,6 +58,7 @@ class App extends React.Component {
     }
 
     changePage(name) {
+        ReactGA.pageview(name);
         this.setState({
             currentPage: name
         })

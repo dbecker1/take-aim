@@ -184,7 +184,7 @@ class ShotDetector {
             this.lastShot = new Date();
 
             this.currentlyProcessing = false;
-            return circle.center;
+            return {center: circle.center, radius: circle.radius};
         } catch (e) {
             console.log("ERROR")
             console.error(e)

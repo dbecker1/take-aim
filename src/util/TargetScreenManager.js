@@ -1,5 +1,6 @@
 import {all_targets} from "../components/modes/targets";
 import TargetUtils from "./TargetUtils"
+import ReactGA from 'react-ga';
 
 class TargetScreenManager {
     constructor() {
@@ -13,6 +14,11 @@ class TargetScreenManager {
         this.maxWidth = canvas.width;
         this.ctx = canvas.getContext('2d');
         console.log("Target canvas attached");
+
+        ReactGA.set({
+            targetCanvasWidth: canvas.width,
+            targetCanvasHeight: canvas.height
+        });
 
         this.wipeScreen();
     }

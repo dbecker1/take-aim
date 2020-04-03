@@ -2,6 +2,7 @@ import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import Card from "../Card";
 import {shootingModes} from "../modes/shootingModes";
+import ReactGA from "react-ga";
 
 class SelectMode extends React.Component {
     constructor(props) {
@@ -11,6 +12,11 @@ class SelectMode extends React.Component {
     }
 
     selectMode(mode) {
+        ReactGA.event({
+            category: 'Shooting Mode',
+            action: 'Selected Shooting Mode: ' + mode.name,
+            label: mode.name
+        });
         this.props.setShootingMode(mode);
     }
 

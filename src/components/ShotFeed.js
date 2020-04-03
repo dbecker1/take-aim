@@ -2,6 +2,7 @@ import React from 'react';
 import ShotDetector from "../util/ShotDetector"
 import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
+import ReactGA from 'react-ga';
 
 class ShotFeed extends React.Component {
     constructor(props) {
@@ -57,9 +58,14 @@ class ShotFeed extends React.Component {
             var ctx = canvas.getContext('2d');
             ctx.drawImage(this.props.targetScreenManager.canvas, 0, 0, canvas.width, canvas.height);
             this.shotDetector.start((hit => {
+                ReactGA.event({
+                    category: 'Shot Feed',
+                    action: "Shot Detected",
+                    label: "Radius: " + hit.radius
+                });
                 console.log(hit)
                 ctx.beginPath();
-                ctx.arc(hit.x * scaleColumns, hit.y * scaleRows, 5, 0, 2*Math.PI, false)
+                ctx.arc(hit.center.x * scaleColumns, hit.center.y * scaleRows, 5, 0, 2*Math.PI, false)
                 ctx.lineWidth = 5;
                 ctx.strokeStyle = 'red';
                 ctx.stroke();
