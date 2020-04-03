@@ -16,6 +16,7 @@ class StandardConfigure extends React.Component {
             selectedTarget: null,
             useDistance: false,
             useTimer: false,
+            timerType: "running"
         }
 
         const config = cookie.load("scaleConfig")
@@ -78,7 +79,8 @@ class StandardConfigure extends React.Component {
                             </Form>
                             {this.state.useDistance &&
                                 <>
-                                <Form.Group style={{marginTop: "10px", marginBottom: 0}}>
+                                    <hr  style={{borderTop: "1px solid white"}}/>
+                                    <Form.Group style={{marginTop: "0px", marginBottom: 0}}>
                                     <Form.Label>Desired Distance From Target (in yards)</Form.Label>
                                     <Form.Control value={this.state.distance} onChange={(e) => {this.setState({distance: e.target.value})}} type={"number"} />
                                 </Form.Group>
@@ -86,7 +88,7 @@ class StandardConfigure extends React.Component {
                                 <p style={{marginBottom: 0}}>The following are measurements needed to accurately depict target size:</p>
                                     <Form.Group>
                                         <Form.Label>Distance From You to Screen (in inches)</Form.Label>
-                                        <Form.Control  value={this.state.distanceToProjector} onChange={(e) => {this.setState({distanceToProjector: e.target.value})}} tyle={"number"}/>
+                                        <Form.Control  value={this.state.distanceToProjector} onChange={(e) => {this.setState({distanceToProjector: e.target.value})}} type={"number"}/>
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label>Height of Target Area (in inches)</Form.Label>
@@ -96,7 +98,52 @@ class StandardConfigure extends React.Component {
                                     </Form.Group>
                                 </>
                             }
-
+                            {this.state.useTimer &&
+                                <>
+                                    <hr  style={{borderTop: "1px solid white"}}/>
+                                    <p style={{marginBottom: 0}}>Timer Type</p>
+                                    <Form inline>
+                                        <Form.Check
+                                            type={"radio"}
+                                            label={"Running Timer"}
+                                            checked={this.state.timerType === "running"}
+                                            inline
+                                            style={{marginRight: "2px"}}
+                                            onChange={() => {this.setState({timerType: "running"})}}
+                                        />
+                                        <OverlayTrigger
+                                            placement={"bottom"}
+                                            overlay={
+                                                <Tooltip id={`info-tooltip`}>
+                                                    A Running Timer will have one beep and will continuously time any number
+                                                    of shots after that.
+                                                </Tooltip>
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faInfoCircle} style={{marginRight: "1rem"}}/>
+                                        </OverlayTrigger>
+                                        <Form.Check
+                                            type={"radio"}
+                                            label={"Cycle Timer"}
+                                            checked={this.state.timerType === "cycle"}
+                                            inline
+                                            style={{marginRight: "2px"}}
+                                            onChange={() => {this.setState({timerType: "cycle"})}}
+                                        />
+                                        <OverlayTrigger
+                                            placement={"bottom"}
+                                            overlay={
+                                                <Tooltip id={`info-tooltip`}>
+                                                    A Cycle Timer will have one beep, measure one shot, and then start over.
+                                                    Useful for practicing drawing from a holster.
+                                                </Tooltip>
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faInfoCircle} style={{marginRight: "1rem"}}/>
+                                        </OverlayTrigger>
+                                    </Form>
+                                </>
+                            }
                         </Card>
                     </Col>
                 </Row>

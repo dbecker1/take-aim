@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col} from "react-bootstrap";
-import ShotFeed from "../ShotFeed";
+import ShotFeed from "../shooting/ShotFeed";
 
 class RunShootingMode extends React.Component {
     constructor(props) {

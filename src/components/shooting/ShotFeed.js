@@ -1,5 +1,5 @@
 import React from 'react';
-import ShotDetector from "../util/ShotDetector"
+import ShotDetector from "../../util/ShotDetector"
 import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
 import ReactGA from 'react-ga';
@@ -63,6 +63,9 @@ class ShotFeed extends React.Component {
                     action: "Shot Detected",
                     label: "Radius: " + hit.radius
                 });
+                if (!!this.props.onHit) {
+                    this.props.onHit(hit);
+                }
                 console.log(hit)
                 ctx.beginPath();
                 ctx.arc(hit.center.x * scaleColumns, hit.center.y * scaleRows, 5, 0, 2*Math.PI, false)

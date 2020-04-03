@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
-import ShotFeed from "../../ShotFeed";
+import ShotFeed from "../../shooting/ShotFeed";
+import ShotTimer from "../../shooting/ShotTimer";
 import TargetUtils from "../../../util/TargetUtils"
 
 class StandardShoot extends React.Component {
@@ -8,6 +9,7 @@ class StandardShoot extends React.Component {
         super(props);
 
         this.shotRef = React.createRef();
+        this.timerRef = React.createRef();
     }
 
     componentDidMount() {
@@ -33,6 +35,16 @@ class StandardShoot extends React.Component {
         }
     }
 
+    onHit() {
+        if (this.props.settings.useTimer) {
+            this.timerRef.current.onHit();
+        }
+    }
+
+    getFeed() {
+        return <ShotFeed ref={this.shotRef} targetScreenManager={this.props.targetScreenManager} videoRef={this.props.videoRef} onHit={(hit) => {this.onHit(hit)}}/>
+    }
+
     render() {
         return (
             <>
@@ -42,9 +54,21 @@ class StandardShoot extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={12}>
-                        <ShotFeed ref={this.shotRef} targetScreenManager={this.props.targetScreenManager} videoRef={this.props.videoRef}/>
-                    </Col>
+                    {this.props.settings.useTimer ?
+                        <>
+                            <Col sm={4}>
+                                <ShotTimer ref={this.timerRef} timerType={this.props.settings.timerType}/>
+                            </Col>
+                            <Col sm={8}>
+                                {this.getFeed()}
+                            </Col>
+                        </>
+                    :
+                        <Col sm={12}>
+                            {this.getFeed()}
+                        </Col>
+                    }
+
                 </Row>
                 <Row style={{marginTop: "30px"}}>
                     <Col sm={12} className={"text-center"}>
