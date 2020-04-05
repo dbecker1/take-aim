@@ -2,6 +2,9 @@ import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import Card from "../Card";
 import cookie from "react-cookies";
+import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {color1, color3} from "../../config";
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -67,11 +70,20 @@ class Welcome extends React.Component {
                             <div className={"text-center"}>
                                 <h5 style={{textDecoration: "underline"}}>Projector Status</h5>
                                 {this.state.projectorStatus === "none" ?
-                                    <p>Pending Launch</p>
+                                    <>
+                                        <p>Pending Launch</p>
+                                        <p><FontAwesomeIcon icon={faTimes} style={{color: "red"}}/></p>
+                                    </>
                                     : this.state.projectorStatus === "resizing" ?
-                                        <p>Pending Resize</p>
+                                        <>
+                                            <p>Pending Resize</p>
+                                            <p><FontAwesomeIcon icon={faTimes} style={{color: "red"}}/></p>
+                                        </>
                                         :
-                                        <p>Ready</p>}
+                                        <>
+                                            <p>Ready</p>
+                                            <p><FontAwesomeIcon icon={faCheck} style={{color: "green"}}/></p>
+                                        </>}
                                 <Button variant="customPrimary" onClick={() => {this.launchProjector()}} disabled={this.state.projectorStatus !== "none"}>Launch Projector Screen</Button>
                             </div>
                         </Card>
@@ -81,9 +93,15 @@ class Welcome extends React.Component {
                             <div className={"text-center"}>
                                 <h5 style={{textDecoration: "underline"}}>Webcam Calibration Status</h5>
                                 {this.state.webcamStatus === "none" ?
-                                    <p>Pending Calibration</p>
+                                    <>
+                                        <p>Pending Calibration</p>
+                                        <p><FontAwesomeIcon icon={faTimes} style={{color: "red"}}/></p>
+                                    </>
                                     :
-                                    <p>Ready</p>
+                                    <>
+                                        <p>Ready</p>
+                                        <p><FontAwesomeIcon icon={faCheck} style={{color: "green"}}/></p>
+                                    </>
                                 }
                                 <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateWebcam")}} disabled={this.state.projectorStatus !== "ready"}>Calibrate Webcam</Button>
                                 {this.state.projectorStatus !== "ready" && <><br /><span style={{fontSize: "80%"}}>Launch Projector Before Calibration</span></>}
@@ -95,9 +113,15 @@ class Welcome extends React.Component {
                             <div className={"text-center"}>
                                 <h5 style={{textDecoration: "underline"}}>Laser Calibration Status</h5>
                                 {this.state.laserStatus === "none" ?
-                                    <p>Pending Calibration</p>
+                                    <>
+                                        <p>Pending Calibration</p>
+                                        <p><FontAwesomeIcon icon={faTimes} style={{color: "red"}}/></p>
+                                    </>
                                 :
-                                    <p>Ready</p>
+                                    <>
+                                        <p>Ready</p>
+                                        <p><FontAwesomeIcon icon={faCheck} style={{color: "green"}}/></p>
+                                    </>
                                 }
                                 <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateLaser")}} >Calibrate Laser</Button>
                             </div>
