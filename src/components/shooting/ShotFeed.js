@@ -80,6 +80,7 @@ class ShotFeed extends React.Component {
             this.canvasRef.current.width = outputDimensions.columns * scaleColumns;
             this.canvasRef.current.height = outputDimensions.rows * scaleRows;
             this.canvas = new window.fabric.Canvas(this.canvasRef.current);
+            this.canvas.setZoom(this.scale)
             this.redrawCanvas(this.props)
         })
     }
@@ -89,10 +90,19 @@ class ShotFeed extends React.Component {
             return;
         }
         this.canvas.loadFromJSON(props.fabricObject, () => {
-            //this.canvas.setDimensions({ width: this.canvas.getWidth() * this.scale, height: this.canvas.getHeight() * this.scale });
-            this.canvas.setZoom(this.scale)
+            for (let index in props.shots) {
+                const shot = props.shots[index];
+                let shotCircle =  new window.fabric.Circle({
+                    radius: 5,
+                    fill: 'red',
+                    top: shot.center.y,
+                    left: shot.center.x,
+                    originX: 'center',
+                    originY: 'center'
+                })
+                this.canvas.add(shotCircle);
+            }
         })
-        //ctx.drawImage(this.props.targetScreenManager.canvas, 0, 0, canvas.width, canvas.height);
 
     }
 
