@@ -6,6 +6,7 @@ import ReactGA from 'react-ga';
 import { connect } from "react-redux";
 import { addShot, wipeShots } from "../../app/slices/shotSlice";
 import { bindActionCreators } from "redux";
+import "../../styles/TargetCanvas.css";
 
 class ShotFeed extends React.Component {
     constructor(props) {
@@ -16,6 +17,17 @@ class ShotFeed extends React.Component {
 
         this.canvasRef = React.createRef();
         this.canvasParentRef = React.createRef();
+
+    }
+
+    componentDidMount() {
+        this.startProcessing();
+    }
+
+    componentWillUnmount() {
+        if (!!this.shotDetector) {
+            this.shotDetector.stop();
+        }
     }
 
     updateNoise(e) {
@@ -23,30 +35,38 @@ class ShotFeed extends React.Component {
         this.shotDetector.filterNoise = checked;
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.redrawCanvas(nextProps)
+    }
+
     startProcessing() {
         this.props.wipeShots();
         this.setState({
             running: true
         }, () => {
-            const outputDimensions = {
-                rows: this.props.targetScreenManager.canvas.height,
-                columns: this.props.targetScreenManager.canvas.width
+            const laserConfig = cookie.load("laserConfig")
+            if (laserConfig === null){
+                console.error("Missing laser config")
             }
+            const webcamConfig = cookie.load("webcamConfig")
+            if (webcamConfig === null) {
+                console.error("Missing webcam config");
+            }
+            const outputDimensions = this.props.outputDimensions
             if (!this.shotDetector) {
-                const laserConfig = cookie.load("laserConfig")
-                if (laserConfig === null){
-                    console.error("Missing laser config")
-                    return;
-                }
-                const webcamConfig = cookie.load("webcamConfig")
-                if (webcamConfig === null) {
-                    console.error("Missing webcam config");
-                }
                 this.shotDetector = new ShotDetector(this.props.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
                     laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
                     outputDimensions, 200);
             }
-
+            this.shotDetector.start((hit => {
+                ReactGA.event({
+                    category: 'Shot Feed',
+                    action: "Shot Detected",
+                    label: "Radius: " + hit.radius
+                });
+                this.props.addShot(hit);
+                console.log(hit)
+            }))
             const parentWidth = this.canvasParentRef.current.offsetWidth * .9;
             const windowHeight = window.innerHeight * .6;
             let scaleColumns = parentWidth / outputDimensions.columns
@@ -56,29 +76,24 @@ class ShotFeed extends React.Component {
             } else {
                 scaleRows = scaleColumns
             }
-            const canvas = this.canvasRef.current;
-            canvas.width = outputDimensions.columns * scaleColumns;
-            canvas.height = outputDimensions.rows * scaleRows;
-            var ctx = canvas.getContext('2d');
-            ctx.drawImage(this.props.targetScreenManager.canvas, 0, 0, canvas.width, canvas.height);
-            this.shotDetector.start((hit => {
-                ReactGA.event({
-                    category: 'Shot Feed',
-                    action: "Shot Detected",
-                    label: "Radius: " + hit.radius
-                });
-                if (!!this.props.onHit) {
-                    this.props.onHit(hit);
-                }
-                this.props.addShot(hit);
-                console.log(hit)
-                ctx.beginPath();
-                ctx.arc(hit.center.x * scaleColumns, hit.center.y * scaleRows, 5, 0, 2*Math.PI, false)
-                ctx.lineWidth = 5;
-                ctx.strokeStyle = 'red';
-                ctx.stroke();
-            }))
+            this.scale = scaleRows;
+            this.canvasRef.current.width = outputDimensions.columns * scaleColumns;
+            this.canvasRef.current.height = outputDimensions.rows * scaleRows;
+            this.canvas = new window.fabric.Canvas(this.canvasRef.current);
+            this.redrawCanvas(this.props)
         })
+    }
+
+    redrawCanvas(props)  {
+        if (!this.canvas) {
+            return;
+        }
+        this.canvas.loadFromJSON(props.fabricObject, () => {
+            //this.canvas.setDimensions({ width: this.canvas.getWidth() * this.scale, height: this.canvas.getHeight() * this.scale });
+            this.canvas.setZoom(this.scale)
+        })
+        //ctx.drawImage(this.props.targetScreenManager.canvas, 0, 0, canvas.width, canvas.height);
+
     }
 
     render() {
@@ -96,8 +111,17 @@ class ShotFeed extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    outputDimensions: {
+        rows: state.projector.canvasHeight,
+        columns: state.projector.canvasWidth
+    },
+    shots: state.shotTracker.shots,
+    fabricObject: state.fabric.fabricObject
+})
+
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({addShot, wipeShots}, dispatch)
 };
 
-export default connect(null, mapDispatchToProps, null, {forwardRef: true})(ShotFeed);
+export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(ShotFeed);

@@ -1,22 +1,18 @@
 import React from 'react';
 import '../styles/App.css';
-import TargetScreenManager from "../util/TargetScreenManager";
 
 import Loading from "./pages/Loading";
 import Welcome from "./pages/Welcome";
 import CalibrateLaser from "./pages/CalibrateLaser";
 import CalibrateWebcam from "./pages/CalibrateWebcam";
-import TargetSelection from "./pages/TargetSelection";
 import RunShootingMode from "./pages/RunShootingMode";
 
-import ProjectorScreen from "./ProjectorScreen";
+import ProjectorScreen from "./targetScreen/ProjectorScreen";
 
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
 import SelectMode from "./pages/SelectMode";
 import ReactGA from 'react-ga';
-
-
 
 ReactGA.initialize('UA-162789074-1', { debug: false });
 
@@ -28,12 +24,10 @@ class App extends React.Component {
             launchWindow: false,
             currentPage: "welcome",
             showVideo: false,
-            projectorReady: false,
             shootingMode: null
         }
 
         ReactGA.pageview("welcome");
-        this.targetScreenManager = new TargetScreenManager();
         this.videoRef = React.createRef();
     }
 
@@ -86,7 +80,6 @@ class App extends React.Component {
                              this.setState({launchWindow: true})
                          }}
                          changePage={(name) => {this.changePage(name)}}
-                         projectorReady={this.state.projectorReady}
                 />
             )
         } else if (name === "calibrateLaser") {
@@ -96,15 +89,8 @@ class App extends React.Component {
             )
         } else if (name === "calibrateWebcam") {
             return (
-                <CalibrateWebcam targetScreenManager={this.targetScreenManager}
-                                 changePage={(name) => this.changePage(name)}
+                <CalibrateWebcam changePage={(name) => this.changePage(name)}
                                  videoRef={this.videoRef}/>
-            )
-        } else if (name === "targetSelection") {
-            return (
-                <TargetSelection targetScreenManager={this.targetScreenManager}
-                                 changePage={(name) => {this.changePage(name)}}
-                />
             )
         } else if (name === "selectMode") {
             return (
@@ -112,8 +98,7 @@ class App extends React.Component {
             )
         } else if (name === "runShootingMode") {
             return (
-                <RunShootingMode targetScreenManager={this.targetScreenManager}
-                                 changePage={(name) => {this.changePage(name)}}
+                <RunShootingMode changePage={(name) => {this.changePage(name)}}
                                  videoRef={this.videoRef}
                                  shootingMode={this.state.shootingMode}/>
             )
@@ -138,7 +123,7 @@ class App extends React.Component {
                     </Container>
                 </section>
                 {this.state.launchWindow &&
-                    <ProjectorScreen targetScreenManager={this.targetScreenManager}  onResizeFinish={() => {this.setState({projectorReady: true})}}/>
+                    <ProjectorScreen/>
                 }
                 <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid " + backgroundColor, minWidth: "400px"}}>
                     <div style={{color: "white", backgroundColor: color4, width: "100%"}} className={"clearfix"}>

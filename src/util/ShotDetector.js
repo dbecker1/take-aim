@@ -125,7 +125,7 @@ class ShotDetector {
         this.thresholdImage.delete();
         this.contours.delete();
         this.hierarchy.delete();
-        this.videoCapture.release();
+        //this.videoCapture.release();
         this.hMatrix.delete();
     }
 

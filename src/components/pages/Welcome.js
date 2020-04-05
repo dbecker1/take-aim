@@ -5,6 +5,7 @@ import cookie from "react-cookies";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {color1, color3} from "../../config";
+import {connect} from "react-redux";
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -139,4 +140,8 @@ class Welcome extends React.Component {
 
 }
 
-export default Welcome;
+const mapStateToProps = state => ({
+    projectorReady: state.projector.resized
+})
+
+export default connect(mapStateToProps)(Welcome);
