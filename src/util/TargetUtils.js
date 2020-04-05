@@ -2,6 +2,8 @@ import cookie from "react-cookies";
 import {all_targets} from "../components/modes/targets";
 
 class TargetUtils {
+    static targetImageCache = {};
+
     static scaleTarget(target, distance, canvasHeight, distanceToProjector = null, heightOfTargetArea = null) {
         if (distanceToProjector == null || heightOfTargetArea == null) {
             const config = cookie.load("scaleConfig")
@@ -30,20 +32,26 @@ class TargetUtils {
 
     static loadTarget(name) {
         return new Promise((resolve, reject) => {
-            const target = this.getTargetByName(name)
+            if (TargetUtils.targetImageCache.hasOwnProperty(name)) {
+                console.log("Fetching cached image!");
+                resolve(TargetUtils.targetImageCache[name])
+            } else {
+                const target = this.getTargetByName(name)
 
-            if (target == null) {
-                reject("Invalid target name.");
-                return;
+                if (target == null) {
+                    reject("Invalid target name.");
+                    return;
+                }
+
+                let targetImage = new Image()
+
+                targetImage.onload = () => {
+                    TargetUtils.targetImageCache[name] = targetImage
+                    resolve(targetImage)
+                }
+
+                targetImage.src = "/assets/targets/" + target.fileName;
             }
-
-            let targetImage = new Image()
-
-            targetImage.onload = () => {
-                resolve(targetImage)
-            }
-
-            targetImage.src = "/assets/targets/" + target.fileName;
         });
     }
 

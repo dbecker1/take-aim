@@ -23,7 +23,6 @@ class RunShootingMode extends React.Component {
                     <this.props.shootingMode.configureComponent saveSettings={(settings) => {this.setState({settings: settings, status: "shoot"})}}/>
                 :
                     <this.props.shootingMode.shootComponent settings={this.state.settings}
-                                                            targetScreenManager={this.props.targetScreenManager}
                                                             videoRef={this.props.videoRef}
                                                             backToSettings={() => {this.setState({status: "configure"})}}/>
                 }
