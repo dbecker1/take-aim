@@ -35,14 +35,8 @@ class StandardShoot extends React.Component {
         }
     }
 
-    onHit() {
-        if (this.props.settings.useTimer) {
-            this.timerRef.current.onHit();
-        }
-    }
-
     getFeed() {
-        return <ShotFeed ref={this.shotRef} targetScreenManager={this.props.targetScreenManager} videoRef={this.props.videoRef} onHit={(hit) => {this.onHit(hit)}}/>
+        return <ShotFeed ref={this.shotRef} targetScreenManager={this.props.targetScreenManager} videoRef={this.props.videoRef}/>
     }
 
     render() {
@@ -57,7 +51,7 @@ class StandardShoot extends React.Component {
                     {this.props.settings.useTimer ?
                         <>
                             <Col sm={4}>
-                                <ShotTimer ref={this.timerRef} timerType={this.props.settings.timerType}/>
+                                <ShotTimer timerType={this.props.settings.timerType}/>
                             </Col>
                             <Col sm={8}>
                                 {this.getFeed()}

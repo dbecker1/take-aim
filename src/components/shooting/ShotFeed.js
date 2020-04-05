@@ -3,6 +3,9 @@ import ShotDetector from "../../util/ShotDetector"
 import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
 import ReactGA from 'react-ga';
+import { connect } from "react-redux";
+import { addShot, wipeShots } from "../../app/slices/shotSlice";
+import { bindActionCreators } from "redux";
 
 class ShotFeed extends React.Component {
     constructor(props) {
@@ -21,6 +24,7 @@ class ShotFeed extends React.Component {
     }
 
     startProcessing() {
+        this.props.wipeShots();
         this.setState({
             running: true
         }, () => {
@@ -66,6 +70,7 @@ class ShotFeed extends React.Component {
                 if (!!this.props.onHit) {
                     this.props.onHit(hit);
                 }
+                this.props.addShot(hit);
                 console.log(hit)
                 ctx.beginPath();
                 ctx.arc(hit.center.x * scaleColumns, hit.center.y * scaleRows, 5, 0, 2*Math.PI, false)
@@ -91,4 +96,8 @@ class ShotFeed extends React.Component {
     }
 }
 
-export default ShotFeed;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({addShot, wipeShots}, dispatch)
+};
+
+export default connect(null, mapDispatchToProps, null, {forwardRef: true})(ShotFeed);

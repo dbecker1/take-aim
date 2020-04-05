@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Form} from "react-bootstrap";
 import Card from "../Card";
+import { connect } from "react-redux";
+import { setTimer } from "../../app/slices/shotSlice";
+import { bindActionCreators } from "redux";
 
 class ShotTimer extends React.Component {
     constructor(props) {
@@ -8,8 +11,7 @@ class ShotTimer extends React.Component {
         this.state = {
             delay: 0.5,
             status: "reset",
-            start: null,
-            shots: [],
+            showShotsAfter: null
         }
     }
 
@@ -20,26 +22,20 @@ class ShotTimer extends React.Component {
     startTimer() {
 
         this.setState({
-            status: "started"
+            status: "started",
+            showShotsAfter: new Date()
         }, () => {
             if (this.props.timerType === "running") {
                 this.delay = setTimeout(() => {
-                    this.setState({
-                        start: new Date(),
-                    }, () => {
-                        window.createjs.Sound.play("Beep");
-                    })
+                    this.props.setTimer(new Date())
+                    window.createjs.Sound.play("Beep");
                 }, this.state.delay * 1000)
             } else {
                 this.interval = setInterval(() => {
-                    this.setState({
-                        start: new Date(),
-                    }, () => {
-                        window.createjs.Sound.play("Beep");
-                    })
+                    this.props.setTimer(new Date())
+                    window.createjs.Sound.play("Beep");
                 }, this.state.delay * 1000)
             }
-
         })
     }
 
@@ -51,14 +47,13 @@ class ShotTimer extends React.Component {
         }
         this.setState({
             status: "stopped"
-        })
+        });
+        this.props.setTimer(null);
     }
 
     resetTimer() {
         this.setState({
             status: "reset",
-            shots: [],
-            start: null
         })
     }
 
@@ -73,6 +68,10 @@ class ShotTimer extends React.Component {
                 start: now
             });
         }
+    }
+
+    filterShots(shots, showShotsAfter) {
+        return shots.filter(a => {return a.timestamp > showShotsAfter})
     }
 
     render() {
@@ -103,10 +102,10 @@ class ShotTimer extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.shots.map((value, index) => {
+                                {this.filterShots(this.props.shots, this.state.showShotsAfter).map((value, index) => {
                                     return <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{value / 1000}</td>
+                                        <td>{value.split / 1000}</td>
                                     </tr>
                                 })}
                             </tbody>
@@ -132,4 +131,12 @@ class ShotTimer extends React.Component {
     }
 }
 
-export default ShotTimer;
+const mapStateToProps = state => ({
+    shots: state.shotTracker.shots
+})
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({setTimer}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShotTimer);
