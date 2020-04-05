@@ -3,6 +3,9 @@ import {Row, Col, Button} from "react-bootstrap";
 import WebcamCalibrator from "../../util/WebcamCalibrator";
 import cookie from "react-cookies";
 import Card from "../Card";
+import {connect} from "react-redux";
+import {addNonTargetElement, wipeNonTargetElements} from "../../app/slices/projectorSlice";
+import {bindActionCreators} from "redux";
 
 class CalibrateWebcam extends React.Component {
     constructor(props) {
@@ -29,7 +32,8 @@ class CalibrateWebcam extends React.Component {
 
     startCalibrating() {
         console.log("Calibrating!!")
-        this.calibrator = new WebcamCalibrator(this.props.videoRef.current, this.canvasRef.current, this.props.targetScreenManager, this.corners)
+        this.calibrator = new WebcamCalibrator(this.props.videoRef.current, this.canvasRef.current,  this.corners)
+        this.showCalibrationMessage()
 
         this.setState({
             loading: false
@@ -38,13 +42,48 @@ class CalibrateWebcam extends React.Component {
         });
     }
 
+    showCalibrationMessage() {
+        if (this.state.corner > 4) {
+            return;
+        }
+        let nonTargetElement = {
+            type: "text",
+            text: "Click this corner!",
+            fill: "black",
+            width: 200,
+            height: 30,
+            fontSize:  30
+        }
+
+        switch(this.state.corner) {
+            case 1:
+                nonTargetElement.top = 5
+                nonTargetElement.left = 5;
+                break;
+            case 2:
+                nonTargetElement.top = 5
+                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 150 - 5
+                break;
+            case 3:
+                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 150 - 5
+                nonTargetElement.top = this.props.canvasDimensions.canvasHeight - 65 - 5;
+                break;
+            case 4:
+                nonTargetElement.left = 5;
+                nonTargetElement.top = this.props.canvasDimensions.canvasHeight - 65 - 5;
+                break;
+        }
+        this.props.wipeNonTargetElements();
+        this.props.addNonTargetElement(nonTargetElement)
+    }
+
     componentWillUnmount() {
         this.calibrator.release();
     }
 
     finishCalibrating() {
         cookie.save("webcamConfig", {corners: this.calibrator.getCorners()})
-        this.props.targetScreenManager.wipeScreen();
+        this.props.wipeNonTargetElements();
         this.props.changePage("welcome")
     }
 
@@ -53,6 +92,7 @@ class CalibrateWebcam extends React.Component {
             corner: 1
         }, () => {
             this.calibrator.reset();
+            this.showCalibrationMessage()
         })
     }
 
@@ -79,7 +119,7 @@ class CalibrateWebcam extends React.Component {
                         {this.state.corner <= 4 ?
                             <Button variant="customPrimary" onClick={() => {
                                 this.calibrator.nextCorner();
-                                this.setState({corner: this.state.corner + 1})
+                                this.setState({corner: this.state.corner + 1}, () => {this.showCalibrationMessage()})
                             }}>
                                 Set this corner
                             </Button>
@@ -108,4 +148,14 @@ class CalibrateWebcam extends React.Component {
 
 }
 
-export default CalibrateWebcam;
+const mapStateToProps = state => ({
+    canvasDimensions: {
+        canvasHeight: state.projector.canvasHeight,
+        canvasWidth: state.projector.canvasWidth
+    }
+});
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({addNonTargetElement, wipeNonTargetElements}, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CalibrateWebcam);

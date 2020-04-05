@@ -78,6 +78,22 @@ class TargetCanvas extends React.Component{
             targetPromises.push(promise);
         }
 
+        // Draw Non-Target Elements
+        for (const i in props.nonTargetElements) {
+            const element = props.nonTargetElements[i];
+            if (element.type === "text") {
+                let textbox = new window.fabric.Textbox(element.text, {
+                    top: element.top,
+                    left: element.left,
+                    width: element.width,
+                    height: element.height,
+                    fontSize: element.fontSize
+                })
+                this.canvas.add(textbox)
+            }
+        }
+
+        // Wait for targets to finish before saving object
         Promise.all(targetPromises).then(result => {
             let object = this.canvas.toObject()
 

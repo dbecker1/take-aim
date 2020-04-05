@@ -1,15 +1,13 @@
 
 
 class WebcamCalibrator {
-    constructor(video,  outputCanvas, targetScreenManager, existingCorners = null, fps = 30) {
+    constructor(video,  outputCanvas, existingCorners = null, fps = 30) {
         this.video = video
         this.video.width = this.video.videoWidth;
         this.video.height = this.video.videoHeight
         this.outputCanvas = outputCanvas
 
         this.videoCapture = new window.cv.VideoCapture(this.video);
-
-        this.targetScreenManager = targetScreenManager;
 
         this.fps = fps;
 
@@ -37,19 +35,10 @@ class WebcamCalibrator {
             this.registerClick(e);
         })
 
-        if (this.currentCorner === 1) {
-            this.targetScreenManager.showCalibrationScreen(this.currentCorner);
-        }
     }
 
     nextCorner() {
         this.currentCorner = this.currentCorner + 1;
-
-        if (this.currentCorner <= 4) {
-            this.targetScreenManager.showCalibrationScreen(this.currentCorner)
-        } else {
-            this.targetScreenManager.wipeScreen();
-        }
     }
 
     getCorners() {
