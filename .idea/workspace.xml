@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/WebcamCalibrator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/WebcamCalibrator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
@@ -80,8 +78,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
+            <state relative-caret-position="981">
               <caret line="75" column="16" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="80" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -93,18 +100,6 @@
               <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="54" selection-end-column="86" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/pages/RunShootingMode.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,7 +199,6 @@
         <option value="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" />
         <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
         <option value="$PROJECT_DIR$/src/components/App.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.css" />
         <option value="$PROJECT_DIR$/src/components/modes/targets.js" />
         <option value="$PROJECT_DIR$/src/app/slices/projectorSlice.js" />
@@ -216,6 +210,7 @@
         <option value="$PROJECT_DIR$/src/util/WebcamCalibrator.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js" />
         <option value="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -390,12 +385,12 @@
       <workItem from="1585757062749" duration="15233000" />
       <workItem from="1585861288623" duration="17817000" />
       <workItem from="1586025902716" duration="2818000" />
-      <workItem from="1586102887125" duration="13055000" />
+      <workItem from="1586102887125" duration="13444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103450000" />
+    <option name="totallyTimeSpent" value="103839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -707,13 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="94" selection-start-line="30" selection-start-column="94" selection-end-line="30" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/RunShootingMode.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -788,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="16" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -802,6 +783,20 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="981">
+          <caret line="75" column="16" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="80" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
         </state>
       </provider>
     </entry>
