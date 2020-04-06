@@ -1,5 +1,5 @@
 import {addShot} from "./slices/shotSlice";
-import {all_targets} from "../components/modes/targets";
+import TargetUtil from "../util/TargetUtils"
 
 const checkBoundaries  = (target, pointCoordinates) => {
     if (pointCoordinates.x < target.x) {
@@ -23,7 +23,7 @@ export const detectHitPoints = store => next => action => {
         for (let i in currentTargets) {
             const currentTarget = currentTargets[i];
             if (checkBoundaries(currentTarget, action.payload.center)) {
-                const target = all_targets.filter(a => {return a.name === currentTarget.name})[0];
+                const target = TargetUtil.getTargetByName(currentTarget.name)
                 const canvas = document.createElement("canvas");
                 const ctx = canvas.getContext('2d');
                 if (target.hasOwnProperty("scoringZones")) {

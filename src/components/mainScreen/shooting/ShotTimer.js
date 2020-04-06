@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button, Form} from "react-bootstrap";
-import Card from "../Card";
+import Card from "../../Card";
 import { connect } from "react-redux";
-import { setTimer } from "../../app/slices/shotSlice";
+import { setTimer } from "../../../app/slices/shotSlice";
 import { bindActionCreators } from "redux";
 
 class ShotTimer extends React.Component {

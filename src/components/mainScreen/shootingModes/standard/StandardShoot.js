@@ -3,9 +3,9 @@ import {Row, Col, Button} from "react-bootstrap";
 import ShotFeed from "../../shooting/ShotFeed";
 import ShotTimer from "../../shooting/ShotTimer";
 import ShotRecord from "../../shooting/ShotRecord";
-import TargetUtils from "../../../util/TargetUtils"
+import TargetUtils from "../../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
-import {addTarget, wipeTargets} from "../../../app/slices/targetSlice";
+import {addTarget, wipeTargets} from "../../../../app/slices/targetSlice";
 import {connect} from "react-redux";
 
 class StandardShoot extends React.Component {

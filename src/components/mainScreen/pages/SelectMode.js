@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
-import Card from "../Card";
-import {shootingModes} from "../modes/shootingModes";
+import Card from "../../Card";
+import {shootingModes} from "../shootingModes/shootingModes";
 import ReactGA from "react-ga";
 
 class SelectMode extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Row, Col, Form, Button, OverlayTrigger, Tooltip} from "react-bootstrap";
-import Card from "../../Card";
+import Card from "../../../Card";
 import {all_targets} from "../targets";
 import cookie from "react-cookies";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";

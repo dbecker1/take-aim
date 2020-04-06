@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from "../Card";
+import Card from "../../Card";
 import { connect } from "react-redux";
 
 class ShotRecord extends React.Component {

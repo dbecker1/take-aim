@@ -1,10 +1,10 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
-import Card from "../Card";
+import Card from "../../Card";
 import cookie from "react-cookies";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {color1, color3} from "../../config";
+import {color1, color3} from "../../../config";
 import {connect} from "react-redux";
 
 class Welcome extends React.Component {

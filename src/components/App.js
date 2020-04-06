@@ -1,17 +1,17 @@
 import React from 'react';
 import '../styles/App.css';
 
-import Loading from "./pages/Loading";
-import Welcome from "./pages/Welcome";
-import CalibrateLaser from "./pages/CalibrateLaser";
-import CalibrateWebcam from "./pages/CalibrateWebcam";
-import RunShootingMode from "./pages/RunShootingMode";
+import Loading from "./mainScreen/pages/Loading";
+import Welcome from "./mainScreen/pages/Welcome";
+import CalibrateLaser from "./mainScreen/pages/CalibrateLaser";
+import CalibrateWebcam from "./mainScreen/pages/CalibrateWebcam";
+import RunShootingMode from "./mainScreen/pages/RunShootingMode";
 
 import ProjectorScreen from "./targetScreen/ProjectorScreen";
 
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
-import SelectMode from "./pages/SelectMode";
+import SelectMode from "./mainScreen/pages/SelectMode";
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('UA-162789074-1', { debug: false });

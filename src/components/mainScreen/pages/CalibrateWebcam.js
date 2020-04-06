@@ -1,10 +1,10 @@
 import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
-import WebcamCalibrator from "../../util/WebcamCalibrator";
+import WebcamCalibrator from "../../../util/WebcamCalibrator";
 import cookie from "react-cookies";
-import Card from "../Card";
+import Card from "../../Card";
 import {connect} from "react-redux";
-import {addNonTargetElement, wipeNonTargetElements} from "../../app/slices/projectorSlice";
+import {addNonTargetElement, wipeNonTargetElements} from "../../../app/slices/projectorSlice";
 import {bindActionCreators} from "redux";
 
 class CalibrateWebcam extends React.Component {

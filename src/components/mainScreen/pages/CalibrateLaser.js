@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from '../Card';
+import Card from '../../Card';
 import {Row, Col, Button, Form} from "react-bootstrap";
 import cookie from "react-cookies";
-import LaserCalibrator from "../../util/LaserCalibrator";
+import LaserCalibrator from "../../../util/LaserCalibrator";
 
 class CalibrateLaser extends React.Component {
     constructor(props) {

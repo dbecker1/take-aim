@@ -1,5 +1,5 @@
 import cookie from "react-cookies";
-import {all_targets} from "../components/modes/targets";
+import {all_targets} from "../components/mainScreen/shootingModes/targets";
 
 class TargetUtils {
     static targetImageCache = {};

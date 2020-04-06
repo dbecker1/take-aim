@@ -1,12 +1,12 @@
 import React from 'react';
-import ShotDetector from "../../util/ShotDetector"
+import ShotDetector from "../../../util/ShotDetector"
 import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
 import ReactGA from 'react-ga';
 import { connect } from "react-redux";
-import { addShot, wipeShots } from "../../app/slices/shotSlice";
+import { addShot, wipeShots } from "../../../app/slices/shotSlice";
 import { bindActionCreators } from "redux";
-import "../../styles/TargetCanvas.css";
+import "../../../styles/TargetCanvas.css";
 
 class ShotFeed extends React.Component {
     constructor(props) {
