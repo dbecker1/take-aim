@@ -75,6 +75,8 @@ class ShotTimer extends React.Component {
     }
 
     render() {
+        let reversedShots = [...this.filterShots(this.props.shots, this.state.showShotsAfter)];
+        reversedShots.reverse()
         return (
             <Card className={"text-center"}>
                 <h4 style={{textDecoration: "underline"}}>Shot Timer</h4>
@@ -94,22 +96,24 @@ class ShotTimer extends React.Component {
                     </div>
                     :
                     <>
-                        <table>
-                            <thead style={{textDecoration: "underline"}}>
-                                <tr>
-                                    <th>Shot Number</th>
-                                    <th>Split</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.filterShots(this.props.shots, this.state.showShotsAfter).map((value, index) => {
-                                    return <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{value.split / 1000}</td>
+                        <div style={{maxHeight: "150px", overflowY: "scroll"}}>
+                            <table style={{width: "100%", textAlign: "center"}}>
+                                <thead style={{textDecoration: "underline"}}>
+                                    <tr>
+                                        <th>Shot Number</th>
+                                        <th>Split</th>
                                     </tr>
-                                })}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {reversedShots.map((value, index) => {
+                                        return <tr key={index}>
+                                            <td>{reversedShots.length - index}</td>
+                                            <td>{value.split / 1000}</td>
+                                        </tr>
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
 
                         {this.state.status === "started" ?
                             <div className={"text-center"} style={{marginTop: "20px"}}>

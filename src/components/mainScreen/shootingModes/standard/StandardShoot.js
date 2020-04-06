@@ -58,10 +58,13 @@ class StandardShoot extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={4}>
+                        {this.props.settings.useTimer &&
                         <div style={{marginBottom: "10px"}}>
-                            <ShotRecord />
+                            <ShotTimer timerType={this.props.settings.timerType}/>
                         </div>
-                        {this.props.settings.useTimer && <ShotTimer timerType={this.props.settings.timerType}/>}
+
+                        }
+                        <ShotRecord />
                     </Col>
                     <Col sm={8}>
                         {this.getFeed()}
