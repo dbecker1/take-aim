@@ -2,6 +2,7 @@ import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import ShotFeed from "../../shooting/ShotFeed";
 import ShotTimer from "../../shooting/ShotTimer";
+import ShotRecord from "../../shooting/ShotRecord";
 import TargetUtils from "../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets} from "../../../app/slices/targetSlice";
@@ -52,21 +53,15 @@ class StandardShoot extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    {this.props.settings.useTimer ?
-                        <>
-                            <Col sm={4}>
-                                <ShotTimer timerType={this.props.settings.timerType}/>
-                            </Col>
-                            <Col sm={8}>
-                                {this.getFeed()}
-                            </Col>
-                        </>
-                    :
-                        <Col sm={12}>
-                            {this.getFeed()}
-                        </Col>
-                    }
-
+                    <Col sm={4}>
+                        <div style={{marginBottom: "10px"}}>
+                            <ShotRecord />
+                        </div>
+                        {this.props.settings.useTimer && <ShotTimer timerType={this.props.settings.timerType}/>}
+                    </Col>
+                    <Col sm={8}>
+                        {this.getFeed()}
+                    </Col>
                 </Row>
                 <Row style={{marginTop: "30px"}}>
                     <Col sm={12} className={"text-center"}>

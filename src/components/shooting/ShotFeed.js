@@ -103,7 +103,6 @@ class ShotFeed extends React.Component {
                 this.canvas.add(shotCircle);
             }
         })
-
     }
 
     render() {
