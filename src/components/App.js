@@ -13,8 +13,12 @@ import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
 import SelectMode from "./mainScreen/pages/SelectMode";
 import ReactGA from 'react-ga';
+import {BrowserRouter,  Route, Switch} from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 ReactGA.initialize('UA-162789074-1', { debug: false });
+
+window.routerHistory = createBrowserHistory();
 
 class App extends React.Component {
     constructor(props) {
@@ -51,67 +55,15 @@ class App extends React.Component {
             });
     }
 
-    changePage(name) {
-        ReactGA.pageview(name);
-        this.setState({
-            currentPage: name
-        })
-    }
-
-    setShootingMode(mode) {
-        this.setState({
-            shootingMode: mode
-        }, () => {
-            this.changePage("runShootingMode")
-        })
-    }
-
     toggleVideo() {
         this.setState({
             showVideo: !this.state.showVideo
         })
     }
 
-    getComponent(name) {
-        if (name === "welcome") {
-            return (
-                <Welcome launchProjector={() => {
-                             console.log("Launch Projector!");
-                             this.setState({launchWindow: true})
-                         }}
-                         changePage={(name) => {this.changePage(name)}}
-                />
-            )
-        } else if (name === "calibrateLaser") {
-            return (
-                <CalibrateLaser changePage={(name) => {this.changePage(name)}}
-                                videoRef={this.videoRef}/>
-            )
-        } else if (name === "calibrateWebcam") {
-            return (
-                <CalibrateWebcam changePage={(name) => this.changePage(name)}
-                                 videoRef={this.videoRef}/>
-            )
-        } else if (name === "selectMode") {
-            return (
-                <SelectMode setShootingMode={(mode) => {this.setShootingMode(mode)}}/>
-            )
-        } else if (name === "runShootingMode") {
-            return (
-                <RunShootingMode changePage={(name) => {this.changePage(name)}}
-                                 videoRef={this.videoRef}
-                                 shootingMode={this.state.shootingMode}/>
-            )
-        } else {
-            return (
-                <Loading changePage={(name) => {this.changePage(name)}} />
-            )
-        }
-    }
-
     render() {
         return (
-            <>
+            <BrowserRouter history={window.routerHistory}>
                 <section className={"page"} style={{backgroundColor: backgroundColor, color: color}}>
                     <div className={"header"}>
                         <div style={{borderBottom: "1px solid white"}}>
@@ -119,9 +71,30 @@ class App extends React.Component {
                         </div>
                     </div>
                     <Container>
-                        {this.getComponent(this.state.currentPage)}
+                        <Switch>
+                            <Route path={"/calibrateLaser"}>
+                                <CalibrateLaser videoRef={this.videoRef}/>
+                            </Route>
+                            <Route path={"/calibrateWebcam"}>
+                                <CalibrateWebcam videoRef={this.videoRef}/>
+                            </Route>
+                            <Route path={"/selectMode"}>
+                                <SelectMode />
+                            </Route>
+                            <Route path={"/shootingMode"}>
+                                <RunShootingMode videoRef={this.videoRef}/>
+                            </Route>
+                            <Route path={"/"}>
+                                <Welcome launchProjector={() => {
+                                    console.log("Launch Projector!");
+                                    this.setState({launchWindow: true})
+                                }}
+                                />
+                            </Route>
+                        </Switch>
                     </Container>
                 </section>
+
                 {this.state.launchWindow &&
                     <ProjectorScreen/>
                 }
@@ -140,7 +113,7 @@ class App extends React.Component {
                         <video ref={this.videoRef} />
                     </div>
                 </div>
-            </>
+            </BrowserRouter>
         )
     }
 

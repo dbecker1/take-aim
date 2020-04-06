@@ -32,6 +32,7 @@ class ShotRecord extends React.Component {
                     })}
                     </tbody>
                 </table>
+                <div id={"canvashere"}></div>
             </Card>
         );
     }

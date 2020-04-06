@@ -6,6 +6,8 @@ import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {color1, color3} from "../../../config";
 import {connect} from "react-redux";
+import ReactGA from "react-ga";
+import {withRouter} from "react-router"
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -32,6 +34,10 @@ class Welcome extends React.Component {
                 this.props.launchProjector();
             }
         })
+    }
+
+    componentDidMount() {
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -104,7 +110,7 @@ class Welcome extends React.Component {
                                         <p><FontAwesomeIcon icon={faCheck} style={{color: "green"}}/></p>
                                     </>
                                 }
-                                <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateWebcam")}} disabled={this.state.projectorStatus !== "ready"}>Calibrate Webcam</Button>
+                                <Button variant="customPrimary" onClick={() => {this.props.history.push('/calibrateWebcam')}} disabled={this.state.projectorStatus !== "ready"}>Calibrate Webcam</Button>
                                 {this.state.projectorStatus !== "ready" && <><br /><span style={{fontSize: "80%"}}>Launch Projector Before Calibration</span></>}
                             </div>
                         </Card>
@@ -124,14 +130,15 @@ class Welcome extends React.Component {
                                         <p><FontAwesomeIcon icon={faCheck} style={{color: "green"}}/></p>
                                     </>
                                 }
-                                <Button variant="customPrimary" onClick={() => {this.props.changePage("calibrateLaser")}} >Calibrate Laser</Button>
+                                <Button variant="customPrimary" onClick={() => {this.props.history.push('/calibrateLaser')}} disabled={this.state.projectorStatus !== "ready"}>Calibrate Laser</Button>
+                                {this.state.projectorStatus !== "ready" && <><br /><span style={{fontSize: "80%"}}>Launch Projector Before Calibration</span></>}
                             </div>
                         </Card>
                     </Col>
                 </Row>
                 <Row style={{marginTop: "20px"}}>
                     <Col sm={12} className={"text-center"}>
-                        <Button variant="customPrimary" onClick={() => {this.props.changePage("selectMode")}} disabled={!ready} size="lg">Lets get shooting!</Button>
+                        <Button variant="customPrimary" onClick={() => {this.props.history.push('/selectMode')}} disabled={!ready} size="lg">Lets get shooting!</Button>
                     </Col>
                 </Row>
             </>
@@ -144,4 +151,4 @@ const mapStateToProps = state => ({
     projectorReady: state.projector.resized
 })
 
-export default connect(mapStateToProps)(Welcome);
+export default withRouter(connect(mapStateToProps)(Welcome));

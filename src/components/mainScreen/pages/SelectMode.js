@@ -3,6 +3,11 @@ import {Row, Col, Button} from "react-bootstrap";
 import Card from "../../Card";
 import {shootingModes} from "../shootingModes/shootingModes";
 import ReactGA from "react-ga";
+import PostWelcomePage from "./PostWelcomePage";
+import {withRouter} from "react-router"
+import {bindActionCreators} from "redux";
+import {setShootingMode} from "../../../app/slices/shotSlice";
+import {connect} from "react-redux";
 
 class SelectMode extends React.Component {
     constructor(props) {
@@ -17,7 +22,8 @@ class SelectMode extends React.Component {
             action: 'Selected Shooting Mode: ' + mode.name,
             label: mode.name
         });
-        this.props.setShootingMode(mode);
+        this.props.setShootingMode(mode.name);
+        this.props.history.push("/shootingMode")
     }
 
     divideModes(modes) {
@@ -59,7 +65,7 @@ class SelectMode extends React.Component {
 
     render() {
         return (
-            <>
+            <PostWelcomePage>
                 {this.divideModes(shootingModes).map((item, key) => {
                     return (
                         <Row style={{marginTop: "30px"}} key={key}>
@@ -72,10 +78,13 @@ class SelectMode extends React.Component {
                         </Row>
                     )
                 })}
-            </>
+            </PostWelcomePage>
         );
     }
 
 }
 
-export default SelectMode;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({setShootingMode}, dispatch)
+}
+export default withRouter(connect(null, mapDispatchToProps)(SelectMode));

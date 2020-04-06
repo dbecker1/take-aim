@@ -4,7 +4,7 @@ import TargetUtils from "../../util/TargetUtils";
 import '../../styles/TargetCanvas.css';
 import {bindActionCreators} from "redux";
 import {finishResize} from "../../app/slices/projectorSlice";
-import {updateFabricObject} from "../../app/slices/fabricSlice";
+import {updateFabricObject, setTargetRenderScales} from "../../app/slices/fabricSlice";
 
 
 class TargetCanvas extends React.Component{
@@ -60,6 +60,7 @@ class TargetCanvas extends React.Component{
 
         // Draw Targets
         let targetPromises = []
+        let scaleTargets = []
         for (const i in props.targets) {
             const targetDetails = props.targets[i];
             const target = TargetUtils.getTargetByName(targetDetails.name)
@@ -67,8 +68,17 @@ class TargetCanvas extends React.Component{
             let promise  = new Promise((resolve, reject) => {
                 window.fabric.loadSVGFromURL("/assets/targets/" + target.fileName,  (objects, options) => {
                     var obj = window.fabric.util.groupSVGElements(objects, options);
+                    const prevHeight =  obj.getScaledHeight()
+                    const prevWidth = obj.getScaledWidth()
                     obj.scaleToHeight(targetDetails.height);
                     obj.scaleToWidth(targetDetails.width);
+                    const postHeight =  obj.getScaledHeight()
+                    const postWidth = obj.getScaledWidth()
+                    const scale = {
+                        scaleX: postWidth / prevWidth,
+                        scaleY: postHeight / prevHeight
+                    };
+                    scaleTargets[i] = scale;
                     obj.left = targetDetails.x;
                     obj.top = targetDetails.y;
                     this.canvas.add(obj).renderAll();
@@ -97,6 +107,7 @@ class TargetCanvas extends React.Component{
         Promise.all(targetPromises).then(result => {
             let object = this.canvas.toObject()
 
+            this.props.setTargetRenderScales(scaleTargets)
             this.props.updateFabricObject(object);
         }).catch(e =>{
             console.error(e)
@@ -129,6 +140,6 @@ const mapStateToProps  = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({updateFabricObject}, dispatch)
+    return bindActionCreators({updateFabricObject, setTargetRenderScales}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TargetCanvas)

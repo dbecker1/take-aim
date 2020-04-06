@@ -3,6 +3,8 @@ import Card from '../../Card';
 import {Row, Col, Button, Form} from "react-bootstrap";
 import cookie from "react-cookies";
 import LaserCalibrator from "../../../util/LaserCalibrator";
+import {withRouter} from "react-router"
+import PostWelcomePage from "./PostWelcomePage";
 
 class CalibrateLaser extends React.Component {
     constructor(props) {
@@ -57,7 +59,7 @@ class CalibrateLaser extends React.Component {
             vRadius: this.state.vRadius
         }
         cookie.save("laserConfig", config)
-        this.props.changePage("welcome")
+        this.props.history.push('/')
     }
 
     updateCalibrator() {
@@ -74,7 +76,7 @@ class CalibrateLaser extends React.Component {
 
     render() {
         return (
-            <>
+            <PostWelcomePage>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Laser Calibration</h3>
@@ -132,10 +134,10 @@ class CalibrateLaser extends React.Component {
                         <Button variant="customPrimary" onClick={() => {this.doneCalibrating()}}>I'm done calibrating!</Button>
                     </Col>
                 </Row>
-            </>
+            </PostWelcomePage>
         );
     }
 
 }
 
-export default CalibrateLaser;
+export default withRouter(CalibrateLaser);

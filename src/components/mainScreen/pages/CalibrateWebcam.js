@@ -6,6 +6,8 @@ import Card from "../../Card";
 import {connect} from "react-redux";
 import {addNonTargetElement, wipeNonTargetElements} from "../../../app/slices/projectorSlice";
 import {bindActionCreators} from "redux";
+import PostWelcomePage from "./PostWelcomePage";
+import {withRouter} from "react-router"
 
 class CalibrateWebcam extends React.Component {
     constructor(props) {
@@ -84,7 +86,7 @@ class CalibrateWebcam extends React.Component {
     finishCalibrating() {
         cookie.save("webcamConfig", {corners: this.calibrator.getCorners()})
         this.props.wipeNonTargetElements();
-        this.props.changePage("welcome")
+        this.props.history.push('/')
     }
 
     reset() {
@@ -98,7 +100,7 @@ class CalibrateWebcam extends React.Component {
 
     render() {
         return (
-            <>
+            <PostWelcomePage>
                 <Row>
                     <Col sm={12} className={"text-center"}>
                         <h3>Webcam Calibration</h3>
@@ -142,7 +144,7 @@ class CalibrateWebcam extends React.Component {
                     </Col>
                     }
                 </Row>
-            </>
+            </PostWelcomePage>
         );
     }
 
@@ -158,4 +160,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({addNonTargetElement, wipeNonTargetElements}, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CalibrateWebcam);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CalibrateWebcam));

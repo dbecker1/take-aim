@@ -58,15 +58,7 @@ class ShotFeed extends React.Component {
                     laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
                     outputDimensions, 200);
             }
-            this.shotDetector.start((hit => {
-                ReactGA.event({
-                    category: 'Shot Feed',
-                    action: "Shot Detected",
-                    label: "Radius: " + hit.radius
-                });
-                this.props.addShot(hit);
-                console.log(hit)
-            }))
+
             const parentWidth = this.canvasParentRef.current.offsetWidth * .9;
             const windowHeight = window.innerHeight * .6;
             let scaleColumns = parentWidth / outputDimensions.columns
@@ -81,7 +73,17 @@ class ShotFeed extends React.Component {
             this.canvasRef.current.height = outputDimensions.rows * scaleRows;
             this.canvas = new window.fabric.Canvas(this.canvasRef.current);
             this.canvas.setZoom(this.scale)
-            this.redrawCanvas(this.props)
+            this.redrawCanvas(this.props);
+
+            this.shotDetector.start((hit => {
+                ReactGA.event({
+                    category: 'Shot Feed',
+                    action: "Shot Detected",
+                    label: "Radius: " + hit.radius
+                });
+                this.props.addShot(hit);
+                console.log(hit)
+            }))
         })
     }
 

@@ -27,13 +27,17 @@ class StandardShoot extends React.Component {
             } else {
                 targetHeight = canvasHeight * .8
             }
+            console.log()
+            console.log("Prefabric" + image.height);
+            console.log("Prefabric" + targetHeight);
             const targetWidth = TargetUtils.getTargetWidthForHeight(image, targetHeight)
             let targetObject = {
                 name: targetName,
                 x: (canvasWidth - targetWidth) / 2,
                 y: (canvasHeight - targetHeight) / 2,
                 width: targetWidth,
-                height: targetHeight
+                height: targetHeight,
+                requestedScaleHeight: targetHeight / image.height
             }
             this.props.addTarget(targetObject);
 

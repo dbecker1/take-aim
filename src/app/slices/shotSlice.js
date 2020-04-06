@@ -4,7 +4,8 @@ export const shotSlice = createSlice({
     name: 'shotTracker',
     initialState: {
         shots: [],
-        timerStart: null
+        timerStart: null,
+        shootingMode: null
     },
     reducers: {
         addShot: (state, action) => {
@@ -19,10 +20,13 @@ export const shotSlice = createSlice({
         },
         wipeShots: state => {
             state.shots = []
+        },
+        setShootingMode: (state, action) => {
+            state.shootingMode = action.payload
         }
     },
 });
 
-export const { addShot, setTimer, wipeShots } = shotSlice.actions;
+export const { addShot, setTimer, wipeShots, setShootingMode } = shotSlice.actions;
 
 export default shotSlice.reducer;

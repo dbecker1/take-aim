@@ -19,20 +19,29 @@ const checkBoundaries  = (target, pointCoordinates) => {
 
 export const detectHitPoints = store => next => action => {
     if (action.type === addShot.type) {
-        const currentTargets = store.getState().targets;
+        const state = store.getState();
+        const currentTargets = state.targets;
+        const scaleTargets = state.fabric.targetRenderScales;
         for (let i in currentTargets) {
             const currentTarget = currentTargets[i];
             if (checkBoundaries(currentTarget, action.payload.center)) {
                 const target = TargetUtil.getTargetByName(currentTarget.name)
                 const canvas = document.createElement("canvas");
+                canvas.width = currentTarget.width;
+                canvas.height = currentTarget.height;
                 const ctx = canvas.getContext('2d');
+                const point = {
+                    x: (action.payload.center.x - currentTarget.x) / scaleTargets[i].scaleX,
+                    y: (action.payload.center.y - currentTarget.y)/ scaleTargets[i].scaleY
+                }
                 if (target.hasOwnProperty("scoringZones")) {
                     let lowestPriority = Infinity;
                     for (let j in target.scoringZones) {
                         const zone = target.scoringZones[j];
                         const path = new Path2D(zone.path)
+                        //ctx.moveTo(0, 0);
                         ctx.stroke(path);
-                        if (ctx.isPointInPath(path, action.payload.center.x - currentTarget.x, action.payload.center.y - currentTarget.y)) {
+                        if (ctx.isPointInPath(path, point.x, point.y)) {
                             if (zone.priority < lowestPriority) {
                                 action.payload.score = {
                                     pointValue: zone.pointValue,
@@ -43,6 +52,14 @@ export const detectHitPoints = store => next => action => {
                         }
                     }
                 }
+                // Uncommenting this can be helpful for debugging
+                // ctx.beginPath();
+                // ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI, false);
+                // ctx.fillStyle = 'green';
+                // ctx.fill();
+                // const text = document.createTextNode("scale: " + scaleTargets[i].scaleX + " x: " + point.x +  " y: " + point.y);
+                // document.getElementById("canvashere").appendChild(text);
+                // document.getElementById("canvashere").appendChild(canvas);
             }
         }
     }
