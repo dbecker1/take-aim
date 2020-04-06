@@ -6,7 +6,7 @@ import Card from "../../Card";
 import {connect} from "react-redux";
 import {addNonTargetElement, wipeNonTargetElements} from "../../../app/slices/projectorSlice";
 import {bindActionCreators} from "redux";
-import PostWelcomePage from "./PostWelcomePage";
+import PostWelcomePage from "./PostLaunchPage";
 import {withRouter} from "react-router"
 
 class CalibrateWebcam extends React.Component {

@@ -1,12 +1,11 @@
 import React from 'react';
 import '../styles/App.css';
 
-import Loading from "./mainScreen/pages/Loading";
-import Welcome from "./mainScreen/pages/Welcome";
+import Launch from "./mainScreen/pages/Launch";
 import CalibrateLaser from "./mainScreen/pages/CalibrateLaser";
 import CalibrateWebcam from "./mainScreen/pages/CalibrateWebcam";
 import RunShootingMode from "./mainScreen/pages/RunShootingMode";
-
+import Welcome from "./mainScreen/pages/Welcome";
 import ProjectorScreen from "./targetScreen/ProjectorScreen";
 
 import {Container, Row, Col} from "react-bootstrap";
@@ -15,6 +14,7 @@ import SelectMode from "./mainScreen/pages/SelectMode";
 import ReactGA from 'react-ga';
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import { createBrowserHistory } from "history";
+import {connect} from "react-redux";
 
 ReactGA.initialize('UA-162789074-1', { debug: false });
 
@@ -24,11 +24,12 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cvLoaded: false,
+            cvLoaded: true, //making this true because the onOpenCV method is flaky
             launchWindow: false,
             currentPage: "welcome",
             showVideo: false,
-            shootingMode: null
+            shootingMode: null,
+            videoReady: false
         }
 
         ReactGA.pageview("welcome");
@@ -46,7 +47,10 @@ class App extends React.Component {
                     ReactGA.set({
                         videoWidth: video.videoWidth,
                         videoHeight: video.videoHeight
-                    })
+                    });
+                    this.setState({
+                        videoReady: true
+                    });
                 }
                 video.play();
             })
@@ -84,18 +88,17 @@ class App extends React.Component {
                             <Route path={"/shootingMode"}>
                                 <RunShootingMode videoRef={this.videoRef}/>
                             </Route>
+                            <Route path={"/launch"}>
+                                <Launch />
+                            </Route>
                             <Route path={"/"}>
-                                <Welcome launchProjector={() => {
-                                    console.log("Launch Projector!");
-                                    this.setState({launchWindow: true})
-                                }}
-                                />
+                                <Welcome videoReady={this.state.videoReady} cvReady={this.state.cvLoaded}/>
                             </Route>
                         </Switch>
                     </Container>
                 </section>
 
-                {this.state.launchWindow &&
+                {this.props.launchProjector &&
                     <ProjectorScreen/>
                 }
                 <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid " + backgroundColor, minWidth: "400px"}}>
@@ -119,4 +122,8 @@ class App extends React.Component {
 
 }
 
-export default App;
+const mapStateToProps = state => ({
+    launchProjector: state.projector.launch
+})
+
+export default connect(mapStateToProps)(App);

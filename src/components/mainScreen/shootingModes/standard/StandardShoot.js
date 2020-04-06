@@ -6,6 +6,7 @@ import ShotRecord from "../../shooting/ShotRecord";
 import TargetUtils from "../../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets} from "../../../../app/slices/targetSlice";
+import {wipeShots} from "../../../../app/slices/shotSlice";
 import {connect} from "react-redux";
 
 class StandardShoot extends React.Component {
@@ -25,11 +26,8 @@ class StandardShoot extends React.Component {
             if (this.props.settings.useDistance) {
                 targetHeight = TargetUtils.scaleTarget(target, this.props.settings.distance, canvasHeight);
             } else {
-                targetHeight = canvasHeight * .8
+                targetHeight = canvasHeight * .7
             }
-            console.log()
-            console.log("Prefabric" + image.height);
-            console.log("Prefabric" + targetHeight);
             const targetWidth = TargetUtils.getTargetWidthForHeight(image, targetHeight)
             let targetObject = {
                 name: targetName,
@@ -72,6 +70,7 @@ class StandardShoot extends React.Component {
                 </Row>
                 <Row style={{marginTop: "30px"}}>
                     <Col sm={12} className={"text-center"}>
+                        <Button variant={"customPrimary"} onClick={() => {this.props.wipeShots()}} size={"lg"} style={{marginBottom: "10px"}}>Reset Target</Button> <br />
                         <Button variant={"customPrimary"} onClick={() => {this.props.backToSettings()}} size={"lg"}>Back To Settings</Button>
                     </Col>
                 </Row>
@@ -88,7 +87,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({addTarget, wipeTargets}, dispatch)
+    return bindActionCreators({addTarget, wipeShots, wipeTargets}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StandardShoot);

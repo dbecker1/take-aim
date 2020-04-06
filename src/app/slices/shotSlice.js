@@ -19,7 +19,7 @@ export const shotSlice = createSlice({
             state.timerStart = action.payload
         },
         wipeShots: state => {
-            state.shots = []
+            state.shots.length = 0;
         },
         setShootingMode: (state, action) => {
             state.shootingMode = action.payload

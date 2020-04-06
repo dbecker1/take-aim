@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const projectorSlice = createSlice({
     name: 'projector',
     initialState: {
+        launch: false,
         resized: false,
         canvasWidth: 0,
         canvasHeight: 0,
@@ -26,10 +27,13 @@ export const projectorSlice = createSlice({
         },
         updateFabricObject: (state, action) => {
             state.fabricObject = action.payload
+        },
+        launchProjector: state => {
+            state.launch = true;
         }
     },
 });
 
-export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, updateFabricObject } = projectorSlice.actions;
+export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, updateFabricObject, launchProjector } = projectorSlice.actions;
 
 export default projectorSlice.reducer;

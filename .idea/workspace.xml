@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotTimer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotTimer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/Launch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/slices/projectorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/slices/projectorSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/slices/shotSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/slices/shotSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/slices/targetSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/slices/targetSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateLaser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateLaser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/PostWelcomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/PostLaunchPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/RunShootingMode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/RunShootingMode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/SelectMode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/SelectMode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="751">
-              <caret line="54" column="65" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="65" />
+            <state relative-caret-position="1005">
+              <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -33,19 +44,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/store.js">
+        <entry file="file://$PROJECT_DIR$/src/app/slices/targetSlice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state relative-caret-position="150">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -53,74 +55,86 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="78" column="55" lean-forward="true" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+            <state relative-caret-position="200">
+              <caret line="86" column="14" lean-forward="true" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/slices/fabricSlice.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="26" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotTimer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="99" column="34" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="79" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/PostWelcomePage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="742">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="274">
+              <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/slices/shotSlice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/slices/projectorSlice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="36" column="138" selection-start-line="36" selection-start-column="123" selection-end-line="36" selection-end-column="138" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="26" column="83" selection-start-line="26" selection-start-column="83" selection-end-line="26" selection-end-column="83" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="828">
+              <caret line="79" selection-start-line="79" selection-end-line="79" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/PostLaunchPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Launch.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="798">
+              <caret line="135" column="57" selection-start-line="135" selection-start-column="57" selection-end-line="135" selection-end-column="57" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -132,10 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>startprocessing</find>
-      <find>NewWindow</find>
-      <find>title</find>
-      <find>oncomplete</find>
       <find>withrouter</find>
       <find>resizecompleted</find>
       <find>complete</find>
@@ -162,6 +172,10 @@
       <find>changepage</find>
       <find>change</find>
       <find>setshooting</find>
+      <find>onopencv</find>
+      <find>prefabr</find>
+      <find>console.log(</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,8 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Card.js" />
-        <option value="$PROJECT_DIR$/src/components/pages/CalibrateLaser.js" />
         <option value="$PROJECT_DIR$/CONTRIBUTING.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/components/ProjectorScreen.js" />
@@ -186,14 +198,12 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/shooting/ShotTimer.js" />
         <option value="$PROJECT_DIR$/src/app/slices/targetScreenSlice.js" />
-        <option value="$PROJECT_DIR$/src/app/slices/targetSlice.js" />
         <option value="$PROJECT_DIR$/src/components/pages/Welcome.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreenInner.js" />
         <option value="$PROJECT_DIR$/src/components/pages/RunShootingMode.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" />
         <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.css" />
-        <option value="$PROJECT_DIR$/src/app/slices/projectorSlice.js" />
         <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
         <option value="$PROJECT_DIR$/src/util/WebcamCalibrator.js" />
         <option value="$PROJECT_DIR$/src/components/pages/CalibrateWebcam.js" />
@@ -208,23 +218,27 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/PostWelcomePage.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateLaser.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" />
-        <option value="$PROJECT_DIR$/src/app/slices/shotSlice.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/RunShootingMode.js" />
-        <option value="$PROJECT_DIR$/src/components/App.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/SelectMode.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/app/slices/fabricSlice.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" />
-        <option value="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotTimer.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js" />
+        <option value="$PROJECT_DIR$/src/app/slices/projectorSlice.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/pages/Launch.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/pages/PostLaunchPage.js" />
+        <option value="$PROJECT_DIR$/src/components/App.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" />
+        <option value="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" />
+        <option value="$PROJECT_DIR$/src/app/slices/targetSlice.js" />
+        <option value="$PROJECT_DIR$/src/app/slices/shotSlice.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -233,6 +247,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -321,7 +336,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,11 +391,12 @@
       <workItem from="1586025902716" duration="2818000" />
       <workItem from="1586102887125" duration="13444000" />
       <workItem from="1586144909260" duration="862000" />
+      <workItem from="1586210047371" duration="3052000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116736000" />
+    <option name="totallyTimeSpent" value="120385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -431,7 +446,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/LaserCalibration.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Page.js" />
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
@@ -596,23 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/slices/projectorSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="48" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Loading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="13" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="815">
@@ -627,40 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
           <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="132" column="174" selection-start-line="132" selection-start-column="174" selection-end-line="132" selection-end-column="174" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/slices/targetSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/slices/shotSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="60" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="83" column="55" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="55" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -707,24 +670,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/PostWelcomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/slices/fabricSlice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -735,30 +684,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js">
+    <entry file="file://$PROJECT_DIR$/src/app/slices/fabricSlice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="78" column="55" lean-forward="true" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="751">
-          <caret line="54" column="65" selection-start-line="54" selection-start-column="65" selection-end-line="54" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="150">
+          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -767,7 +703,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
+        <state relative-caret-position="645">
           <caret line="51" column="15" lean-forward="true" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -777,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotTimer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
+        <state relative-caret-position="1410">
           <caret line="99" column="34" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="79" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -785,10 +721,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js">
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Loading.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
+        <state relative-caret-position="165">
+          <caret line="11" column="13" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Launch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="135" column="57" selection-start-line="135" selection-start-column="57" selection-end-line="135" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/PostLaunchPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="26" column="83" selection-start-line="26" selection-start-column="83" selection-end-line="26" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="86" column="14" lean-forward="true" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/slices/targetSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/slices/projectorSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="138" selection-start-line="36" selection-start-column="123" selection-end-line="36" selection-end-column="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/slices/shotSlice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

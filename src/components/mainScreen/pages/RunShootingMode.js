@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col} from "react-bootstrap";
 import ShotFeed from "../shooting/ShotFeed";
-import PostWelcomePage from "./PostWelcomePage";
+import PostWelcomePage from "./PostLaunchPage";
 import {connect} from "react-redux";
 import {shootingModes} from "../shootingModes/shootingModes";
 

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import ReactGA from 'react-ga';
 import {Redirect} from "react-router-dom";
 
-class PostWelcomePage extends React.Component {
+class PostLaunchPage extends React.Component {
     componentDidMount() {
         ReactGA.pageview(window.location.pathname + window.location.search);
     }
@@ -12,7 +12,7 @@ class PostWelcomePage extends React.Component {
         if (this.props.projectorLaunched) {
             return this.props.children
         } else {
-            return <Redirect to={"/"} />
+            return <Redirect to={"/launch"} />
         }
     }
 }
@@ -21,4 +21,4 @@ const mapStateToProps = state => ({
     projectorLaunched: state.projector.resized
 });
 
-export default connect(mapStateToProps)(PostWelcomePage)
+export default connect(mapStateToProps)(PostLaunchPage)

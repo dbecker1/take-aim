@@ -3,7 +3,7 @@ import {Row, Col, Button} from "react-bootstrap";
 import Card from "../../Card";
 import {shootingModes} from "../shootingModes/shootingModes";
 import ReactGA from "react-ga";
-import PostWelcomePage from "./PostWelcomePage";
+import PostWelcomePage from "./PostLaunchPage";
 import {withRouter} from "react-router"
 import {bindActionCreators} from "redux";
 import {setShootingMode} from "../../../app/slices/shotSlice";

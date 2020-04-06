@@ -8,7 +8,7 @@ export const targetSlice = createSlice({
             state.push(action.payload)
         },
         wipeTargets: state => {
-            state = []
+            state.length = 0;
         }
     },
 });

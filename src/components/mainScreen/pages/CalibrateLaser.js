@@ -4,7 +4,7 @@ import {Row, Col, Button, Form} from "react-bootstrap";
 import cookie from "react-cookies";
 import LaserCalibrator from "../../../util/LaserCalibrator";
 import {withRouter} from "react-router"
-import PostWelcomePage from "./PostWelcomePage";
+import PostWelcomePage from "./PostLaunchPage";
 
 class CalibrateLaser extends React.Component {
     constructor(props) {
