@@ -55,7 +55,7 @@ class Welcome extends React.Component {
                                     <br />
                                     - Projector
                                     <br />
-                                    - Webcam pointed towards projector screen
+                                    - Webcam
                                     <br />
                                     - Laser Cartridge or laser shooting dummy gun
                                     <br />
