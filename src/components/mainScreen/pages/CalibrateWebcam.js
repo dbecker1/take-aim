@@ -86,7 +86,7 @@ class CalibrateWebcam extends React.Component {
     finishCalibrating() {
         cookie.save("webcamConfig", {corners: this.calibrator.getCorners()})
         this.props.wipeNonTargetElements();
-        this.props.history.push('/')
+        this.props.history.push('/launch')
     }
 
     reset() {
