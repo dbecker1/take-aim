@@ -153,7 +153,7 @@ class StandardConfigure extends React.Component {
                             <h5 style={{textDecoration: "underline"}}>Target Selection</h5>
                             <table>
                                 <tbody>
-                                    {all_targets.map((value, key) => {
+                                    {all_targets.filter(a => a.stationary === true).map((value, key) => {
                                         return (
                                             <tr key={key} >
                                                 <td>

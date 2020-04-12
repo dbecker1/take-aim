@@ -6,6 +6,7 @@ export let basic_silhouette = {
     fileName: "basic_silhouette.svg",
     displayName: "Basic Silhouette Target",
     realHeight: 36,
+    stationary: true,
     scoringZones: [
         {
             name: "Bullseye",
@@ -45,6 +46,7 @@ export let uspsa = {
     fileName: "uspsa.svg",
     displayName: "USPSA Standard Target",
     realHeight: 36,
+    stationary: true,
     scoringZones: [
         {
             name: "A - Head",
@@ -84,6 +86,7 @@ export let treePlate = {
     fileName: "tree_plate.svg",
     displayName: "Dueling Tree Plate",
     realHeight: 6,
+    stationary: false,
     scoringZones: [
         {
             name: "Plate Hit",
@@ -99,6 +102,7 @@ export let treePlateFlipped = {
     fileName: "tree_plate_flipped.svg",
     displayName: "Dueling Tree Plate (Flipped)",
     realHeight: 6,
+    stationary: false,
     scoringZones: [
         {
             name: "Plate Hit",

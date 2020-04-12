@@ -6,6 +6,7 @@ import ShotRecord from "../../shooting/ShotRecord";
 import TargetUtils from "../../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets} from "../../../../app/slices/targetSlice";
+import {wipeNonTargetElements} from "../../../../app/slices/projectorSlice"
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {connect} from "react-redux";
 var randomstring = require("randomstring");
@@ -19,6 +20,7 @@ class StandardShoot extends React.Component {
 
     componentDidMount() {
         this.props.wipeTargets();
+        this.props.wipeNonTargetElements();
         TargetUtils.loadTarget(this.props.settings.selectedTarget).then(image => {
             const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
             const targetName = this.props.settings.selectedTarget;
@@ -89,7 +91,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({addTarget, wipeShots, wipeTargets}, dispatch)
+    return bindActionCreators({addTarget, wipeShots, wipeTargets,wipeNonTargetElements}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StandardShoot);
