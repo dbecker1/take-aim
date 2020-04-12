@@ -19,6 +19,7 @@ class TargetCanvas extends React.Component{
 
     componentDidMount() {
         this.canvas = new window.fabric.Canvas(this.canvasRef.current)
+        window.fabric.Object.prototype.objectCaching = true;
 
         this.renderCanvas(this.props);
     }
@@ -41,22 +42,47 @@ class TargetCanvas extends React.Component{
     }
 
     renderCanvas(props) {
+
+        let allIdsToKeep = ["BACKGROUND"];
+        let alreadyRenderedIds = [];
+        for (let i in props.targets) {
+            allIdsToKeep.push(props.targets[i].id)
+        }
+        for (let i in props.nonTargetElements) {
+            allIdsToKeep.push(props.nonTargetElements[i].id)
+        }
         // Wipe Canvas
-        this.canvas.remove(...this.canvas.getObjects());
+        let objects = this.canvas.getObjects();
+        for (let i in objects) {
+            if (!(objects[i].hasOwnProperty("metaProperties") && allIdsToKeep.includes(objects[i].metaProperties.id))){
+                this.canvas.remove(objects[i]);
+            } else {
+                alreadyRenderedIds.push(objects[i].metaProperties.id)
+            }
+        }
+        //console.log(objects);
+        //this.canvas.remove(...this.canvas.getObjects());
 
         // White Background
+
         const maxWidth = props.canvasDimensions.width;
         const maxHeight = props.canvasDimensions.height;
         this.canvasRef.current.width = maxWidth;
         this.canvasRef.current.height = maxHeight;
-        let background =  new window.fabric.Rect({
-            left: 0,
-            top: 0,
-            fill: "white",
-            width: maxWidth,
-            height: maxHeight
-        });
-        this.canvas.add(background);
+
+        if (!alreadyRenderedIds.includes("BACKGROUND")) {
+            let background =  new window.fabric.Rect({
+                left: 0,
+                top: 0,
+                fill: "white",
+                width: maxWidth,
+                height: maxHeight
+            });
+            background.metaProperties  = {
+                id: "BACKGROUND"
+            }
+            this.canvas.add(background);
+        }
 
         // Draw Targets
         let promises = []
@@ -64,7 +90,9 @@ class TargetCanvas extends React.Component{
         for (const i in props.targets) {
             const targetDetails = props.targets[i];
             const target = TargetUtils.getTargetByName(targetDetails.name)
-
+            if (alreadyRenderedIds.includes[targetDetails.id]) {
+                continue;
+            }
             let promise  = new Promise((resolve, reject) => {
                 window.fabric.loadSVGFromURL("/assets/targets/" + target.fileName,  (objects, options) => {
                     var obj = window.fabric.util.groupSVGElements(objects, options);
@@ -81,6 +109,9 @@ class TargetCanvas extends React.Component{
                     scaleTargets[i] = scale;
                     obj.left = targetDetails.x;
                     obj.top = targetDetails.y;
+                    obj.metaProperties ={
+                        id: targetDetails.id
+                    };
                     this.canvas.add(obj);
                     resolve();
                 });
@@ -91,6 +122,9 @@ class TargetCanvas extends React.Component{
         // Draw Non-Target Elements
         for (const i in props.nonTargetElements) {
             const element = props.nonTargetElements[i];
+            if (alreadyRenderedIds.includes[element.id]) {
+                continue;
+            }
             if (element.type === "text") {
                 let textbox = new window.fabric.Textbox(element.text, {
                     top: element.top,
@@ -98,7 +132,10 @@ class TargetCanvas extends React.Component{
                     width: element.width,
                     height: element.height,
                     fontSize: element.fontSize
-                })
+                });
+                textbox.metaProperties ={
+                    id: element.id
+                };
                 this.canvas.add(textbox)
             }
 
@@ -110,6 +147,9 @@ class TargetCanvas extends React.Component{
                         obj.scaleToWidth(element.width);
                         obj.left = element.x;
                         obj.top = element.y;
+                        obj.metaProperties = {
+                            id: element.id
+                        };
                         this.canvas.add(obj);
                         resolve();
                     })

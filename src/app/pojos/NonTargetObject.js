@@ -2,12 +2,7 @@ import randomstring from "randomstring";
 
 export default class  NonTargetObject {
     constructor(options) {
+        Object.assign(this, options); // using this because properties are different for each type of non target object
         this.id = randomstring.generate(7);
-        this.x = options.x;
-        this.y = options.y;
-        this.width = options.width;
-        this.height = options.height;
-        this.fileName = options.fileName;
-        this.type = options.type
     }
 }

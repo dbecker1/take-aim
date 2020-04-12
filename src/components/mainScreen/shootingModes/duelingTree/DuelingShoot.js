@@ -5,7 +5,7 @@ import TargetUtils from "../../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets, removeTargetById} from "../../../../app/slices/targetSlice";
 import {wipeShots} from "../../../../app/slices/shotSlice";
-import {addNonTargetElement} from "../../../../app/slices/projectorSlice";
+import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices/projectorSlice";
 import {connect} from "react-redux";
 import NonTargetObject from "../../../../app/pojos/NonTargetObject";
 import Target from "../../../../app/pojos/Target";
@@ -23,6 +23,7 @@ class DuelingShoot extends React.Component {
 
     componentDidMount() {
         this.props.wipeTargets();
+        this.props.wipeNonTargetElements();
         const toLoad = [TargetUtils.loadTarget("tree_plate"), TargetUtils.loadNonTargetImage("tree_stand.svg")];
         Promise.all(toLoad).then(results => {
             let plate = results[0];
@@ -141,7 +142,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({addTarget, wipeShots, wipeTargets, addNonTargetElement, removeTargetById}, dispatch)
+    return bindActionCreators({addTarget, wipeShots, wipeTargets, addNonTargetElement, removeTargetById, wipeNonTargetElements}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DuelingShoot);
