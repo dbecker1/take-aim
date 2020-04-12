@@ -1,6 +1,6 @@
 
 class ShotDetector {
-    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, targetCorners = [], outputDimensions = null, delayThreshold = 500, fps = 30) {
+    constructor(videoObj, h, s, v, hRadius, sRadius, vRadius, targetCorners = [], outputDimensions = null, delayThreshold = 300, fps = 15) {
         this.video = videoObj
         this.video.height = this.video.videoHeight;
         this.video.width = this.video.videoWidth;

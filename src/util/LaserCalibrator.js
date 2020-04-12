@@ -1,7 +1,7 @@
 
 
 class LaserCalibrator {
-    constructor(video,  outputCanvas, fps = 30) {
+    constructor(video,  outputCanvas, fps = 15) {
         this.video = video
         this.video.width = this.video.videoWidth;
         this.video.height = this.video.videoHeight

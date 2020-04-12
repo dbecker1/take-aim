@@ -59,7 +59,7 @@ class TargetCanvas extends React.Component{
         this.canvas.add(background);
 
         // Draw Targets
-        let targetPromises = []
+        let promises = []
         let scaleTargets = []
         for (const i in props.targets) {
             const targetDetails = props.targets[i];
@@ -81,11 +81,11 @@ class TargetCanvas extends React.Component{
                     scaleTargets[i] = scale;
                     obj.left = targetDetails.x;
                     obj.top = targetDetails.y;
-                    this.canvas.add(obj).renderAll();
+                    this.canvas.add(obj);
                     resolve();
                 });
             })
-            targetPromises.push(promise);
+            promises.push(promise);
         }
 
         // Draw Non-Target Elements
@@ -101,10 +101,26 @@ class TargetCanvas extends React.Component{
                 })
                 this.canvas.add(textbox)
             }
+
+            if (element.type === "svg") {
+                let promise = new Promise((resolve, reject) => {
+                    window.fabric.loadSVGFromURL("/assets/nonTargetImages/" + element.fileName, (objects, options) => {
+                        var obj = window.fabric.util.groupSVGElements(objects, options);
+                        obj.scaleToHeight(element.height);
+                        obj.scaleToWidth(element.width);
+                        obj.left = element.x;
+                        obj.top = element.y;
+                        this.canvas.add(obj);
+                        resolve();
+                    })
+                });
+                promises.push(promise);
+            }
         }
 
         // Wait for targets to finish before saving object
-        Promise.all(targetPromises).then(result => {
+        Promise.all(promises).then(result => {
+            this.canvas.renderAll();
             let object = this.canvas.toObject()
 
             this.props.setTargetRenderScales(scaleTargets)
@@ -113,9 +129,6 @@ class TargetCanvas extends React.Component{
             console.error(e)
         })
 
-
-        //  Draw Non-Target Elements
-        //TODO
     }
 
     render() {

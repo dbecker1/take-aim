@@ -11,14 +11,16 @@ import ProjectorScreen from "./targetScreen/ProjectorScreen";
 import {Container, Row, Col} from "react-bootstrap";
 import {backgroundColor, color, color4} from "../config";
 import SelectMode from "./mainScreen/pages/SelectMode";
-import ReactGA from 'react-ga';
+
 import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import { createBrowserHistory } from "history";
 import {connect} from "react-redux";
+import GoogleAnalyticsUtils from "../util/GoogleAnalyticsUtils";
 
-ReactGA.initialize('UA-162789074-1', { debug: false });
+
 
 window.routerHistory = createBrowserHistory();
+GoogleAnalyticsUtils.init();
 
 class App extends React.Component {
     constructor(props) {
@@ -31,8 +33,6 @@ class App extends React.Component {
             shootingMode: null,
             videoReady: false
         }
-
-        ReactGA.pageview("welcome");
         this.videoRef = React.createRef();
     }
 
@@ -44,7 +44,7 @@ class App extends React.Component {
             .then((stream)  => {
                 video.srcObject = stream;
                 video.onplay = () => {
-                    ReactGA.set({
+                    GoogleAnalyticsUtils.set({
                         videoWidth: video.videoWidth,
                         videoHeight: video.videoHeight
                     });

@@ -3,6 +3,7 @@ import {all_targets} from "../components/mainScreen/shootingModes/targets";
 
 class TargetUtils {
     static targetImageCache = {};
+    static nonTargetImageCache = {};
 
     static scaleTarget(target, distance, canvasHeight, distanceToProjector = null, heightOfTargetArea = null) {
         if (distanceToProjector == null || heightOfTargetArea == null) {
@@ -53,6 +54,24 @@ class TargetUtils {
                 targetImage.src = "/assets/targets/" + target.fileName;
             }
         });
+    }
+
+    static loadNonTargetImage(fileName) {
+        return new Promise((resolve, reject) => {
+            if (TargetUtils.nonTargetImageCache.hasOwnProperty(fileName)) {
+                console.log("Fetching cached image!");
+                resolve(TargetUtils.nonTargetImageCache[fileName])
+            } else {
+                let image = new Image()
+
+                image.onload = () => {
+                    TargetUtils.nonTargetImageCache[fileName] = image
+                    resolve(image)
+                }
+
+                image.src = "/assets/nonTargetImages/" + fileName;
+            }
+        })
     }
 
     static getTargetWidthForHeight(targetImg, desiredHeight) {

@@ -1,7 +1,7 @@
 
 
 class WebcamCalibrator {
-    constructor(video,  outputCanvas, existingCorners = null, fps = 30) {
+    constructor(video,  outputCanvas, existingCorners = null, fps = 15) {
         this.video = video
         this.video.width = this.video.videoWidth;
         this.video.height = this.video.videoHeight

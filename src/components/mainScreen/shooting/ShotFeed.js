@@ -2,11 +2,11 @@ import React from 'react';
 import ShotDetector from "../../../util/ShotDetector"
 import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
-import ReactGA from 'react-ga';
 import { connect } from "react-redux";
 import { addShot, wipeShots } from "../../../app/slices/shotSlice";
 import { bindActionCreators } from "redux";
 import "../../../styles/TargetCanvas.css";
+import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 
 class ShotFeed extends React.Component {
     constructor(props) {
@@ -56,7 +56,7 @@ class ShotFeed extends React.Component {
             if (!this.shotDetector) {
                 this.shotDetector = new ShotDetector(this.props.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
                     laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
-                    outputDimensions, 200);
+                    outputDimensions, 100);
             }
 
             const parentWidth = this.canvasParentRef.current.offsetWidth * .9;
@@ -76,7 +76,7 @@ class ShotFeed extends React.Component {
             this.redrawCanvas(this.props);
 
             this.shotDetector.start((hit => {
-                ReactGA.event({
+                GoogleAnalyticsUtils.event({
                     category: 'Shot Feed',
                     action: "Shot Detected",
                     label: "Radius: " + hit.radius

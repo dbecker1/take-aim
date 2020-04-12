@@ -2,12 +2,12 @@ import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import Card from "../../Card";
 import {shootingModes} from "../shootingModes/shootingModes";
-import ReactGA from "react-ga";
 import PostWelcomePage from "./PostLaunchPage";
 import {withRouter} from "react-router"
 import {bindActionCreators} from "redux";
 import {setShootingMode} from "../../../app/slices/shotSlice";
 import {connect} from "react-redux";
+import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 
 class SelectMode extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class SelectMode extends React.Component {
     }
 
     selectMode(mode) {
-        ReactGA.event({
+        GoogleAnalyticsUtils.event({
             category: 'Shooting Mode',
             action: 'Selected Shooting Mode: ' + mode.name,
             label: mode.name

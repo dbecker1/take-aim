@@ -9,10 +9,13 @@ export const targetSlice = createSlice({
         },
         wipeTargets: state => {
             state.length = 0;
+        },
+        removeTargetById: (state, action) => {
+            return state.filter(a => a.id !== action.payload);
         }
     },
 });
 
-export const { addTarget, wipeTargets } = targetSlice.actions;
+export const { addTarget, wipeTargets, removeTargetById } = targetSlice.actions;
 
 export default targetSlice.reducer;

@@ -1,5 +1,7 @@
 import StandardConfigure from "./standard/StandardConfigure";
 import StandardShoot from "./standard/StandardShoot";
+import DuelingConfigure from "./duelingTree/DuelingConfigure";
+import DuelingShoot from "./duelingTree/DuelingShoot";
 
 
 const standard = {
@@ -9,6 +11,13 @@ const standard = {
     shootComponent: StandardShoot
 }
 
+const duelingTree = {
+    name: "Dueling Tree",
+    description: "Compete with a friend or shoot at steel plates solo!",
+    configureComponent: DuelingConfigure,
+    shootComponent: DuelingShoot
+}
+
 const comingSoon = {
     name: "Coming Soon!",
     description: "Probably something really cool.",
@@ -16,4 +25,4 @@ const comingSoon = {
     shootComponent: null
 }
 
-export const shootingModes = [standard, comingSoon, comingSoon, comingSoon]
+export const shootingModes = [standard, duelingTree, comingSoon, comingSoon]

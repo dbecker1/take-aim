@@ -5,10 +5,10 @@ import cookie from "react-cookies";
 import {faCheck, faInfoCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {connect} from "react-redux";
-import ReactGA from "react-ga";
 import {withRouter} from "react-router"
 import {bindActionCreators} from "redux";
 import {launchProjector} from "../../../app/slices/projectorSlice";
+import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 
 class Launch extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class Launch extends React.Component {
     }
 
     componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        GoogleAnalyticsUtils.pageview(window.location.pathname + window.location.search);
     }
 
     static getDerivedStateFromProps(props, state) {

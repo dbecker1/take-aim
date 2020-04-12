@@ -79,4 +79,34 @@ export let uspsa = {
     ]
 };
 
-export const all_targets = [basic_silhouette, uspsa];
+export let treePlate = {
+    name: "tree_plate",
+    fileName: "tree_plate.svg",
+    displayName: "Dueling Tree Plate",
+    realHeight: 6,
+    scoringZones: [
+        {
+            name: "Plate Hit",
+            pointValue: 1,
+            path: "M68.5,17.5v25H55.42a29,29,0,1,1,.48-25Z",
+            priority: 1
+        }
+    ]
+};
+
+export let treePlateFlipped = {
+    name: "tree_plate_flipped",
+    fileName: "tree_plate_flipped.svg",
+    displayName: "Dueling Tree Plate (Flipped)",
+    realHeight: 6,
+    scoringZones: [
+        {
+            name: "Plate Hit",
+            pointValue: 1,
+            path: "M.5,41.5v-25H13.58a29,29,0,1,1-.48,25Z",
+            priority: 1
+        }
+    ]
+}
+
+export const all_targets = [basic_silhouette, uspsa, treePlate, treePlateFlipped];

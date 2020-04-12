@@ -8,6 +8,7 @@ import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets} from "../../../../app/slices/targetSlice";
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {connect} from "react-redux";
+var randomstring = require("randomstring");
 
 class StandardShoot extends React.Component {
     constructor(props) {
@@ -35,7 +36,8 @@ class StandardShoot extends React.Component {
                 y: (canvasHeight - targetHeight) / 2,
                 width: targetWidth,
                 height: targetHeight,
-                requestedScaleHeight: targetHeight / image.height
+                requestedScaleHeight: targetHeight / image.height,
+                id: randomstring.generate(7)
             }
             this.props.addTarget(targetObject);
 

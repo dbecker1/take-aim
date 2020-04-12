@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
-import ReactGA from 'react-ga';
 import {Redirect} from "react-router-dom";
+import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 
 class PostLaunchPage extends React.Component {
     componentDidMount() {
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        GoogleAnalyticsUtils.pageview(window.location.pathname + window.location.search);
     }
 
     render() {

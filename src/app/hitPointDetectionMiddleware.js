@@ -46,7 +46,8 @@ export const detectHitPoints = store => next => action => {
                                 if (zone.priority < lowestPriority) {
                                     action.payload.score = {
                                         pointValue: zone.pointValue,
-                                        name: zone.name
+                                        name: zone.name,
+                                        targetId: currentTarget.id
                                     };
                                     lowestPriority = zone.priority;
                                 }

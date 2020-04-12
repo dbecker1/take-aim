@@ -2,10 +2,15 @@ import React from 'react';
 import {Row, Col, Button} from "react-bootstrap";
 import Card from "../../Card";
 import {withRouter} from "react-router";
+import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 
-class Loading extends React.Component {
+class Welcome extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        GoogleAnalyticsUtils.pageview(window.location.pathname + window.location.search);
     }
 
 
@@ -103,4 +108,4 @@ class Loading extends React.Component {
 
 }
 
-export default withRouter(Loading);
+export default withRouter(Welcome);
