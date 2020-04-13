@@ -27,12 +27,11 @@ class DuelingShoot extends React.Component {
 
     componentDidMount() {
         window.createjs.Sound.registerSound("/assets/sounds/timerbeep.wav", "Beep");
-        this.loadTargets();
+        this.resetTarget();
     }
 
     loadTargets() {
-        this.props.wipeTargets();
-        this.props.wipeNonTargetElements();
+        this.shotFeedRef.current.startProcessing();
         const toLoad = [TargetUtils.loadTarget("tree_plate"), TargetUtils.loadNonTargetImage("tree_stand.svg")];
         Promise.all(toLoad).then(results => {
             let plate = results[0];
@@ -65,6 +64,11 @@ class DuelingShoot extends React.Component {
     }
 
     resetTarget() {
+        batch(() => {
+            this.props.wipeTargets();
+            this.props.wipeNonTargetElements();
+            this.props.wipeShots();
+        });
         this.setState({
             plateOrientations: ["left", "right", "left", "right", "left", "right"],
             targetIds: [null, null, null, null, null, null]
@@ -90,7 +94,7 @@ class DuelingShoot extends React.Component {
         this.setState({
             competitionStarted: false
         }, () => {
-            this.shotFeedRef.stop();
+            this.shotFeedRef.current.stop();
             window.createjs.Sound.play("Beep");
         });
     }

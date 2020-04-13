@@ -117,16 +117,21 @@ class ShotDetector {
     stop() {
         clearInterval(this.interval)
 
-        this.readFrame.delete();
-        this.warpedFrame.delete();
-        this.minThreshold.delete();
-        this.maxThreshold.delete();
-        this.hsvImage.delete();
-        this.thresholdImage.delete();
-        this.contours.delete();
-        this.hierarchy.delete();
-        //this.videoCapture.release();
-        this.hMatrix.delete();
+        try {
+            this.readFrame.delete();
+            this.warpedFrame.delete();
+            this.minThreshold.delete();
+            this.maxThreshold.delete();
+            this.hsvImage.delete();
+            this.thresholdImage.delete();
+            this.contours.delete();
+            this.hierarchy.delete();
+            //this.videoCapture.release();
+            this.hMatrix.delete();
+        } catch (e) {
+            console.log("ERROR")
+            console.error(e)
+        }
     }
 
     processVideo() {
