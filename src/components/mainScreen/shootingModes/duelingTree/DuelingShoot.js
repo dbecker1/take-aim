@@ -168,7 +168,7 @@ class DuelingShoot extends React.Component {
             targetIds: targetIds,
             plateOrientations: plateOrientations
         }, () => {
-            if (this.state.plateOrientations.indexOf("left") < 0 || this.state.plateOrientations.indexOf("right") < 0) {
+            if (this.state.competitionStarted && (this.state.plateOrientations.indexOf("left") < 0 || this.state.plateOrientations.indexOf("right") < 0)) {
                 this.stopCompetition()
             }
         })

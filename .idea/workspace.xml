@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/ShotDetector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ShotDetector.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="214">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -422,12 +420,12 @@
       <workItem from="1586372809151" duration="4465000" />
       <workItem from="1586378770689" duration="917000" />
       <workItem from="1586462329385" duration="5131000" />
-      <workItem from="1586738938356" duration="4181000" />
+      <workItem from="1586738938356" duration="4598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135267000" />
+    <option name="totallyTimeSpent" value="135684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -852,8 +850,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        <state relative-caret-position="214">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
