@@ -9,23 +9,28 @@ import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices
 import {connect} from "react-redux";
 import NonTargetObject from "../../../../app/pojos/NonTargetObject";
 import Target from "../../../../app/pojos/Target";
+import Card from "../../../Card";
+import {batch} from "react-redux";
 
 class DuelingShoot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             plateOrientations: ["left", "right", "left", "right", "left", "right"],
-            targetIds: [null, null, null, null, null, null]
+            targetIds: [null, null, null, null, null, null],
+            competitionStarted: false
         }
 
         this.timerRef = React.createRef();
+        this.shotFeedRef = React.createRef();
     }
 
     componentDidMount() {
-        this.resetTarget();
+        window.createjs.Sound.registerSound("/assets/sounds/timerbeep.wav", "Beep");
+        this.loadTargets();
     }
 
-    resetTarget() {
+    loadTargets() {
         this.props.wipeTargets();
         this.props.wipeNonTargetElements();
         const toLoad = [TargetUtils.loadTarget("tree_plate"), TargetUtils.loadNonTargetImage("tree_stand.svg")];
@@ -59,6 +64,37 @@ class DuelingShoot extends React.Component {
         });
     }
 
+    resetTarget() {
+        this.setState({
+            plateOrientations: ["left", "right", "left", "right", "left", "right"],
+            targetIds: [null, null, null, null, null, null]
+        }, () => {
+            this.loadTargets()
+        })
+    }
+
+    startCompetition() {
+        this.shotFeedRef.current.stop();
+        this.setState({
+            competitionStarted: true
+        }, () => {
+            setTimeout(() => {
+                    window.createjs.Sound.play("Beep");
+                    this.shotFeedRef.current.startProcessing();
+
+            }, 5000)
+        })
+    }
+
+    stopCompetition() {
+        this.setState({
+            competitionStarted: false
+        }, () => {
+            this.shotFeedRef.stop();
+            window.createjs.Sound.play("Beep");
+        });
+    }
+
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         for (let i in nextProps.shots) {
             const shot = nextProps.shots[i]
@@ -68,14 +104,14 @@ class DuelingShoot extends React.Component {
                 }
             }
         }
+        if (nextState.competitionStarted !== this.state.competitionStarted) {
+            return true;
+        }
         return false;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        //This check is being done at teh shouldComponentUpdate level
-        //if (prevState.plateOrientations !== this.state.plateOrientations) {
-            this.updateTargets();
-        //}
+        this.updateTargets();
     }
 
     updateTargets() {
@@ -98,6 +134,7 @@ class DuelingShoot extends React.Component {
             targetIds[targetIds.indexOf(targetsToRemove[i])] = null
         }
 
+        let toAdd = []
         for (let i = 0; i < this.state.plateOrientations.length; i++) {
             if (targetIds[i] === null) {
                 let plateX = this.standObj.x + (this.standObj.width * .4215) - this.plateWidth
@@ -114,12 +151,22 @@ class DuelingShoot extends React.Component {
                 })
 
                 targetIds[i] = plateObj.id;
-                this.props.addTarget(plateObj);
+                toAdd.push(plateObj);
+                //this.props.addTarget(plateObj);
             }
         }
+        batch(() => {
+            for (let i in toAdd){
+                this.props.addTarget(toAdd[i])
+            }
+        });
         this.setState({
             targetIds: targetIds,
             plateOrientations: plateOrientations
+        }, () => {
+            if (this.state.plateOrientations.indexOf("left") < 0 || this.state.plateOrientations.indexOf("right") < 0) {
+                this.stopCompetition()
+            }
         })
     }
 
@@ -132,8 +179,33 @@ class DuelingShoot extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={12}>
-                        <ShotFeed videoRef={this.props.videoRef}/>
+                    <Col sm={4}  className={"text-center"}>
+                        <Card >
+                            <h4 style={{textDecoration: "underline"}}>Competition</h4>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Player 1</th>
+                                    <th>Player 2</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{this.state.plateOrientations.filter(a => a === "left").length}</td>
+                                    <td>{this.state.plateOrientations.filter(a => a === "right").length}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            {!this.state.competitionStarted &&
+                                <div style={{marginTop: "20px"}}>
+                                    <Button   onClick={() => {this.startCompetition()}}>Start Competition</Button>
+                                    <p style={{fontSize: "80%"}}>Competition will start on beep after 5 secnod delay</p>
+                                </div>
+                            }
+                        </Card>
+                    </Col>
+                    <Col sm={8}>
+                        <ShotFeed videoRef={this.props.videoRef} ref={this.shotFeedRef}/>
                     </Col>
                 </Row>
                 <Row style={{marginTop: "30px"}}>

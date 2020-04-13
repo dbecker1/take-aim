@@ -1,6 +1,5 @@
 import React from 'react';
 import ShotDetector from "../../../util/ShotDetector"
-import {Button, Form} from "react-bootstrap";
 import cookie from 'react-cookies'
 import { connect } from "react-redux";
 import { addShot, wipeShots } from "../../../app/slices/shotSlice";
@@ -85,6 +84,10 @@ class ShotFeed extends React.Component {
                 console.log(hit)
             }))
         })
+    }
+
+    stop() {
+        this.shotDetector.stop();
     }
 
     redrawCanvas(props)  {
