@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,10 +30,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
+            <state relative-caret-position="588">
               <caret line="135" column="95" selection-start-line="135" selection-start-column="95" selection-end-line="135" selection-end-column="95" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -45,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
+            <state relative-caret-position="252">
+              <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -216,7 +213,6 @@
         <option value="$PROJECT_DIR$/src/util/GoogleAnalyticsUtils.js" />
         <option value="$PROJECT_DIR$/src/util/LaserCalibrator.js" />
         <option value="$PROJECT_DIR$/src/util/WebcamCalibrator.js" />
-        <option value="$PROJECT_DIR$/src/components/App.js" />
         <option value="$PROJECT_DIR$/src/app/slices/targetSlice.js" />
         <option value="$PROJECT_DIR$/src/app/pojos/Target.js" />
         <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
@@ -231,6 +227,7 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" />
+        <option value="$PROJECT_DIR$/src/components/App.js" />
       </list>
     </option>
   </component>
@@ -436,12 +433,12 @@
       <workItem from="1586372809151" duration="4465000" />
       <workItem from="1586378770689" duration="917000" />
       <workItem from="1586462329385" duration="5131000" />
-      <workItem from="1586738938356" duration="3389000" />
+      <workItem from="1586738938356" duration="3530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134475000" />
+    <option name="totallyTimeSpent" value="134616000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -837,16 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="603">
@@ -866,8 +853,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
+        <state relative-caret-position="588">
           <caret line="135" column="95" selection-start-line="135" selection-start-column="95" selection-end-line="135" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
