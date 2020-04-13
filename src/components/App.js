@@ -71,7 +71,9 @@ class App extends React.Component {
                 <section className={"page"} style={{backgroundColor: backgroundColor, color: color}}>
                     <div className={"header"}>
                         <div style={{borderBottom: "1px solid white"}}>
+                            <a href={"/"}>
                             <img src={"/logo.svg"} style={{height: "100px", marginBottom: "10px"}}/>
+                            </a>
                         </div>
                     </div>
                     <Container>

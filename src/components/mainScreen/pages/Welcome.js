@@ -3,6 +3,9 @@ import {Row, Col, Button} from "react-bootstrap";
 import Card from "../../Card";
 import {withRouter} from "react-router";
 import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
+import YouTube from "react-youtube";
+import {faReddit, faGithub} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -13,6 +16,22 @@ class Welcome extends React.Component {
         GoogleAnalyticsUtils.pageview(window.location.pathname + window.location.search);
     }
 
+    renderButton() {
+        return (
+            <>
+                <Button variant={"customPrimary"}
+                        onClick={() => {this.props.history.push("/launch")}}
+                        disabled={!(this.props.videoReady && this.props.cvReady)}>Lets Get Started!</Button>
+                { !this.props.videoReady ?
+                    <p style={{fontSize: "80%"}}>Waiting on webcam feed...</p>
+                    : !this.props.cvReady ?
+                        <p style={{fontSize: "80%"}}>Still loading...</p>
+                        :
+                        null
+                }
+            </>
+        )
+    }
 
     render() {
         return (
@@ -29,7 +48,25 @@ class Welcome extends React.Component {
                         </>
                     </Col>
                 </Row>
-                <Row className={"text-center"}>
+                <Row>
+                    <Col sm={12} className={"text-center"}>
+                        {this.renderButton()}
+
+                        <hr />
+                    </Col>
+                </Row>
+                <Row className={"text-center"} style={{borderTop: "1px solid white", paddingTop: "10px"}}>
+                    <Col sm={12}>
+                        <h3>About Take Aim</h3>
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "20px"}}>
+                    <Col sm={12} className={"text-center"}>
+                    <h4 style={{textDecoration: "underline"}}>Demo Video</h4>
+                    <YouTube videoId={"YH3_XY4QLIs"} />
+                    </Col>
+                </Row>
+                <Row className={"text-center"} style={{marginTop: "20px"}}>
                     <Col sm={12}>
                         <h4  style={{textDecoration: "underline"}}>Features</h4>
                     </Col>
@@ -88,20 +125,33 @@ class Welcome extends React.Component {
                         </Card>
                     </Col>
                 </Row>
-                <Row style={{marginTop: "20px"}}>
-                    <Col sm={12} className={"text-center"}>
-                        <Button variant={"customPrimary"}
-                                onClick={() => {this.props.history.push("/launch")}}
-                                disabled={!(this.props.videoReady && this.props.cvReady)}>Lets Get Started!</Button>
-                        { !this.props.videoReady ?
-                            <p style={{fontSize: "80%"}}>Waiting on webcam feed...</p>
-                        : !this.props.cvReady ?
-                            <p style={{fontSize: "80%"}}>Still loading...</p>
-                        :
-                            null
-                        }
+                <Row className={"text-center"} style={{marginTop: "20px"}}>
+                    <Col sm={12}>
+                        <h4  style={{textDecoration: "underline"}}>Find Us Online!</h4>
                     </Col>
                 </Row>
+                <Row className={"text-center"} >
+                    <Col sm={6} md={{span: 3, offset: 3}} className={"text-center"}>
+                        <Card>
+                            <a href={"https://www.reddit.com/r/TakeAim"} style={{fontSize: "150%", color: "white"}}>
+                                <FontAwesomeIcon icon={faReddit} /> Reddit
+                            </a>
+                        </Card>
+                    </Col>
+                    <Col sm={6} md={{span: 3, offset: 0}} className={"text-center"}>
+                        <Card>
+                            <a href={"https://www.github.com/dbecker1/take-aim"} style={{fontSize: "150%", color: "white"}}>
+                                <FontAwesomeIcon icon={faGithub} /> Github
+                            </a>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "20px"}}>
+                    <Col sm={12} className={"text-center"}>
+                        {this.renderButton()}
+                    </Col>
+                </Row>
+
             </>
         );
     }
