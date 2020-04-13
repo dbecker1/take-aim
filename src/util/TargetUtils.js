@@ -6,17 +6,21 @@ class TargetUtils {
     static nonTargetImageCache = {};
 
     static scaleTarget(target, distance, canvasHeight, distanceToProjector = null, heightOfTargetArea = null) {
+        return TargetUtils.scale(target.realHeight, distance, canvasHeight, distanceToProjector, heightOfTargetArea);
+    }
+
+    static scale(realHeight, distance, canvasHeight,  distanceToProjector = null, heightOfTargetArea = null) {
         if (distanceToProjector == null || heightOfTargetArea == null) {
             const config = cookie.load("scaleConfig")
             if (!config) {
                 throw new Error("Missing scale config")
             }
-             distanceToProjector = config.distanceToProjector;
-             heightOfTargetArea = config.heightOfTargetArea;
+            distanceToProjector = config.distanceToProjector;
+            heightOfTargetArea = config.heightOfTargetArea;
         }
         let distanceInInches = distance * 12 * 3;
 
-        let heightInInches = target.realHeight / distanceInInches * distanceToProjector;
+        let heightInInches = realHeight / distanceInInches * distanceToProjector;
 
         let pixelsPerInch = canvasHeight / heightOfTargetArea;
 

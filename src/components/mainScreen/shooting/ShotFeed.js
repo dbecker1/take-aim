@@ -113,7 +113,7 @@ class ShotFeed extends React.Component {
                 <div className={"text-center"}>
                     <canvas ref={this.canvasRef}  ></canvas>
                     <br />
-                    <Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>
+                    {/*<Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>*/}
                 </div>
 
 

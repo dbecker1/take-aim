@@ -22,6 +22,10 @@ class DuelingShoot extends React.Component {
     }
 
     componentDidMount() {
+        this.resetTarget();
+    }
+
+    resetTarget() {
         this.props.wipeTargets();
         this.props.wipeNonTargetElements();
         const toLoad = [TargetUtils.loadTarget("tree_plate"), TargetUtils.loadNonTargetImage("tree_stand.svg")];
@@ -30,7 +34,11 @@ class DuelingShoot extends React.Component {
             let stand = results[1];
             const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
 
-            this.standHeight = canvasHeight * .8;
+            if (this.props.settings.useDistance) {
+                this.standHeight = TargetUtils.scale(63, this.props.settings.distance, canvasHeight); // dueling tree is 63 inches  tall
+            } else {
+                this.standHeight = canvasHeight * .8
+            }
             this.standWidth = TargetUtils.getTargetWidthForHeight(stand, this.standHeight);
             this.plateHeight = this.standHeight * .119; //Ratio of plate height to stand height
             this.plateWidth = TargetUtils.getTargetWidthForHeight(plate, this.plateHeight);
@@ -126,6 +134,12 @@ class DuelingShoot extends React.Component {
                 <Row>
                     <Col sm={12}>
                         <ShotFeed videoRef={this.props.videoRef}/>
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "30px"}}>
+                    <Col sm={12} className={"text-center"}>
+                        <Button variant={"customPrimary"} onClick={() => {this.resetTarget()}} size={"lg"} style={{marginBottom: "10px"}}>Reset Target</Button> <br />
+                        <Button variant={"customPrimary"} onClick={() => {this.props.backToSettings()}} size={"lg"}>Back To Settings</Button>
                     </Col>
                 </Row>
             </>
