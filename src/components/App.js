@@ -16,7 +16,7 @@ import {BrowserRouter,  Route, Switch} from "react-router-dom";
 import { createBrowserHistory } from "history";
 import {connect} from "react-redux";
 import GoogleAnalyticsUtils from "../util/GoogleAnalyticsUtils";
-
+import {BrowserView, isMobile} from "react-device-detect";
 
 
 window.routerHistory = createBrowserHistory();
@@ -39,24 +39,27 @@ class App extends React.Component {
     componentDidMount() {
         window.onOpenCV = () => {console.log("OpenCV Loaded");this.setState({ cvLoaded: true })};
 
-        const video = this.videoRef.current;
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-            .then((stream)  => {
-                video.srcObject = stream;
-                video.onplay = () => {
-                    GoogleAnalyticsUtils.set({
-                        videoWidth: video.videoWidth,
-                        videoHeight: video.videoHeight
-                    });
-                    this.setState({
-                        videoReady: true
-                    });
-                }
-                video.play();
-            })
-            .catch((err) => {
-                console.log("An error occurred! " + err);
-            });
+        if (!isMobile) {
+            const video = this.videoRef.current;
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                .then((stream)  => {
+                    video.srcObject = stream;
+                    video.onplay = () => {
+                        GoogleAnalyticsUtils.set({
+                            videoWidth: video.videoWidth,
+                            videoHeight: video.videoHeight
+                        });
+                        this.setState({
+                            videoReady: true
+                        });
+                    }
+                    video.play();
+                })
+                .catch((err) => {
+                    console.log("An error occurred! " + err);
+                });
+        }
+
     }
 
     toggleVideo() {
@@ -103,21 +106,23 @@ class App extends React.Component {
                 {this.props.launchProjector &&
                     <ProjectorScreen/>
                 }
-                <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid " + backgroundColor, minWidth: "400px"}}>
-                    <div style={{color: "white", backgroundColor: color4, width: "100%"}} className={"clearfix"}>
-                        <div className={"float-left"}>
-                            Webcam  Feed
+                <BrowserView>
+                    <div style={{position:"absolute", bottom: 5, left: 5, border: "5px solid " + backgroundColor, minWidth: "400px"}}>
+                        <div style={{color: "white", backgroundColor: color4, width: "100%"}} className={"clearfix"}>
+                            <div className={"float-left"}>
+                                Webcam  Feed
+                            </div>
+                            <div className={"float-right"}>
+                                <span style={{textDecoration: "underline", cursor:"pointer"}} onClick={() => {this.toggleVideo()}}>
+                                    {this.state.showVideo ? "Hide" : "Show"}
+                                </span>
+                            </div>
                         </div>
-                        <div className={"float-right"}>
-                            <span style={{textDecoration: "underline", cursor:"pointer"}} onClick={() => {this.toggleVideo()}}>
-                                {this.state.showVideo ? "Hide" : "Show"}
-                            </span>
+                        <div style={{display: this.state.showVideo ? "block" : "none"}}>
+                            <video ref={this.videoRef} />
                         </div>
                     </div>
-                    <div style={{display: this.state.showVideo ? "block" : "none"}}>
-                        <video ref={this.videoRef} />
-                    </div>
-                </div>
+                </BrowserView>
             </BrowserRouter>
         )
     }

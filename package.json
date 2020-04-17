@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-cookies": "^0.1.1",
+    "react-device-detect": "^1.11.14",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-new-window": "^0.1.2",
