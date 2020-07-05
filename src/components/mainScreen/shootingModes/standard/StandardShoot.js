@@ -37,7 +37,7 @@ class StandardShoot extends React.Component {
             y: (canvasHeight - targetHeight) / 2,
             width: targetWidth,
             height: targetHeight,
-            requestedScaleHeight: targetHeight / target.defaultHeight,
+            requestedScaleRatio: targetHeight / target.defaultHeight,
             id: randomstring.generate(7)
         }
         this.props.addTarget(targetObject);

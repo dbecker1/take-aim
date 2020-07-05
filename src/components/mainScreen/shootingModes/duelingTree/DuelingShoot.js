@@ -30,6 +30,10 @@ class DuelingShoot extends React.Component {
         this.resetTarget();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.updateTargets();
+    }
+
     loadTargets() {
         this.shotFeedRef.current.startProcessing();
         let plate = TargetUtils.getTargetByName("tree_plate");
@@ -44,7 +48,7 @@ class DuelingShoot extends React.Component {
         this.standWidth = TargetUtils.getTargetWidthForHeight(stand.name, this.standHeight);
         this.plateHeight = this.standHeight * .119; //Ratio of plate height to stand height
         this.plateWidth = TargetUtils.getTargetWidthForHeight(plate.name, this.plateHeight);
-        this.realPlateHeight = plate.height;
+        this.realPlateHeight = plate.defaultHeight;
 
         this.standObj = new NonTargetObject({
             type: "svg",
@@ -111,9 +115,7 @@ class DuelingShoot extends React.Component {
         return false;
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        this.updateTargets();
-    }
+
 
     updateTargets() {
         let plateOrientations = this.state.plateOrientations;

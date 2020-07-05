@@ -29,7 +29,7 @@ export const detectHitPoints = store => next => action => {
                     const canvas = document.createElement("canvas");
                     canvas.width = currentTarget.width;
                     canvas.height = currentTarget.height;
-                    const scaleTarget = currentTarget.requstedScaleHeight;
+                    const scaleTarget = currentTarget.requestedScaleRatio;
                     const ctx = canvas.getContext('2d');
                     const point = {
                         x: (action.payload.center.x - currentTarget.x) / scaleTarget,
@@ -59,7 +59,7 @@ export const detectHitPoints = store => next => action => {
                     // ctx.arc(point.x, point.y, 5, 0, 2 * Math.PI, false);
                     // ctx.fillStyle = 'green';
                     // ctx.fill();
-                    // const text = document.createTextNode("scale: " + scaleTargets[i].scaleX + " x: " + point.x +  " y: " + point.y);
+                    // const text = document.createTextNode("scale: " + scaleTarget + " x: " + point.x +  " y: " + point.y);
                     // document.getElementById("canvashere").appendChild(text);
                     // document.getElementById("canvashere").appendChild(canvas);
                 }
