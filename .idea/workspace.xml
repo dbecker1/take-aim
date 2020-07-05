@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/nonTargets.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreeStand.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/shootingModes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/shootingModes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/basicSilhouette.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/BasicSilhouette.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreenInner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreenInner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/TargetCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TargetCanvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/TargetUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/TargetUtils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -70,6 +56,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/TargetUtils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,7 +77,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -92,10 +87,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
+            <state relative-caret-position="301">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -104,8 +99,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assets/targets/uspsa.svg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="39" column="69" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -117,17 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assets/targets/tree_plate_flipped.svg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>history.</find>
-      <find>cha</find>
       <find>changepage</find>
       <find>change</find>
       <find>setshooting</find>
@@ -156,6 +151,8 @@
       <find>nontarget</find>
       <find>filename</find>
       <find>updatetargets</find>
+      <find>TargetUtil</find>
+      <find>targetutil</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/components</dir>
@@ -191,7 +188,6 @@
         <option value="$PROJECT_DIR$/src/app/slices/targetSlice.js" />
         <option value="$PROJECT_DIR$/src/app/pojos/Target.js" />
         <option value="$PROJECT_DIR$/src/app/pojos/NonTargetObject.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingConfigure.js" />
         <option value="$PROJECT_DIR$/public/manifest.json" />
         <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
@@ -204,7 +200,6 @@
         <option value="$PROJECT_DIR$/src/app/store.js" />
         <option value="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" />
         <option value="$PROJECT_DIR$/src/app/slices/projectorSlice.js" />
-        <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/shootingModes.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
@@ -212,12 +207,14 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/treeStand.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/nonTargets.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreeStand.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
         <option value="$PROJECT_DIR$/src/components/TargetCanvas.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlate.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
+        <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
       </list>
     </option>
   </component>
@@ -437,12 +434,12 @@
       <workItem from="1586738938356" duration="4790000" />
       <workItem from="1587144760085" duration="1321000" />
       <workItem from="1589679634799" duration="4000" />
-      <workItem from="1593901396511" duration="7892000" />
+      <workItem from="1593901396511" duration="8678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145093000" />
+    <option name="totallyTimeSpent" value="145879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -715,16 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/TargetUtils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
@@ -803,16 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="120" column="17" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/targets/tree_plate.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -829,23 +806,6 @@
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="19" lean-forward="true" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -881,6 +841,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="114" selection-start-line="4" selection-start-column="114" selection-end-line="4" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="39" column="69" selection-start-line="39" selection-start-column="69" selection-end-line="39" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/TargetUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
         </state>
       </provider>
     </entry>

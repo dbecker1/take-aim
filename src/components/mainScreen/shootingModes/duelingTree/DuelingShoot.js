@@ -32,35 +32,32 @@ class DuelingShoot extends React.Component {
 
     loadTargets() {
         this.shotFeedRef.current.startProcessing();
-        const toLoad = [TargetUtils.loadTarget("tree_plate"), TargetUtils.loadNonTargetImage("tree_stand.svg")];
-        Promise.all(toLoad).then(results => {
-            let plate = results[0];
-            let stand = results[1];
-            const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
+        let plate = TargetUtils.getTargetByName("tree_plate");
+        let stand = TargetUtils.getNonTargetByName("tree_stand");
+        const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
 
-            if (this.props.settings.useDistance) {
-                this.standHeight = TargetUtils.scale(63, this.props.settings.distance, canvasHeight); // dueling tree is 63 inches  tall
-            } else {
-                this.standHeight = canvasHeight * .8
-            }
-            this.standWidth = TargetUtils.getTargetWidthForHeight(stand, this.standHeight);
-            this.plateHeight = this.standHeight * .119; //Ratio of plate height to stand height
-            this.plateWidth = TargetUtils.getTargetWidthForHeight(plate, this.plateHeight);
-            this.realPlateHeight = plate.height;
+        if (this.props.settings.useDistance) {
+            this.standHeight = TargetUtils.scale(63, this.props.settings.distance, canvasHeight); // dueling tree is 63 inches  tall
+        } else {
+            this.standHeight = canvasHeight * .8
+        }
+        this.standWidth = TargetUtils.getTargetWidthForHeight(stand.name, this.standHeight);
+        this.plateHeight = this.standHeight * .119; //Ratio of plate height to stand height
+        this.plateWidth = TargetUtils.getTargetWidthForHeight(plate.name, this.plateHeight);
+        this.realPlateHeight = plate.height;
 
-            this.standObj = new NonTargetObject({
-                type: "svg",
-                x: (canvasWidth - this.standWidth) / 2,
-                y: (canvasHeight - this.standHeight) / 2,
-                width: this.standWidth,
-                height: this.standHeight,
-                name: "tree_stand"
-            });
-
-            this.updateTargets();
-
-            this.props.addNonTargetElement(this.standObj);
+        this.standObj = new NonTargetObject({
+            type: "svg",
+            x: (canvasWidth - this.standWidth) / 2,
+            y: (canvasHeight - this.standHeight) / 2,
+            width: this.standWidth,
+            height: this.standHeight,
+            name: stand.name
         });
+
+        this.updateTargets();
+
+        this.props.addNonTargetElement(this.standObj);
     }
 
     resetTarget() {

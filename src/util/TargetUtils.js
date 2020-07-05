@@ -1,5 +1,6 @@
 import cookie from "react-cookies";
 import {all_targets} from "../components/mainScreen/shootingModes/targets";
+import {all_non_targets} from "../components/mainScreen/shootingModes/nonTargets";
 
 class TargetUtils {
     static targetImageCache = {};
@@ -35,52 +36,23 @@ class TargetUtils {
         return target[0]
     }
 
-    static loadTarget(name) {
-        return new Promise((resolve, reject) => {
-            if (TargetUtils.targetImageCache.hasOwnProperty(name)) {
-                console.log("Fetching cached image!");
-                resolve(TargetUtils.targetImageCache[name])
-            } else {
-                const target = this.getTargetByName(name)
 
-                if (target == null) {
-                    reject("Invalid target name.");
-                    return;
-                }
-
-                let targetImage = new Image()
-
-                targetImage.onload = () => {
-                    TargetUtils.targetImageCache[name] = targetImage
-                    resolve(targetImage)
-                }
-
-                targetImage.src = "/assets/targets/" + target.fileName;
-            }
-        });
+    static getNonTargetByName(name) {
+        let nonTarget = all_non_targets.filter(a => {return a.name === name})
+        if (nonTarget.size === 0) {
+            return null;
+        }
+        return nonTarget[0]
     }
 
-    static loadNonTargetImage(fileName) {
-        return new Promise((resolve, reject) => {
-            if (TargetUtils.nonTargetImageCache.hasOwnProperty(fileName)) {
-                console.log("Fetching cached image!");
-                resolve(TargetUtils.nonTargetImageCache[fileName])
-            } else {
-                let image = new Image()
 
-                image.onload = () => {
-                    TargetUtils.nonTargetImageCache[fileName] = image
-                    resolve(image)
-                }
-
-                image.src = "/assets/nonTargetImages/" + fileName;
-            }
-        })
-    }
-
-    static getTargetWidthForHeight(targetImg, desiredHeight) {
-        const scaleFactor = desiredHeight / targetImg.height;
-        return scaleFactor * targetImg.width;
+    static getTargetWidthForHeight(targetName, desiredHeight) {
+        var target = TargetUtils.getTargetByName(targetName)
+        if (!target) {
+            target = TargetUtils.getNonTargetByName(targetName);
+        }
+        const scaleFactor = desiredHeight / target.defaultHeight;
+        return scaleFactor * target.defaultWidth;
     }
 }
 

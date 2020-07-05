@@ -21,29 +21,27 @@ class StandardShoot extends React.Component {
     componentDidMount() {
         this.props.wipeTargets();
         this.props.wipeNonTargetElements();
-        TargetUtils.loadTarget(this.props.settings.selectedTarget).then(image => {
-            const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
-            const targetName = this.props.settings.selectedTarget;
-            const target = TargetUtils.getTargetByName(targetName);
-            let targetHeight = 0;
-            if (this.props.settings.useDistance) {
-                targetHeight = TargetUtils.scaleTarget(target, this.props.settings.distance, canvasHeight);
-            } else {
-                targetHeight = canvasHeight * .7
-            }
-            const targetWidth = TargetUtils.getTargetWidthForHeight(image, targetHeight)
-            let targetObject = {
-                name: targetName,
-                x: (canvasWidth - targetWidth) / 2,
-                y: (canvasHeight - targetHeight) / 2,
-                width: targetWidth,
-                height: targetHeight,
-                requestedScaleHeight: targetHeight / image.height,
-                id: randomstring.generate(7)
-            }
-            this.props.addTarget(targetObject);
+        const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
+        const targetName = this.props.settings.selectedTarget;
+        const target = TargetUtils.getTargetByName(targetName);
+        let targetHeight = 0;
+        if (this.props.settings.useDistance) {
+            targetHeight = TargetUtils.scaleTarget(target, this.props.settings.distance, canvasHeight);
+        } else {
+            targetHeight = canvasHeight * .7
+        }
+        const targetWidth = TargetUtils.getTargetWidthForHeight(target.name, targetHeight)
+        let targetObject = {
+            name: targetName,
+            x: (canvasWidth - targetWidth) / 2,
+            y: (canvasHeight - targetHeight) / 2,
+            width: targetWidth,
+            height: targetHeight,
+            requestedScaleHeight: targetHeight / target.defaultHeight,
+            id: randomstring.generate(7)
+        }
+        this.props.addTarget(targetObject);
 
-        });
     }
 
     getFeed() {
