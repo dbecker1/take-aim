@@ -6,7 +6,7 @@ import DuelingShoot from "./duelingTree/DuelingShoot";
 
 const standard = {
     name: "Standard Target Shooting",
-    description: "Stationary targets with the option to provide a fixed distance",
+    description: "Stationary svgs with the option to provide a fixed distance",
     configureComponent: StandardConfigure,
     shootComponent: StandardShoot
 }

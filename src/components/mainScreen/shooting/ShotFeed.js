@@ -35,7 +35,7 @@ class ShotFeed extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        this.redrawCanvas(nextProps)
+        // this.redrawCanvas(nextProps)
     }
 
     startProcessing() {
@@ -72,7 +72,7 @@ class ShotFeed extends React.Component {
             this.canvasRef.current.height = outputDimensions.rows * scaleRows;
             this.canvas = new window.fabric.Canvas(this.canvasRef.current);
             this.canvas.setZoom(this.scale)
-            this.redrawCanvas(this.props);
+            // this.redrawCanvas(this.props);
 
             this.shotDetector.start((hit => {
                 GoogleAnalyticsUtils.event({
@@ -88,26 +88,6 @@ class ShotFeed extends React.Component {
 
     stop() {
         this.shotDetector.stop();
-    }
-
-    redrawCanvas(props)  {
-        if (!this.canvas) {
-            return;
-        }
-        this.canvas.loadFromJSON(props.fabricObject, () => {
-            for (let index in props.shots) {
-                const shot = props.shots[index];
-                let shotCircle =  new window.fabric.Circle({
-                    radius: 5,
-                    fill: 'red',
-                    top: shot.center.y,
-                    left: shot.center.x,
-                    originX: 'center',
-                    originY: 'center'
-                })
-                this.canvas.add(shotCircle);
-            }
-        })
     }
 
     render() {
@@ -131,7 +111,6 @@ const mapStateToProps = state => ({
         columns: state.projector.canvasWidth
     },
     shots: state.shotTracker.shots,
-    fabricObject: state.fabric.fabricObject
 })
 
 const mapDispatchToProps = dispatch => {

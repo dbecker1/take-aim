@@ -22,7 +22,6 @@ export const detectHitPoints = store => next => action => {
         try {
             const state = store.getState();
             const currentTargets = state.targets;
-            const scaleTargets = state.fabric.targetRenderScales;
             for (let i in currentTargets) {
                 const currentTarget = currentTargets[i];
                 if (checkBoundaries(currentTarget, action.payload.center)) {
@@ -30,10 +29,11 @@ export const detectHitPoints = store => next => action => {
                     const canvas = document.createElement("canvas");
                     canvas.width = currentTarget.width;
                     canvas.height = currentTarget.height;
+                    const scaleTarget = currentTarget.requstedScaleHeight;
                     const ctx = canvas.getContext('2d');
                     const point = {
-                        x: (action.payload.center.x - currentTarget.x) / scaleTargets[i].scaleX,
-                        y: (action.payload.center.y - currentTarget.y) / scaleTargets[i].scaleY
+                        x: (action.payload.center.x - currentTarget.x) / scaleTarget,
+                        y: (action.payload.center.y - currentTarget.y) / scaleTarget
                     }
                     if (target.hasOwnProperty("scoringZones")) {
                         let lowestPriority = Infinity;

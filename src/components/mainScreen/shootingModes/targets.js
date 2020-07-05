@@ -1,3 +1,4 @@
+import BasicSilhouette from "./svgs/basicSilhouette"
 //In order to create scoring zones, take your SVG image and view the raw xml of it. Each zone should be defined by a
 //single <path> tag. Take the "d" attribute of this tag (the one that defines the path) and put the resultant string
 // in for the "path" of the scoringZone
@@ -7,6 +8,9 @@ export let basic_silhouette = {
     displayName: "Basic Silhouette Target",
     realHeight: 36,
     stationary: true,
+    component: BasicSilhouette,
+    defaultWidth: 217.01,
+    defaultHeight:  428.85,
     scoringZones: [
         {
             name: "Bullseye",

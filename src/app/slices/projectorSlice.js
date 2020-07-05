@@ -8,7 +8,6 @@ export const projectorSlice = createSlice({
         canvasWidth: 0,
         canvasHeight: 0,
         nonTargetElements: [],
-        fabricObject: {}
     },
     reducers: {
         finishResize: (state, action) => {
@@ -25,15 +24,12 @@ export const projectorSlice = createSlice({
         wipeNonTargetElements: state => {
             state.nonTargetElements = []
         },
-        updateFabricObject: (state, action) => {
-            state.fabricObject = action.payload
-        },
         launchProjector: state => {
             state.launch = true;
         }
     },
 });
 
-export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, updateFabricObject, launchProjector } = projectorSlice.actions;
+export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, launchProjector } = projectorSlice.actions;
 
 export default projectorSlice.reducer;
