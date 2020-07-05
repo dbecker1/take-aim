@@ -7,8 +7,6 @@ import {addTarget, wipeTargets, removeTargetById} from "../../../../app/slices/t
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices/projectorSlice";
 import {connect} from "react-redux";
-import NonTargetObject from "../../../../app/pojos/NonTargetObject";
-import Target from "../../../../app/pojos/Target";
 import Card from "../../../Card";
 import {batch} from "react-redux";
 
@@ -50,14 +48,15 @@ class DuelingShoot extends React.Component {
         this.plateWidth = TargetUtils.getTargetWidthForHeight(plate.name, this.plateHeight);
         this.realPlateHeight = plate.defaultHeight;
 
-        this.standObj = new NonTargetObject({
+        this.standObj = {
+            id: TargetUtils.generateId(),
             type: "svg",
             x: (canvasWidth - this.standWidth) / 2,
             y: (canvasHeight - this.standHeight) / 2,
             width: this.standWidth,
             height: this.standHeight,
             name: stand.name
-        });
+        };
 
         this.updateTargets();
 
@@ -144,14 +143,15 @@ class DuelingShoot extends React.Component {
                 if (this.state.plateOrientations[i] === "right") {
                     plateX = this.standObj.x + (this.standObj.width * .5785)
                 }
-                const plateObj = new Target({
+                const plateObj = {
+                    id: TargetUtils.generateId(),
                     x: plateX,
                     y: this.standObj.y + 10 + (10 + this.plateHeight) * i,
                     width:  this.plateWidth,
                     height:this.plateHeight,
                     name: this.state.plateOrientations[i] === "left" ? "tree_plate" : "tree_plate_flipped",
                     requestedScaleRatio: this.plateHeight / this.realPlateHeight
-                })
+                }
 
                 targetIds[i] = plateObj.id;
                 toAdd.push(plateObj);

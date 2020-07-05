@@ -8,7 +8,7 @@ import {addNonTargetElement, wipeNonTargetElements} from "../../../app/slices/pr
 import {bindActionCreators} from "redux";
 import PostWelcomePage from "./PostLaunchPage";
 import {withRouter} from "react-router"
-import NonTargetObject from "../../../app/pojos/NonTargetObject";
+import TargetUtils from "../../../util/TargetUtils";
 
 class CalibrateWebcam extends React.Component {
     constructor(props) {
@@ -49,14 +49,15 @@ class CalibrateWebcam extends React.Component {
         if (this.state.corner > 4) {
             return;
         }
-        let nonTargetElement = new NonTargetObject({
+        let nonTargetElement = {
+            id: TargetUtils.generateId(),
             type: "text",
             text: "Click this corner!",
             fill: "black",
             width: 200,
             height: 30,
             fontSize:  30
-        });
+        };
 
         switch(this.state.corner) {
             case 1:

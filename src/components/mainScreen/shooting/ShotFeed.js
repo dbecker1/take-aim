@@ -111,6 +111,12 @@ class ShotFeed extends React.Component {
                 radius: 5,  // arbitrary
                 timestamp: new Date()
             };
+            if (!!this.props.scoringZones) {
+                this.props.scoringZones.forEach(zone => {
+                    if (shot.center.x >= zone.x && shot.center.x <= zone.x + zone.width && shot.center.y >= zone.y && shot.center.y <= zone.y + zone.height)
+                        shot["zone"] = zone.name
+                })
+            }
             this.props.addShot(shot);
             console.log("MANUAL SHOT")
             console.log(shot)

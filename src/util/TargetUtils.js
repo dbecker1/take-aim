@@ -1,6 +1,7 @@
 import cookie from "react-cookies";
 import {all_targets} from "../components/mainScreen/shootingModes/targets";
 import {all_non_targets} from "../components/mainScreen/shootingModes/nonTargets";
+import randomstring from "randomstring";
 
 class TargetUtils {
     static targetImageCache = {};
@@ -53,6 +54,10 @@ class TargetUtils {
         }
         const scaleFactor = desiredHeight / target.defaultHeight;
         return scaleFactor * target.defaultWidth;
+    }
+
+    static generateId() {
+        return randomstring.generate(7);
     }
 }
 
