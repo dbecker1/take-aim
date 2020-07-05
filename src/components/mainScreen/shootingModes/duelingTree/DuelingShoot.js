@@ -54,7 +54,7 @@ class DuelingShoot extends React.Component {
                 y: (canvasHeight - this.standHeight) / 2,
                 width: this.standWidth,
                 height: this.standHeight,
-                fileName: "tree_stand.svg"
+                name: "tree_stand"
             });
 
             this.updateTargets();

@@ -60,20 +60,20 @@ class CalibrateWebcam extends React.Component {
 
         switch(this.state.corner) {
             case 1:
-                nonTargetElement.top = 5
+                nonTargetElement.top = 20
                 nonTargetElement.left = 5;
                 break;
             case 2:
-                nonTargetElement.top = 5
-                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 150 - 5
+                nonTargetElement.top = 20
+                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 130 - 5
                 break;
             case 3:
-                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 150 - 5
-                nonTargetElement.top = this.props.canvasDimensions.canvasHeight - 65 - 5;
+                nonTargetElement.left =  this.props.canvasDimensions.canvasWidth - 130 - 5
+                nonTargetElement.top = this.props.canvasDimensions.canvasHeight - 5;
                 break;
             case 4:
                 nonTargetElement.left = 5;
-                nonTargetElement.top = this.props.canvasDimensions.canvasHeight - 65 - 5;
+                nonTargetElement.top = this.props.canvasDimensions.canvasHeight -  5;
                 break;
         }
         this.props.wipeNonTargetElements();

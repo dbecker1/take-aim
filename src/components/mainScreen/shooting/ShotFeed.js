@@ -6,12 +6,14 @@ import { addShot, wipeShots } from "../../../app/slices/shotSlice";
 import { bindActionCreators } from "redux";
 import "../../../styles/TargetCanvas.css";
 import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
+import TargetCanvas from "../../TargetCanvas"
 
 class ShotFeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            running: false
+            running: false,
+            scale: null
         }
 
         this.canvasRef = React.createRef();
@@ -62,17 +64,12 @@ class ShotFeed extends React.Component {
             const windowHeight = window.innerHeight * .6;
             let scaleColumns = parentWidth / outputDimensions.columns
             let scaleRows = windowHeight / outputDimensions.rows
-            if (scaleRows < scaleColumns) {
-                scaleColumns = scaleRows
-            } else {
+            if (scaleColumns < scaleRows) {
                 scaleRows = scaleColumns
             }
-            this.scale = scaleRows;
-            this.canvasRef.current.width = outputDimensions.columns * scaleColumns;
-            this.canvasRef.current.height = outputDimensions.rows * scaleRows;
-            this.canvas = new window.fabric.Canvas(this.canvasRef.current);
-            this.canvas.setZoom(this.scale)
-            // this.redrawCanvas(this.props);
+            this.setState({
+                scale: scaleRows
+            })
 
             this.shotDetector.start((hit => {
                 GoogleAnalyticsUtils.event({
@@ -94,7 +91,7 @@ class ShotFeed extends React.Component {
         return (
             <div ref={this.canvasParentRef}>
                 <div className={"text-center"}>
-                    <canvas ref={this.canvasRef}  ></canvas>
+                    {this.state.scale != null && <TargetCanvas scaleFactor={this.state.scale} />}
                     <br />
                     {/*<Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>*/}
                 </div>

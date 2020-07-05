@@ -2,7 +2,7 @@ import React from 'react';
 import NewWindow from "react-new-window";
 import {backgroundColor, color} from "../../config";
 import {Button, Col, Row} from "react-bootstrap";
-import TargetCanvas from "./TargetCanvas";
+import TargetCanvas from "../TargetCanvas";
 import {bindActionCreators} from "redux";
 import {finishResize} from "../../app/slices/projectorSlice";
 import {connect} from "react-redux";

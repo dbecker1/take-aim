@@ -3,7 +3,7 @@ import {Button, Col, Row} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {finishResize} from "../../app/slices/projectorSlice";
 import {connect} from "react-redux";
-import TargetCanvas from "./TargetCanvas";
+import TargetCanvas from "../TargetCanvas";
 
 class ProjectorScreenInner extends React.Component {
     constructor(props) {

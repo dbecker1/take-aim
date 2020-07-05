@@ -160,7 +160,7 @@ class StandardConfigure extends React.Component {
                                                     <span style={{fontWeight: "bold"}}>Name: </span>{value.displayName}
                                                 </td>
                                                 <td className={"text-center"}>
-                                                    <img src={"/assets/svgs/" + value.fileName} style={{height: "200px", marginTop: "30px"}}/>
+                                                    <img src={"/assets/targets/" + value.fileName} style={{height: "200px", marginTop: "30px"}}/>
                                                 </td>
                                                 <td className={"text-center"}>
                                                     {this.state.selectedTarget === value.name ?

@@ -1,4 +1,7 @@
-import BasicSilhouette from "./svgs/basicSilhouette"
+import BasicSilhouette from "./svgs/BasicSilhouette"
+import TreePlate from "./svgs/TreePlate"
+import TreePlateFlipped from "./svgs/TreePlateFlipped"
+import USPSA from "./svgs/USPSA"
 //In order to create scoring zones, take your SVG image and view the raw xml of it. Each zone should be defined by a
 //single <path> tag. Take the "d" attribute of this tag (the one that defines the path) and put the resultant string
 // in for the "path" of the scoringZone
@@ -51,6 +54,9 @@ export let uspsa = {
     displayName: "USPSA Standard Target",
     realHeight: 36,
     stationary: true,
+    component: USPSA,
+    defaultWidth: 237,
+    defaultHeight: 377.82,
     scoringZones: [
         {
             name: "A - Head",
@@ -91,6 +97,9 @@ export let treePlate = {
     displayName: "Dueling Tree Plate",
     realHeight: 6,
     stationary: false,
+    component: TreePlate,
+    defaultWidth: 69,
+    defaultHeight: 59,
     scoringZones: [
         {
             name: "Plate Hit",
@@ -107,6 +116,9 @@ export let treePlateFlipped = {
     displayName: "Dueling Tree Plate (Flipped)",
     realHeight: 6,
     stationary: false,
+    component: TreePlateFlipped,
+    defaultWidth: 69,
+    defaultHeight: 59,
     scoringZones: [
         {
             name: "Plate Hit",

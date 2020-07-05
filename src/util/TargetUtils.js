@@ -55,7 +55,7 @@ class TargetUtils {
                     resolve(targetImage)
                 }
 
-                targetImage.src = "/assets/svgs/" + target.fileName;
+                targetImage.src = "/assets/targets/" + target.fileName;
             }
         });
     }
