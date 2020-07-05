@@ -8,6 +8,9 @@ import "../../../styles/TargetCanvas.css";
 import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 import TargetCanvas from "../../TargetCanvas"
 
+// helpful for debugging/development without an entire setup
+const ENABLE_CLICK_TO_SHOOT = true
+
 class ShotFeed extends React.Component {
     constructor(props) {
         super(props);
@@ -87,16 +90,30 @@ class ShotFeed extends React.Component {
         this.shotDetector.stop();
     }
 
+    onTargetCanvasClick(point) {
+        if (ENABLE_CLICK_TO_SHOOT) {
+            let shot = {
+                center: {
+                    x: point.x / this.state.scale,
+                    y: point.y / this.state.scale,
+                },
+                radius: 5,  // arbitrary
+                timestamp: new Date()
+            };
+            this.props.addShot(shot);
+            console.log("MANUAL SHOT")
+            console.log(shot)
+        }
+    }
+
     render() {
         return (
             <div ref={this.canvasParentRef}>
                 <div className={"text-center"}>
-                    {this.state.scale != null && <TargetCanvas scaleFactor={this.state.scale} shotMode={"standard"}/>}
-                    <br />
-                    {/*<Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>*/}
+                    {this.state.scale != null && <TargetCanvas scaleFactor={this.state.scale} shotMode={"standard"} onClick={(point) => {
+                        this.onTargetCanvasClick(point)
+                    }}/>}
                 </div>
-
-
             </div>
         );
     }

@@ -6,6 +6,24 @@ import {all_non_targets} from "./mainScreen/shootingModes/nonTargets";
 
 
 class TargetCanvas extends React.Component{
+    constructor(props) {
+        super(props);
+        this.canvasRef = React.createRef();
+    }
+
+    onCanvasClick(e) {
+        if (!this.props.onClick) {
+            return;
+        }
+        let rect = this.canvasRef.current.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        this.props.onClick({
+            x: x,
+            y: y
+        })
+    }
+
     render() {
         let scaleFactor = this.props.hasOwnProperty("scaleFactor") ? this.props.scaleFactor: 1.0
         let shotMode = this.props.hasOwnProperty("shotMode") ? this.props.shotMode : "none";
@@ -15,7 +33,9 @@ class TargetCanvas extends React.Component{
                 ${this.props.canvasDimensions.height}`}
                 style={{backgroundColor: "white"}}
                 width={this.props.canvasDimensions.width * scaleFactor}
-                height={this.props.canvasDimensions.height * scaleFactor}>
+                height={this.props.canvasDimensions.height * scaleFactor}
+                onClick={(e) => {this.onCanvasClick(e)}}
+                ref={this.canvasRef}>
                 {this.props.targets.map((value, index) => {
                     const TargetComponent = all_targets.filter(a => {return a.name === value.name})[0].component
                     return <TargetComponent
