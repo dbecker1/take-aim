@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/TargetUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/TargetUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TargetCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TargetCanvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,16 +46,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+            <state relative-caret-position="600">
+              <caret line="40" column="97" selection-start-line="40" selection-start-column="97" selection-end-line="40" selection-end-column="97" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/TargetUtils.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="630">
@@ -66,12 +68,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
+            <state relative-caret-position="455">
+              <caret line="93" column="113" selection-start-line="93" selection-start-column="113" selection-end-line="93" selection-end-column="113" />
               <folding>
-                <element signature="e#0#52#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,6 +101,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-8">
+              <caret line="136" column="20" lean-forward="true" selection-start-line="136" selection-start-column="20" selection-end-line="136" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
@@ -106,15 +117,6 @@
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/BasicSilhouette.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -141,7 +143,6 @@
       <find>hr</find>
       <find>white</find>
       <find>youtube</find>
-      <find>target</find>
       <find>fabricslice</find>
       <find>cls-1</find>
       <find>this.canvas</find>
@@ -153,6 +154,7 @@
       <find>updatetargets</find>
       <find>TargetUtil</find>
       <find>targetutil</find>
+      <find>target</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/components</dir>
@@ -202,12 +204,10 @@
         <option value="$PROJECT_DIR$/src/app/slices/projectorSlice.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/shootingModes.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/CalibrateWebcam.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/treeStand.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/nonTargets.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreeStand.js" />
-        <option value="$PROJECT_DIR$/src/components/TargetCanvas.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlate.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" />
@@ -215,6 +215,8 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
         <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
+        <option value="$PROJECT_DIR$/src/components/TargetCanvas.js" />
       </list>
     </option>
   </component>
@@ -434,12 +436,12 @@
       <workItem from="1586738938356" duration="4790000" />
       <workItem from="1587144760085" duration="1321000" />
       <workItem from="1589679634799" duration="4000" />
-      <workItem from="1593901396511" duration="8678000" />
+      <workItem from="1593901396511" duration="9665000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145879000" />
+    <option name="totallyTimeSpent" value="146866000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -614,13 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="41" column="45" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pojos/Target.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -732,16 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="80" column="32" lean-forward="true" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/WebcamCalibrator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -823,13 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="109" selection-start-line="4" selection-start-column="109" selection-end-line="4" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreeStand.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -841,13 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="114" selection-start-line="4" selection-start-column="114" selection-end-line="4" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -875,6 +846,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="109" selection-start-line="4" selection-start-column="109" selection-end-line="4" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="136" column="20" lean-forward="true" selection-start-line="136" selection-start-column="20" selection-end-line="136" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="93" column="113" selection-start-line="93" selection-start-column="113" selection-end-line="93" selection-end-column="113" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="97" selection-start-line="40" selection-start-column="97" selection-end-line="40" selection-end-column="97" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

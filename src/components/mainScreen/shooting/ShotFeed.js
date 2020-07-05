@@ -91,7 +91,7 @@ class ShotFeed extends React.Component {
         return (
             <div ref={this.canvasParentRef}>
                 <div className={"text-center"}>
-                    {this.state.scale != null && <TargetCanvas scaleFactor={this.state.scale} />}
+                    {this.state.scale != null && <TargetCanvas scaleFactor={this.state.scale} shotMode={"standard"}/>}
                     <br />
                     {/*<Form.Check type="checkbox" label="Filter Noise" onChange={(e) => {this.updateNoise(e)}}/>*/}
                 </div>

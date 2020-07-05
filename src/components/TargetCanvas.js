@@ -8,17 +8,7 @@ import {all_non_targets} from "./mainScreen/shootingModes/nonTargets";
 class TargetCanvas extends React.Component{
     render() {
         let scaleFactor = this.props.hasOwnProperty("scaleFactor") ? this.props.scaleFactor: 1.0
-        let targets = []
-        this.props.targets.forEach(target_obj => {
-            let target = {...target_obj}
-            target.component = all_targets.filter(a => {return a.name === target.name})[0].component
-            targets.push(target);
-        })
-        let nonTargets = []
-        this.props.nonTargetElements.forEach(non_target_obj => {
-            // handle loading of svgs here
-            nonTargets.push({...non_target_obj})
-        })
+        let shotMode = this.props.hasOwnProperty("shotMode") ? this.props.shotMode : "none";
         return (
             <svg
                 viewBox={`0 0 ${this.props.canvasDimensions.width} 
@@ -26,8 +16,8 @@ class TargetCanvas extends React.Component{
                 style={{backgroundColor: "white"}}
                 width={this.props.canvasDimensions.width * scaleFactor}
                 height={this.props.canvasDimensions.height * scaleFactor}>
-                {targets.map((value, index) => {
-                    const TargetComponent = value.component;
+                {this.props.targets.map((value, index) => {
+                    const TargetComponent = all_targets.filter(a => {return a.name === value.name})[0].component
                     return <TargetComponent
                         x={value.x}
                         y={value.y}
@@ -35,7 +25,7 @@ class TargetCanvas extends React.Component{
                         height={value.height}
                         key={index}/>
                 })}
-                {nonTargets.map((value, index) => {
+                {this.props.nonTargetElements.map((value, index) => {
                     if (value.type === "text") {
                         return (
                             <text x={value.left} y={value.top} width={value.width} height={value.height} key={index}>{value.text}</text>
@@ -44,6 +34,13 @@ class TargetCanvas extends React.Component{
                         const NonTargetComponent = all_non_targets.filter(a => {return a.name === value.name})[0].component
                         return <NonTargetComponent x={value.x} y={value.y} width={value.width} height={value.height} />
                     }
+                    return null;
+                })}
+                {this.props.shots.map((value, index) => {
+                    if (shotMode === "standard") {
+                        return <circle cx={value.center.x} cy={value.center.y} r={3} style={{fill: "red"}} />
+                    }
+                    return null;
                 })}
             </svg>
         )
@@ -56,7 +53,8 @@ const mapStateToProps  = state => ({
         width: state.projector.canvasWidth
     },
     nonTargetElements: state.projector.nonTargetElements,
-    targets: state.targets
+    targets: state.targets,
+    shots: state.shotTracker.shots
 })
 
 export default connect(mapStateToProps)(TargetCanvas)
