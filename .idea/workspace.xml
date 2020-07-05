@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="" />
+    <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/ShotDetector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ShotDetector.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="786">
-              <caret line="112" column="59" lean-forward="true" selection-start-line="112" selection-start-column="59" selection-end-line="112" selection-end-column="59" />
+            <state relative-caret-position="492">
+              <caret line="37" column="39" lean-forward="true" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -28,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="184" column="32" lean-forward="true" selection-start-line="184" selection-start-column="32" selection-end-line="184" selection-end-column="32" />
+            <state relative-caret-position="409">
+              <caret line="122" column="71" selection-start-line="122" selection-start-column="71" selection-end-line="122" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -49,13 +53,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+            <state relative-caret-position="1273">
+              <caret line="187" column="34" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,15 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>this.targetIds</find>
-      <find>reactga</find>
-      <find>pageview</find>
-      <find>addNonTargetElement</find>
-      <find>randomstring</find>
-      <find>renderall</find>
-      <find>loadfromjson</find>
-      <find>settings</find>
       <find>hr</find>
       <find>white</find>
       <find>youtube</find>
@@ -95,6 +90,15 @@
       <find>reaplat</find>
       <find>requestedscaleheight</find>
       <find>renderscreen</find>
+      <find>filternoise</find>
+      <find>currentlyprocessing</find>
+      <find>lastshot</find>
+      <find>this[index</find>
+      <find>shotfeed</find>
+      <find>canvasdimensions</find>
+      <find>8uc3</find>
+      <find>processvideo</find>
+      <find>shotdetector</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/components</dir>
@@ -131,7 +135,6 @@
         <option value="$PROJECT_DIR$/src/app/pojos/NonTargetObject.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingConfigure.js" />
         <option value="$PROJECT_DIR$/public/manifest.json" />
-        <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
         <option value="$PROJECT_DIR$/src/components/Card.js" />
         <option value="$PROJECT_DIR$/src/components/App.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/pages/Welcome.js" />
@@ -151,12 +154,13 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js" />
         <option value="$PROJECT_DIR$/src/util/TargetUtils.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
         <option value="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" />
         <option value="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/components/TargetCanvas.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
+        <option value="$PROJECT_DIR$/src/util/ShotDetector.js" />
       </list>
     </option>
   </component>
@@ -378,12 +382,12 @@
       <workItem from="1589679634799" duration="4000" />
       <workItem from="1593901396511" duration="9946000" />
       <workItem from="1593923867312" duration="1230000" />
-      <workItem from="1593967040247" duration="853000" />
+      <workItem from="1593967040247" duration="7462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149230000" />
+    <option name="totallyTimeSpent" value="155839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -736,16 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="66" column="6" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
@@ -773,6 +767,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="187" column="34" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TargetCanvas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -785,8 +799,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="112" column="59" lean-forward="true" selection-start-line="112" selection-start-column="59" selection-end-line="112" selection-end-column="59" />
+        <state relative-caret-position="492">
+          <caret line="37" column="39" lean-forward="true" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -795,18 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util/ShotDetector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="184" column="32" lean-forward="true" selection-start-line="184" selection-start-column="32" selection-end-line="184" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="409">
+          <caret line="122" column="71" selection-start-line="122" selection-start-column="71" selection-end-line="122" selection-end-column="71" />
         </state>
       </provider>
     </entry>

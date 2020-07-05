@@ -174,6 +174,23 @@ class DuelingShoot extends React.Component {
     }
 
     render() {
+        const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
+        let scoringZones = [
+            {
+                name: "player1",
+                x: 0,
+                y: 0,
+                width: canvasWidth / 2,
+                height: canvasHeight
+            },
+            {
+                name: "player2",
+                x: canvasWidth / 2,
+                y: 0,
+                width: canvasWidth / 2,
+                height: canvasHeight
+            }
+        ]
         return (
             <>
                 <Row>
@@ -208,7 +225,7 @@ class DuelingShoot extends React.Component {
                         </Card>
                     </Col>
                     <Col sm={8}>
-                        <ShotFeed videoRef={this.props.videoRef} ref={this.shotFeedRef}/>
+                        <ShotFeed videoRef={this.props.videoRef} ref={this.shotFeedRef} scoringZones={scoringZones}/>
                     </Col>
                 </Row>
                 <Row style={{marginTop: "30px"}}>

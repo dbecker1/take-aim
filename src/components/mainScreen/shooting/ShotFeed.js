@@ -9,7 +9,7 @@ import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 import TargetCanvas from "../../TargetCanvas"
 
 // helpful for debugging/development without an entire setup
-const ENABLE_CLICK_TO_SHOOT = true
+const ENABLE_CLICK_TO_SHOOT = false
 
 class ShotFeed extends React.Component {
     constructor(props) {
@@ -58,9 +58,16 @@ class ShotFeed extends React.Component {
             }
             const outputDimensions = this.props.outputDimensions
             if (!this.shotDetector) {
+                const options = {
+                    targetCorners: webcamConfig.corners,
+                    outputDimensions: outputDimensions,
+                    delayThreshold: 1000,
+                }
+                if (!!this.props.scoringZones) {
+                    options.scoringZones = this.props.scoringZones
+                }
                 this.shotDetector = new ShotDetector(this.props.videoRef.current, laserConfig.h, laserConfig.s, laserConfig.v,
-                    laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, webcamConfig.corners,
-                    outputDimensions, 100);
+                    laserConfig.hRadius, laserConfig.sRadius, laserConfig.vRadius, options);
             }
 
             const parentWidth = this.canvasParentRef.current.offsetWidth * .9;
@@ -74,14 +81,18 @@ class ShotFeed extends React.Component {
                 scale: scaleRows
             })
 
-            this.shotDetector.start((hit => {
-                GoogleAnalyticsUtils.event({
-                    category: 'Shot Feed',
-                    action: "Shot Detected",
-                    label: "Radius: " + hit.radius
-                });
-                this.props.addShot(hit);
-                console.log(hit)
+            this.shotDetector.start((hits => {
+                if (!ENABLE_CLICK_TO_SHOOT) {
+                    hits.forEach(hit => {
+                        GoogleAnalyticsUtils.event({
+                            category: 'Shot Feed',
+                            action: "Shot Detected",
+                            label: "Radius: " + hit.radius
+                        });
+                        this.props.addShot(hit);
+                        console.log(hit)
+                    })
+                }
             }))
         })
     }
