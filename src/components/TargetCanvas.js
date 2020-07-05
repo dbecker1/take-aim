@@ -61,6 +61,11 @@ class TargetCanvas extends React.Component{
                 {this.props.shots.map((value, index) => {
                     if (shotMode === "standard") {
                         return <circle cx={value.center.x} cy={value.center.y} r={3} style={{fill: "red"}} />
+                    } else if (shotMode === "fade") {
+                        return <circle cx={value.center.x}
+                                       cy={value.center.y}
+                                       r={5}
+                                       style={{fill: "black", animationName: "fadeShot", animationDuration: "3s", animationFillMode: "forwards"}} />
                     }
                     return null;
                 })}

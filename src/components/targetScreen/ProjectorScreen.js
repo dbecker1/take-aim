@@ -72,7 +72,7 @@ class ProjectorScreen extends React.Component {
                     </Row>
                     <Row>
                         <Col sm={12} className={"text-center"}>
-                            <TargetCanvas shotMode={"standard"}/>
+                            <TargetCanvas shotMode={"fade"}/>
                         </Col>
                     </Row>
                 </>
