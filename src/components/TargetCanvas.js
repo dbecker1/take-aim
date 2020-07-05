@@ -53,6 +53,8 @@ class TargetCanvas extends React.Component{
                     } else if (value.type === "svg") {
                         const NonTargetComponent = all_non_targets.filter(a => {return a.name === value.name})[0].component
                         return <NonTargetComponent x={value.x} y={value.y} width={value.width} height={value.height} />
+                    } else if (value.type === "rect") {
+                        return <rect x={value.x} y={value.y} width={value.width} height={value.height} fill={value.fill} />
                     }
                     return null;
                 })}

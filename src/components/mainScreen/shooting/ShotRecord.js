@@ -6,9 +6,27 @@ class ShotRecord extends React.Component {
     render() {
         let reversedShots = [...this.props.shots];
         reversedShots.reverse()
+        if (this.props.twoPlayerEnabled) {
+            return (
+                <div>
+                    {this.renderCard("Player 1 Shot Record", reversedShots.filter(a => {return a.zone === "Player 1"}))}
+                    {this.renderCard("Player 2 Shot Record", reversedShots.filter(a => {return a.zone === "Player 2"}))}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    {this.renderCard("Shot Record", reversedShots)}
+                </div>
+            );
+        }
+
+    }
+
+    renderCard(title, shots) {
         return (
-            <Card className={"text-center"}>
-                <h4 style={{textDecoration: "underline"}}>Shot Record</h4>
+            <Card className={"text-center"} style={{marginBottom: "20px"}}>
+                <h4 style={{textDecoration: "underline"}}>{title}</h4>
                 <div style={{maxHeight: "150px", overflowY: "scroll"}}>
                     <table style={{width: "100%", textAlign: "center"}}>
                         <thead style={{textDecoration: "underline"}}>
@@ -19,7 +37,7 @@ class ShotRecord extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {reversedShots.map((value, index) => {
+                        {shots.map((value, index) => {
                             let score = value.score;
                             if (!score) {
                                 score = {
@@ -28,7 +46,7 @@ class ShotRecord extends React.Component {
                                 }
                             }
                             return <tr key={index}>
-                                <td>{reversedShots.length - index}</td>
+                                <td>{shots.length - index}</td>
                                 <td>{score.name}</td>
                                 <td>{score.pointValue}</td>
                             </tr>
@@ -43,7 +61,8 @@ class ShotRecord extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    shots: state.shotTracker.shots
+    shots: state.shotTracker.shots,
+    twoPlayerEnabled: state.config.twoPlayer
 });
 
 export default connect(mapStateToProps)(ShotRecord);

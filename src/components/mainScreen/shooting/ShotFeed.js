@@ -62,6 +62,7 @@ class ShotFeed extends React.Component {
                     targetCorners: webcamConfig.corners,
                     outputDimensions: outputDimensions,
                     delayThreshold: 1000,
+                    fps: 30
                 }
                 if (!!this.props.scoringZones) {
                     options.scoringZones = this.props.scoringZones

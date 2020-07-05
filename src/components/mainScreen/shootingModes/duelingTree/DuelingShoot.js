@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets, removeTargetById} from "../../../../app/slices/targetSlice";
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices/projectorSlice";
+import {setTwoPlayerStatus} from "../../../../app/slices/configSlice";
 import {connect} from "react-redux";
 import Card from "../../../Card";
 import {batch} from "react-redux";
@@ -26,6 +27,7 @@ class DuelingShoot extends React.Component {
     componentDidMount() {
         window.createjs.Sound.registerSound("/assets/sounds/timerbeep.wav", "Beep");
         this.resetTarget();
+        this.props.setTwoPlayerStatus(true);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -177,14 +179,14 @@ class DuelingShoot extends React.Component {
         const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
         let scoringZones = [
             {
-                name: "player1",
+                name: "Player 1",
                 x: 0,
                 y: 0,
                 width: canvasWidth / 2,
                 height: canvasHeight
             },
             {
-                name: "player2",
+                name: "Player 2",
                 x: canvasWidth / 2,
                 y: 0,
                 width: canvasWidth / 2,
@@ -248,7 +250,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({addTarget, wipeShots, wipeTargets, addNonTargetElement, removeTargetById, wipeNonTargetElements}, dispatch)
+    return bindActionCreators({addTarget, wipeShots, wipeTargets, addNonTargetElement, removeTargetById, wipeNonTargetElements, setTwoPlayerStatus}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DuelingShoot);

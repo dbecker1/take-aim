@@ -16,6 +16,7 @@ class StandardConfigure extends React.Component {
             selectedTarget: null,
             useDistance: false,
             useTimer: false,
+            twoPlayer: false,
             timerType: "running"
         }
 
@@ -74,6 +75,15 @@ class StandardConfigure extends React.Component {
                                     id="custom-switch2"
                                     checked={this.state.useTimer}
                                     onChange={(e) => {this.setState({useTimer: e.target.checked})}}
+                                    inline
+                                />
+
+                                <Form.Check
+                                    type="switch"
+                                    label="Two Player Split Screen"
+                                    id="custom-switch3"
+                                    checked={this.state.twoPlayer}
+                                    onChange={(e) => {this.setState({twoPlayer: e.target.checked})}}
                                     inline
                                 />
                             </Form>

@@ -6,7 +6,8 @@ import ShotRecord from "../../shooting/ShotRecord";
 import TargetUtils from "../../../../util/TargetUtils"
 import {bindActionCreators} from "redux";
 import {addTarget, wipeTargets} from "../../../../app/slices/targetSlice";
-import {wipeNonTargetElements} from "../../../../app/slices/projectorSlice"
+import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices/projectorSlice"
+import { setTwoPlayerStatus } from "../../../../app/slices/configSlice";
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {connect} from "react-redux";
 var randomstring = require("randomstring");
@@ -31,21 +32,78 @@ class StandardShoot extends React.Component {
             targetHeight = canvasHeight * .7
         }
         const targetWidth = TargetUtils.getTargetWidthForHeight(target.name, targetHeight)
-        let targetObject = {
-            name: targetName,
-            x: (canvasWidth - targetWidth) / 2,
-            y: (canvasHeight - targetHeight) / 2,
-            width: targetWidth,
-            height: targetHeight,
-            requestedScaleRatio: targetHeight / target.defaultHeight,
-            id: randomstring.generate(7)
+        if (this.props.settings.twoPlayer) {
+            this.props.setTwoPlayerStatus(true)
+            let playerOneTarget = {
+                name: targetName,
+                x: (canvasWidth / 4) - (targetWidth / 2),
+                y: (canvasHeight - targetHeight) / 2,
+                width: targetWidth,
+                height: targetHeight,
+                requestedScaleRatio: targetHeight / target.defaultHeight,
+                id: TargetUtils.generateId()
+            }
+            let playerTwoTarget = {
+                name: targetName,
+                x: (canvasWidth * 3 / 4) - (targetWidth / 2),
+                y: (canvasHeight - targetHeight) / 2,
+                width: targetWidth,
+                height: targetHeight,
+                requestedScaleRatio: targetHeight / target.defaultHeight,
+                id: TargetUtils.generateId()
+            }
+            this.props.addTarget(playerOneTarget)
+            this.props.addTarget(playerTwoTarget)
+
+            let dividingLine = {
+                id: TargetUtils.generateId(),
+                type: "rect",
+                x: (canvasWidth / 2) - 3,
+                y: 10,
+                width: 6,
+                height: canvasHeight - 20,
+                fill: "black"
+            };
+            this.props.addNonTargetElement(dividingLine)
+        } else {
+            this.props.setTwoPlayerStatus(false)
+            let targetObject = {
+                name: targetName,
+                x: (canvasWidth - targetWidth) / 2,
+                y: (canvasHeight - targetHeight) / 2,
+                width: targetWidth,
+                height: targetHeight,
+                requestedScaleRatio: targetHeight / target.defaultHeight,
+                id: TargetUtils.generateId()
+            }
+            this.props.addTarget(targetObject);
         }
-        this.props.addTarget(targetObject);
+
 
     }
 
     getFeed() {
-        return <ShotFeed videoRef={this.props.videoRef}/>
+        const {canvasWidth, canvasHeight} = this.props.canvasDimensions;
+        var scoringZones = []
+        if (this.props.settings.twoPlayer) {
+            scoringZones = [
+                {
+                    name: "Player 1",
+                    x: 0,
+                    y: 0,
+                    width: canvasWidth / 2,
+                    height: canvasHeight
+                },
+                {
+                    name: "Player 2",
+                    x: canvasWidth / 2,
+                    y: 0,
+                    width: canvasWidth / 2,
+                    height: canvasHeight
+                }
+            ]
+        }
+        return <ShotFeed videoRef={this.props.videoRef} scoringZones={scoringZones}/>
     }
 
     render() {
@@ -89,7 +147,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({addTarget, wipeShots, wipeTargets,wipeNonTargetElements}, dispatch)
+    return bindActionCreators({addTarget, wipeShots, wipeTargets, addNonTargetElement, wipeNonTargetElements, setTwoPlayerStatus}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StandardShoot);
