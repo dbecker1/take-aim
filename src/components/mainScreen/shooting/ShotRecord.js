@@ -24,10 +24,16 @@ class ShotRecord extends React.Component {
     }
 
     renderCard(title, shots) {
+        const total = shots.reduce((acc, cur) => {
+            if (cur.hasOwnProperty("score") && !isNaN(cur.score.pointValue)) {
+                return acc + cur.score.pointValue
+            };
+            return acc
+        }, 0)
         return (
             <Card className={"text-center"} style={{marginBottom: "20px"}}>
                 <h4 style={{textDecoration: "underline"}}>{title}</h4>
-                <div style={{maxHeight: "150px", overflowY: "scroll"}}>
+                <div style={{height: "150px", overflowY: "scroll"}}>
                     <table style={{width: "100%", textAlign: "center"}}>
                         <thead style={{textDecoration: "underline"}}>
                         <tr>
@@ -53,6 +59,9 @@ class ShotRecord extends React.Component {
                         })}
                         </tbody>
                     </table>
+                </div>
+                <div style={{paddingRight: "10px", paddingTop: "10px"}}>
+                    <h6 className={"float-right"}>Total: {total}</h6>
                 </div>
                 <div id={"canvashere"}></div>
             </Card>

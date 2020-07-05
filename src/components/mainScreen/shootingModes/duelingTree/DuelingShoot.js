@@ -10,6 +10,7 @@ import {setTwoPlayerStatus} from "../../../../app/slices/configSlice";
 import {connect} from "react-redux";
 import Card from "../../../Card";
 import {batch} from "react-redux";
+import ShotRecord from "../../shooting/ShotRecord";
 
 class DuelingShoot extends React.Component {
     constructor(props) {
@@ -165,14 +166,16 @@ class DuelingShoot extends React.Component {
                 this.props.addTarget(toAdd[i])
             }
         });
-        this.setState({
-            targetIds: targetIds,
-            plateOrientations: plateOrientations
-        }, () => {
-            if (this.state.competitionStarted && (this.state.plateOrientations.indexOf("left") < 0 || this.state.plateOrientations.indexOf("right") < 0)) {
-                this.stopCompetition()
-            }
-        })
+        if (targetsToRemove.length > 0 || toAdd.length > 0) {
+            this.setState({
+                targetIds: targetIds,
+                plateOrientations: plateOrientations
+            }, () => {
+                if (this.state.competitionStarted && (this.state.plateOrientations.indexOf("left") < 0 || this.state.plateOrientations.indexOf("right") < 0)) {
+                    this.stopCompetition()
+                }
+            })
+        }
     }
 
     render() {
@@ -202,29 +205,7 @@ class DuelingShoot extends React.Component {
                 </Row>
                 <Row>
                     <Col sm={4}  className={"text-center"}>
-                        <Card >
-                            <h4 style={{textDecoration: "underline"}}>Competition</h4>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Player 1</th>
-                                    <th>Player 2</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>{this.state.plateOrientations.filter(a => a === "left").length}</td>
-                                    <td>{this.state.plateOrientations.filter(a => a === "right").length}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            {!this.state.competitionStarted &&
-                                <div style={{marginTop: "20px"}}>
-                                    <Button   onClick={() => {this.startCompetition()}}>Start Competition</Button>
-                                    <p style={{fontSize: "80%"}}>Competition will start on beep after 5 secnod delay</p>
-                                </div>
-                            }
-                        </Card>
+                        <ShotRecord />
                     </Col>
                     <Col sm={8}>
                         <ShotFeed videoRef={this.props.videoRef} ref={this.shotFeedRef} scoringZones={scoringZones}/>
