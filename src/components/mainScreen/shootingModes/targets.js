@@ -2,6 +2,7 @@ import BasicSilhouette from "./svgs/BasicSilhouette"
 import TreePlate from "./svgs/TreePlate"
 import TreePlateFlipped from "./svgs/TreePlateFlipped"
 import USPSA from "./svgs/USPSA"
+import Bullseye from "./svgs/Bullseye"
 //In order to create scoring zones, take your SVG image and view the raw xml of it. Each zone should be defined by a
 //single <path> tag. Take the "d" attribute of this tag (the one that defines the path) and put the resultant string
 // in for the "path" of the scoringZone
@@ -129,4 +130,41 @@ export let treePlateFlipped = {
     ]
 }
 
-export const all_targets = [basic_silhouette, uspsa, treePlate, treePlateFlipped];
+export let bullseye = {
+    name: "bullseye",
+    fileName: "bullseye.svg",
+    displayName: "Bullseye",
+    realHeight: 12,
+    stationary: true,
+    component: Bullseye,
+    defaultWidth: 251,
+    defaultHeight: 251,
+    scoringZones: [
+        {
+            name: "Bullseye",
+            pointValue: 10,
+            path: "M175.5,125.5a50,50,0,1,1-50-50A50,50,0,0,1,175.5,125.5Z",
+            priority: 1
+        },
+        {
+            name: "8",
+            pointValue: 8,
+            path: "M200.5,125.5a75,75,0,1,1-75-75A75,75,0,0,1,200.5,125.5Z",
+            priority: 2
+        },
+        {
+            name: "6",
+            pointValue: 6,
+            path: "M225.5,125.5a100,100,0,1,1-100-100A100,100,0,0,1,225.5,125.5Z",
+            priority: 3
+        },
+        {
+            name: "4",
+            pointValue: 4,
+            path: "M250.5,125.5A125,125,0,1,1,125.5.5,125,125,0,0,1,250.5,125.5Z",
+            priority: 4
+        }
+    ]
+}
+
+export const all_targets = [basic_silhouette, uspsa, treePlate, treePlateFlipped, bullseye];

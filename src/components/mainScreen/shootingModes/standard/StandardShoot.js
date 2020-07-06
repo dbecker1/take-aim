@@ -10,7 +10,6 @@ import {addNonTargetElement, wipeNonTargetElements} from "../../../../app/slices
 import { setTwoPlayerStatus } from "../../../../app/slices/configSlice";
 import {wipeShots} from "../../../../app/slices/shotSlice";
 import {connect} from "react-redux";
-var randomstring = require("randomstring");
 
 class StandardShoot extends React.Component {
     constructor(props) {
