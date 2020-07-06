@@ -9,7 +9,7 @@ import GoogleAnalyticsUtils from "../../../util/GoogleAnalyticsUtils";
 import TargetCanvas from "../../TargetCanvas"
 
 // helpful for debugging/development without an entire setup
-const ENABLE_CLICK_TO_SHOOT = true
+const ENABLE_CLICK_TO_SHOOT = false
 
 class ShotFeed extends React.Component {
     constructor(props) {

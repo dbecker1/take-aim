@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1329be04-a561-4802-8866-c40ae65b7eea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/slices/projectorSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/slices/projectorSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TargetCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TargetCanvas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingShoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingShoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/BasicSilhouette.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/BasicSilhouette.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/Bullseye.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/Bullseye.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/USPSA.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/targetScreen/ProjectorScreenInner.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,6 +19,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/hitPointDetectionMiddleware.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -78,23 +79,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingShoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+            <state relative-caret-position="1500">
+              <caret line="100" column="5" lean-forward="true" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/Bullseye.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -214,7 +206,6 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/duelingTree/DuelingShoot.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotRecord.js" />
-        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardShoot.js" />
         <option value="$PROJECT_DIR$/src/app/slices/targetSlice.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingConfigure.js" />
@@ -231,6 +222,7 @@
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/svgs/TreePlateFlipped.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/targets.js" />
         <option value="$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingShoot.js" />
+        <option value="$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js" />
       </list>
     </option>
   </component>
@@ -447,12 +439,12 @@
       <workItem from="1593923867312" duration="1230000" />
       <workItem from="1593967040247" duration="7560000" />
       <workItem from="1593980049746" duration="4954000" />
-      <workItem from="1594002316367" duration="6804000" />
+      <workItem from="1594002316367" duration="7472000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167695000" />
+    <option name="totallyTimeSpent" value="168363000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -659,16 +651,6 @@
     <entry file="file://$PROJECT_DIR$/public/assets/targets/bullseye.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/standard/StandardConfigure.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -834,8 +816,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shootingModes/moving/MovingShoot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+        <state relative-caret-position="1500">
+          <caret line="100" column="5" lean-forward="true" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mainScreen/shooting/ShotFeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
