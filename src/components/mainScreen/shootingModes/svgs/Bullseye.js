@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Bullseye = ({x=0, y=0, width=251, height=251}) => {
+const Bullseye = ({x=0, y=0, width=251, height=251, targetId= null}) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251 251" x={x} y={y} width={width} height={height}>
-            <g id="Bullseye">
+            <g id="Bullseye" data-target-id={targetId}>
                 <path id="_4-ring" data-name="4-ring" style={{stroke: "#000", strokeMiterlimit: 10, fill: "#000"}}
                       d="M250.5,125.5A125,125,0,1,1,125.5.5,125,125,0,0,1,250.5,125.5Z"/>
                 <path id="_6-ring" data-name="6-ring" style={{stroke: "#000", strokeMiterlimit: 10, fill: "#0071bc"}}

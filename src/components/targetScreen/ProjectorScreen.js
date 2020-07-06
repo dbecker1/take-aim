@@ -4,7 +4,7 @@ import {backgroundColor, color} from "../../config";
 import {Button, Col, Row} from "react-bootstrap";
 import TargetCanvas from "../TargetCanvas";
 import {bindActionCreators} from "redux";
-import {finishResize} from "../../app/slices/projectorSlice";
+import {finishResize, setCoordinates} from "../../app/slices/projectorSlice";
 import {connect} from "react-redux";
 
 const WINDOW_NAME = "com_sharpshooter_projectorwindow"
@@ -19,6 +19,7 @@ class ProjectorScreen extends React.Component {
         }
 
         this.windowRef = React.createRef();
+        this.canvasRef = React.createRef();
         this.updateSize.bind(this)
     }
 
@@ -34,6 +35,16 @@ class ProjectorScreen extends React.Component {
     componentWillUnmount() {
         this.windowRef.current. window.removeEventListener('resize', (e) => {this.updateSize(e)});
 
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.canvasX === null && this.props.resized) {
+            let rect = this.canvasRef.current.getBoundingClientRect();
+            this.props.setCoordinates({
+                canvasX: this.state.width * .1,
+                canvasY: rect.top
+            })
+        }
     }
 
     updateSize(e) {
@@ -71,8 +82,8 @@ class ProjectorScreen extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={12} className={"text-center"}>
-                            <TargetCanvas shotMode={"fade"}/>
+                        <Col sm={12} className={"text-center"} ref={this.canvasRef}>
+                            <TargetCanvas shotMode={"fade"} />
                         </Col>
                     </Row>
                 </>
@@ -94,10 +105,12 @@ class ProjectorScreen extends React.Component {
 
 
 const mapStateToProps = state => ({
-    resized: state.projector.resized
+    resized: state.projector.resized,
+    canvasX: state.projector.canvasX,
+    canvasY: state.projector.canvasY
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({finishResize}, dispatch)
+    return bindActionCreators({finishResize, setCoordinates}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectorScreen)

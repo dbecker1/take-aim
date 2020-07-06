@@ -7,6 +7,8 @@ export const projectorSlice = createSlice({
         resized: false,
         canvasWidth: 0,
         canvasHeight: 0,
+        canvasX: null,
+        canvasY: null,
         nonTargetElements: [],
     },
     reducers: {
@@ -14,6 +16,10 @@ export const projectorSlice = createSlice({
             state.resized = true;
             state.canvasHeight = action.payload.canvasHeight;
             state.canvasWidth = action.payload.canvasWidth;
+        },
+        setCoordinates: (state, action) => {
+            state.canvasX = action.payload.canvasX;
+            state.canvasY = action.payload.canvasY;
         },
         addNonTargetElement: (state, action) => {
             state.nonTargetElements.push(action.payload)
@@ -30,6 +36,6 @@ export const projectorSlice = createSlice({
     },
 });
 
-export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, launchProjector } = projectorSlice.actions;
+export const { finishResize, addNonTargetElement, removeNonTargetElementByName, wipeNonTargetElements, launchProjector, setCoordinates } = projectorSlice.actions;
 
 export default projectorSlice.reducer;

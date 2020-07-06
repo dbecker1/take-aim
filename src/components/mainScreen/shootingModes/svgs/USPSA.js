@@ -1,17 +1,17 @@
 import React from 'react';
 
-const USPSA = ({x=0, y=0, width=237, height=377.82}) => {
+const USPSA = ({x=0, y=0, width=237, height=377.82, targetId = null}) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 237 377.82" x={x} y={y} width={width} height={height}>
-            <g id="USPSA">
-                <path id="D-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
+            <g id="USPSA" data-target-id={targetId}>
+                <path id="D-target" data-name="D-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
                       d="M40,377.57.25,300.17,2.4,115.27l-.34-6.1,30.1-30.1,5.72-5.72H197l7.86,6.25,30.1,30.1-.34,6.11,2.15,184.9-2.45,4.78-36.25,72.08H40Z"/>
-                <path id="C-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
+                <path id="C-target" data-name="C-target"  style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
                       d="M68.74,300.71,43.79,242.87l1.35-138.19-.22-4.56L63.8,77.62l3.59-4.27h99.8L172.12,78,191,100.52l-.21,4.56,1.35,138.19-1.54,3.57-22.74,53.87H68.74Z"/>
-                <path id="A-body-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
+                <path id="A-body-target" data-name="A-body-target"  style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
                       d="M148.75,246.43H89.46a6.37,6.37,0,0,1-6.37-6.37V116.27a6.37,6.37,0,0,1,6.37-6.37h59.29a6.37,6.37,0,0,1,6.37,6.37V240.06A6.38,6.38,0,0,1,148.75,246.43Z"/>
-                <path id="B-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}} d="M160.43,73.35H75.5V.25h84.93Z"/>
-                <path id="A-head-target" style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
+                <path id="B-target" data-name="B-target"  style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}} d="M160.43,73.35H75.5V.25h84.93Z"/>
+                <path id="A-head-target" data-name="A-head-target"  style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}
                       d="M138.52,43.25H99.68a6.38,6.38,0,0,1-6.38-6.38V22.76a6.38,6.38,0,0,1,6.38-6.38h38.84a6.37,6.37,0,0,1,6.38,6.38V36.87A6.38,6.38,0,0,1,138.52,43.25Z"/>
                 <g id="A">
                     <path style={{fill:"#fff", stroke: "#000", strokeMiterlimit: 10, strokeWidth: "0.5px"}}

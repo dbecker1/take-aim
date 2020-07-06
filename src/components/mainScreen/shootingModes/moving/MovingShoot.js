@@ -51,7 +51,7 @@ class StandardShoot extends React.Component {
         if (this.hasOwnProperty("interval"))
             clearInterval(this.interval)
 
-        const fps = 40;
+        const fps = 20;
         let delay = 1000 / fps;
         this.interval = setInterval(() => {
             this.props.tickTargets()

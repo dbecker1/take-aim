@@ -18,6 +18,9 @@ class TargetCanvas extends React.Component{
         let rect = this.canvasRef.current.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
+
+        // const elem = document.elementFromPoint(e.clientX, e.clientY)
+        // console.log(elem)
         this.props.onClick({
             x: x,
             y: y
@@ -43,6 +46,7 @@ class TargetCanvas extends React.Component{
                         y={value.y}
                         width={value.width}
                         height={value.height}
+                        targetId={value.id}
                         key={index}/>
                 })}
                 {this.props.nonTargetElements.map((value, index) => {
